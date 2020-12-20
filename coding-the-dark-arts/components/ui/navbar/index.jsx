@@ -1,7 +1,5 @@
 import Link from "next/link";
-import styled from "styled-components";
 import React, { useState } from "react";
-import { COLORS } from "../../../styles/colors";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
@@ -11,7 +9,7 @@ const Navbar = () => {
 
   return (
     <>
-      <Nav className="navbar">
+      <nav className="c-navbar">
         <p style={{ display: !menu ? "flex" : "none" }}>
           Welcome to the Dark Arts
         </p>
@@ -28,7 +26,8 @@ const Navbar = () => {
             <a>About</a>
           </Link>
         </div>
-        <Button
+        <button
+          className="c-button"
           style={{
             position: "absolute",
             backgroundColor: "transparent",
@@ -36,52 +35,12 @@ const Navbar = () => {
           }}
           onClick={toggleMenu}
         >
-          {!menu && <ButtonText>&#8594;</ButtonText>}
+          {!menu && <span className="c-button-icon">&#8594;</span>}
           {/* <MenuIcon /> */}
-        </Button>
-      </Nav>
+        </button>
+      </nav>
     </>
   );
 };
 
 export default Navbar;
-
-const Nav = styled.nav`
-  background-color: #1d3557;
-  position: relative;
-  color: white;
-  padding: 15px;
-  display: flex;
-  justify-content: space-evenly;
-  letter-spacing: 2.5px;
-  font-size: 15px;
-  height: 70px;
-
-  a {
-    padding: 8px;
-    margin: 0 75px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 33%;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
-
-const Button = styled.button`
-  position: absolute;
-  right: 8px;
-  top: 18px;
-  outline: none;
-  &:active {
-    border: 1px solid;
-  }
-`;
-
-const ButtonText = styled.span`
-  color: ${COLORS.PURPLES.LIGHT};
-  font-size: 26px;
-`;
