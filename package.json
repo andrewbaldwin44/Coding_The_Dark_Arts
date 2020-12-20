@@ -1,0 +1,16 @@
+{
+  "name": "coding-the-dark-arts",
+  "version": "1.0.0",
+  "description": "Code Blog",
+  "private": "true",
+  "author": "Andrew and Kolby ",
+  "license": "GNU AFFERO GENERAL PUBLIC LICENSE",
+  "scripts": {
+    "start": "cd coding-the-dark-arts && yarn next dev",
+    "start:sanity": "cd sanity && yarn sanity start"
+  },
+  "engines": {
+    "npm": ">=6.X",
+    "node": ">=12.X"
+  }
+}
