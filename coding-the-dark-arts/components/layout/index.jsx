@@ -14,7 +14,7 @@ const Layout = ({ children, title }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <div class="c-main-wrapper">
+      <div className="c-main-wrapper">
         {/* Children passes all the page content */}
         {children}
       </div>
