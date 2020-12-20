@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import GlobalStyles from "../styles/GlobalStyles";
 import Layout from "../components/layout";
 // import { gql } from "@apollo/client";
+import index from '../styles/index.scss'
 
 MyApp.propTypes = {
   Component: PropTypes.func,
@@ -11,7 +11,6 @@ MyApp.propTypes = {
 function MyApp({ Component, pageProps }) {
   return (
     <Layout>
-      <GlobalStyles />
       <Component {...pageProps} />
     </Layout>
   );

@@ -1,0 +1,41 @@
+.c-navbar {
+  background-color: #1d3557;
+  position: relative;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-evenly;
+  letter-spacing: 2.5px;
+  font-size: 15px;
+  height: 70px;
+
+  a {
+    padding: 8px;
+    margin: 0 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 33%;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.c-button {
+  position: absolute;
+  right: 8px;
+  top: 18px;
+  outline: none;
+
+  &:active {
+    border: 1px solid;
+  }
+
+  .c-button-icon {
+    color: $light-purple;
+    font-size: 26px;
+  }
+}
