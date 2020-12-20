@@ -1,34 +1,43 @@
 import { createRef, useContext, useEffect } from 'react';
 import Router from 'next/router';
-import { AppContext } from '../../components/appContext';
+import { connect } from "react-redux";
+import { initiateLogin } from "../../auth/firebase-actions";
 
-function Login() {
-  const { createUserWithEmail, appUser } = useContext(AppContext);
+function Login({ initiateLogin, store }) {
 
   const emailField = createRef(null);
   const passwordField = createRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    console.log('here')
     const email = emailField.current.value;
     const password = passwordField.current.value;
 
-    createUserWithEmail(email, password);
+    initiateLogin({ email, password });
   }
 
-  if (appUser) {
-    Router.push('/');
-    return null;
-  }
+  useEffect(() => {
+    console.log(store)
+  }, [store])
+
+  // if (appUser) {
+  //   Router.push('/');
+  //   return null;
+  // }
 
   return (
     <form onSubmit={handleSubmit}>
       <input type='text' ref={emailField} />
       <input type='password' ref={passwordField} />
-      <button type='submit'></button>
+      <button type='submit'>Submit</button>
     </form>
   );
 }
 
-export default Login;
+export default connect(
+  store => store,
+  {
+    initiateLogin
+  }
+)(Login);
