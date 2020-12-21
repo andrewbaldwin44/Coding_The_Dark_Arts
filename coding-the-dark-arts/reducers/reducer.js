@@ -1,8 +1,9 @@
-import { combineReducers } from "redux"
-import firebaseReducer from "../auth/firebase-reducer"
+import { combineReducers } from "redux";
+
+import firebase from "../auth/firebase-reducer";
 
 const combinedReducers = combineReducers({
-  firebaseReducer,
-})
+  firebase,
+});
 
 export default combinedReducers;
