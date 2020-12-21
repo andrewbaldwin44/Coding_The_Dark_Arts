@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 // import { gql } from "@apollo/client";
 import index from "../styles/index.scss";
 import configureStore from "../store";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 
 MyApp.propTypes = {
   Component: PropTypes.object,
@@ -16,11 +16,11 @@ function MyApp({ Component, pageProps }) {
   // const store = useStore(pageProps.initialReduxState);
 
   return (
-    <Layout>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Layout>
         <Component {...pageProps} />
-      </Provider>
-    </Layout>
+      </Layout>
+    </Provider>
   );
 }
 

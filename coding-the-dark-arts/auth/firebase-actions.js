@@ -14,3 +14,12 @@ export const initiateLogin = (payload) => ({
   type: "INITIATE_LOGIN",
   payload,
 });
+
+export const logoutSuccess = () => ({
+  type: "LOGOUT_SUCCESS",
+
+})
+
+export const initiateLogout = () => ({
+  type: "INITIATE_LOGOUT"
+})

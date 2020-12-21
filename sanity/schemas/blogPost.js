@@ -16,6 +16,15 @@ export default {
       description: "Blog Content",
     },
     {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "postTitle",
+        maxLength: 100,
+      },
+    },
+    {
       name: "image",
       title: "Image",
       type: "image",

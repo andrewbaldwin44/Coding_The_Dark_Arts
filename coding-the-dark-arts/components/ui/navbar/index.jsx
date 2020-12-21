@@ -1,7 +1,13 @@
 import Link from "next/link";
 import React, { useState } from "react";
+import { connect } from 'react-redux'
+import { initiateLogout } from '../../../auth/firebase-actions'
 
-const Navbar = () => {
+const Navbar = ({ initiateLogout, userData }) => {
+  React.useEffect(() => {
+    console.log(userData)
+  }, [userData])
+  
   const [menu, setMenu] = useState(false);
   const toggleMenu = () => {
     setMenu(!menu);
@@ -25,6 +31,7 @@ const Navbar = () => {
           <Link href="/">
             <a>About</a>
           </Link>
+          <button onClick={initiateLogout}>Log Out</button>
         </div>
         <button
           className="c-button"
@@ -43,4 +50,12 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default connect(
+  state => ({
+    userData: state.firebase.userData,
+  }),
+  {
+    initiateLogout
+  }
+)(Navbar);
+
