@@ -32,6 +32,7 @@ function* firebaseLogout() {
 export function* watchFirebaseLogin() {
   yield takeEvery("INITIATE_LOGIN", firebaseLogin);
   yield takeEvery("INITIATE_LOGOUT", firebaseLogout);
+  yield takeEvery("REGISTER_SUCCESS", firebaseRegister);
 }
 
 // export function* watchFirebaseLogout() {
