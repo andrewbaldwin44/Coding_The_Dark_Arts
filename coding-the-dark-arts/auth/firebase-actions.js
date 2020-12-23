@@ -15,11 +15,15 @@ export const initiateLogin = (payload) => ({
   payload,
 });
 
+export const initiateRegister = (payload) => ({
+  type: "INITIATE_REGISTER",
+  payload,
+});
+
 export const logoutSuccess = () => ({
   type: "LOGOUT_SUCCESS",
-
-})
+});
 
 export const initiateLogout = () => ({
-  type: "INITIATE_LOGOUT"
-})
+  type: "INITIATE_LOGOUT",
+});

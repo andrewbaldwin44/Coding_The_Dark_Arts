@@ -1,14 +1,18 @@
+import React from "react";
 import { createRef } from "react";
 import Router from "next/router";
 import { connect } from "react-redux";
-import { initiateLogin, registerSuccess } from "../../auth/firebase-actions";
+import { initiateLogin, initiateRegister } from "../../auth/firebase-actions";
 
-function Login({ initiateLogin, userData }) {
+function Login({ initiateLogin, userData, initiateRegister }) {
   const emailField = createRef(null);
   const passwordField = createRef(null);
   const createEmailField = createRef(null);
   const createPasswordField = createRef(null);
 
+  React.useEffect(() => {
+    console.log(userData);
+  }, [userData]);
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -23,8 +27,8 @@ function Login({ initiateLogin, userData }) {
     // TODO: Handle creating account
     const createEmail = createEmailField.current.value;
     const createPassword = createPasswordField.current.value;
-
-    registerSuccess({ createEmail, createPassword });
+    // console.log(createEmail, createPassword)
+    initiateRegister({ email: createEmail, password: createPassword });
   };
 
   if (userData) {
@@ -58,5 +62,6 @@ export default connect(
   }),
   {
     initiateLogin,
+    initiateRegister,
   }
 )(Login);
