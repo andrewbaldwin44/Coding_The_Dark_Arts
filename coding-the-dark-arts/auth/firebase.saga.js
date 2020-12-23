@@ -4,8 +4,9 @@ import { auth } from "../auth/auth-service";
 
 function* firebaseRegister({ payload: { email, password } }) {
   try {
+    console.log(email, password)
     yield auth.createUserWithEmailAndPassword(email, password);
-    put(registerSuccess());
+    yield put(registerSuccess());
   } catch (error) {
     throw error;
   }
@@ -32,7 +33,7 @@ function* firebaseLogout() {
 export function* watchFirebaseLogin() {
   yield takeEvery("INITIATE_LOGIN", firebaseLogin);
   yield takeEvery("INITIATE_LOGOUT", firebaseLogout);
-  yield takeEvery("REGISTER_SUCCESS", firebaseRegister);
+  yield takeEvery("INITIATE_REGISTER", firebaseRegister);
 }
 
 // export function* watchFirebaseLogout() {
