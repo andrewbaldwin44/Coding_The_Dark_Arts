@@ -9,6 +9,14 @@
   font-size: 15px;
   height: 70px;
 
+  .c-navbar__heading {
+    display: flex;
+  }
+
+  .c-navbar__links {
+    display: none;
+  }
+
   a {
     padding: 8px;
     margin: 0 75px;
@@ -21,6 +29,16 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.c-navbar.menu {
+  .c-navbar__heading {
+    display: none;
+  }
+
+  .c-navbar__links {
+    display: flex;
   }
 }
 
