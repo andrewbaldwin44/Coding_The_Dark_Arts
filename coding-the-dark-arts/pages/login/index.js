@@ -10,9 +10,6 @@ function Login({ initiateLogin, userData, initiateRegister }) {
 	const createEmailField = createRef(null);
 	const createPasswordField = createRef(null);
 
-	React.useEffect(() => {
-		console.log(userData);
-	}, [userData]);
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
@@ -27,7 +24,7 @@ function Login({ initiateLogin, userData, initiateRegister }) {
 		// TODO: Handle creating account
 		const createEmail = createEmailField.current.value;
 		const createPassword = createPasswordField.current.value;
-		// console.log(createEmail, createPassword)
+
 		initiateRegister({ email: createEmail, password: createPassword });
 	};
 

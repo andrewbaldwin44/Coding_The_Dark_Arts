@@ -4,14 +4,6 @@ import { connect } from "react-redux";
 import { initiateLogout } from "../../../auth/firebase-actions";
 
 const Navbar = ({ initiateLogout, userData }) => {
-	React.useEffect(() => {
-		console.log(userData);
-	}, [userData]);
-
-	const handleLoginRedirect = () => {
-		console.log("hello");
-	};
-
 	const [menu, setMenu] = useState(false);
 	const toggleMenu = () => {
 		setMenu(!menu);
