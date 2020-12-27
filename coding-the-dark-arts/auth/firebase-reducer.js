@@ -6,7 +6,6 @@ export default function firebaseReducer(state = initialState, action) {
 	switch (action.type) {
 	  case "REGISTER_SUCCESS":
 	  case "LOGIN_SUCCESS": {
-		  console.log('hello')
 			return {
 				...state,
 				userData: {
@@ -14,10 +13,11 @@ export default function firebaseReducer(state = initialState, action) {
 				},
 			}
 		}
+
 	  case "LOGOUT_SUCCESS": {
 		  return initialState;
 	  }
-	  
+
 	  default:
 			return state
 		}

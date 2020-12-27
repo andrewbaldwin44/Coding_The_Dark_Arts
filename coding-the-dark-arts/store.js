@@ -4,7 +4,7 @@ import reducer from "./reducers/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 
-import { watchFirebaseLogin } from './auth/firebase.saga';
+import rootSaga from './saga.root';
 
 export default function configureStore(initialState) {
   const store = createStore(
@@ -14,7 +14,7 @@ export default function configureStore(initialState) {
     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 
-  sagaMiddleware.run(watchFirebaseLogin);
+  sagaMiddleware.run(rootSaga);
 
   return store;
 }

@@ -1,9 +1,15 @@
-import { firebaseRegister, firebaseLogin } from './auth/firebase.saga';
-import { fork } from 'redux-saga/effects';
+import { all } from 'redux-saga/effects';
+
+import {
+	watchFirebaseRegister,
+	watchFirebaseLogin,
+	watchFirebaseLogout,
+} from './auth/firebase.saga';
 
 export default function* rootSaga() {
-	yield [
-		fork(firebaseRegister),
-		fork(firebaseLogin)
-	];
+	yield all([
+		watchFirebaseRegister(),
+		watchFirebaseLogin(),
+		watchFirebaseLogout(),
+	])
 }
