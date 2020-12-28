@@ -135,12 +135,7 @@
 }
 
 .c-main-wrapper {
-  background: linear-gradient(
-    111deg,
-    rgba(103, 103, 103, 1) 0%,
-    rgba(162, 171, 228, 0.865983893557423) 52%,
-    rgba(67, 93, 255, 0.865983893557423) 99%
-  );
+  background: $light-purple;
 
   height: 100vh;
   width: 100%;

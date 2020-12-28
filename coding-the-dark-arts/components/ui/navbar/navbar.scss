@@ -1,7 +1,8 @@
 .c-navbar {
-  background-color: #1d3557;
+  background-color: $main-oxford;
   position: relative;
-  color: white;
+  color: $main-white;
+  font-weight: bold;
   padding: 15px;
   display: flex;
   justify-content: space-evenly;
