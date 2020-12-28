@@ -4,7 +4,7 @@ export default {
 	type: "document",
 	fields: [
 		{
-			name: "postTest",
+			name: "postTitle",
 			title: "Post Title",
 			type: "string",
 			description: "Post Title",
