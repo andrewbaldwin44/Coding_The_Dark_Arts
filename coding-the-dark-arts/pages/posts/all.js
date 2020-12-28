@@ -13,6 +13,7 @@ export default function AllPosts() {
 	const [data, setData] = React.useState(null);
 
 	React.useEffect(() => {
+
 		client
 			.query({
 				query: gql`
@@ -39,12 +40,13 @@ export default function AllPosts() {
 			<h1>All Posts</h1>
 			{data &&
 				data.map((dataPiece) => {
-          {console.log(dataPiece)}
-          {console.log(data)}
+
+					
 					return (
+						// Link onClick redirect to /posts/[slug]
 						<Wrapper key={`post-title-${dataPiece.postTitle}`}>
 							<h1>{dataPiece.postTitle}</h1>
-							<h2>{dataPiece.postDescription}</h2>
+							<h2>{dataPiece.postContent}</h2>
 						</Wrapper>
 					);
 				})}

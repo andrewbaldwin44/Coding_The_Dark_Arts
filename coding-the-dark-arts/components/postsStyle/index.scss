@@ -1,5 +1,14 @@
 .post-wrapper {
 	border: 1px solid black;
 	border-radius: 8px;
-	width: 80vw;
+
+	height: 20vh;
+	min-width: 20vw;
+	max-width: 40vw;
+	padding: 10px 25px;
+	box-shadow: 0 0 5px 3px $main-amethyst;
+	color: $main-white;
+	background-color: $main-oxford;
+	font-family: Montserrat;
+
 }

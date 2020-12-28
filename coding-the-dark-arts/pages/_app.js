@@ -6,7 +6,7 @@ import configureStore from "../store";
 import { Provider } from "react-redux";
 
 MyApp.propTypes = {
-  Component: PropTypes.object,
+  Component: PropTypes.func,
   pageProps: PropTypes.object,
 };
 
