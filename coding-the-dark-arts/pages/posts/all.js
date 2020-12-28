@@ -3,12 +3,13 @@ import Image from "next/image";
 import gql from "graphql-tag";
 import ApolloClient from "apollo-boost";
 import React from "react";
+import Wrapper from '../../components/postsStyle/Wrapper'
 
 const client = new ApolloClient({
   uri: "https://uzeki9ve.api.sanity.io/v1/graphql/production/default",
 });
 
-export default function Home() {
+export default function AllPosts() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
@@ -28,28 +29,17 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      <Head>
-        <title>Coding The Dark Arts</title>
-      </Head>
-      <div className="c-container">
-        <h1>Coding The Dark Arts</h1>
-        <h2>With the level 14 JS Wizards</h2>
-        <ul>
-          <li>Andrew</li>
-          <li>Kolby</li>
-        </ul>
-        <Image height="175" width="175" src="/wizard.png" />
-      </div>
+    <div>
+		<h1>All Posts</h1>
       {data &&
         data.map((dataPiece) => {
           return (
-            <>
+            <Wrapper key={`post-title-${dataPiece.postTitle}`}>
               <h1>{dataPiece.postTitle}</h1>
               <h2>{dataPiece.postContent}</h2>
-            </>
+            </Wrapper>
           );
         })}
-    </>
+    </div>
   );
 }
