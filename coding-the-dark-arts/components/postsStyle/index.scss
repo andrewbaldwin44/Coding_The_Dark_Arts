@@ -1,14 +1,20 @@
 .post-wrapper {
-	border: 1px solid black;
-	border-radius: 8px;
+  border: 1px solid black;
+  border-radius: 8px;
+  min-height: 20vh;
+  max-height: 40vh;
+  min-width: 20vw;
+  max-width: 40vw;
+  padding: 10px 25px;
+  box-shadow: 0 0 5px 3px $main-amethyst;
+  color: $main-white;
+  background-color: $main-oxford;
+  margin: 8px;
+  text-align: center;
+}
 
-	height: 20vh;
-	min-width: 20vw;
-	max-width: 40vw;
-	padding: 10px 25px;
-	box-shadow: 0 0 5px 3px $main-amethyst;
-	color: $main-white;
-	background-color: $main-oxford;
-	font-family: Montserrat;
-
+.dataPiece-sml {
+  height: 150px;
+  max-width: 175px;
+  border-radius: 5px;
 }
