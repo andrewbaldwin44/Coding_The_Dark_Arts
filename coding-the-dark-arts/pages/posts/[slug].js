@@ -11,8 +11,8 @@ const client = new ApolloClient({
 export default function individualPost() {
 	// This test function is literally here only for the useEffect callback, it does nothing else
 	
-	const test = () => {
-		console.log('hello')
+	const mounted = () => {
+		return
 	}
 	const [data, setData] = React.useState(null);
 	
@@ -46,7 +46,7 @@ export default function individualPost() {
 			})
 			.then((info) => setData(info.data.allBlogPost[0]))
 			.catch((error) => console.error(error));
-	}, [test]);
+	}, [mounted]);
 
 	if (!data) {
 		return (
