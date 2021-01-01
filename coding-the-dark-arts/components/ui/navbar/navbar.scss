@@ -12,6 +12,7 @@
 
   height: $navbar-height;
   padding: 0 $padding-at-small;
+  z-index: 20;
 
   @media #{$at-bp-medium} {
     padding: 0 $padding-at-medium;

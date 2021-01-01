@@ -1,5 +1,6 @@
 $navbar-height: 70px;
 $footer-height: 50px;
+$container-height: calc(100vh - #{$navbar-height} - #{$footer-height});
 
 $padding-at-large: 250px;
 $padding-at-medium: 65px;
