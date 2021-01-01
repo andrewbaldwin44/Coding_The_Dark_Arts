@@ -1,8 +1,11 @@
 @import "./colors.scss";
 @import "./globals.scss";
+@import "./dimensions.scss";
+@import "./breakpoints.scss";
 
 @import "./home.module.scss";
 @import "../components/ui/navbar/navbar.scss";
+@import "../components/ui/footer/footer.scss";
 @import "../pages/index.scss";
 @import "../components/layout/layout-wrapper.scss";
 @import "../components/authForm/authForm.component.scss";

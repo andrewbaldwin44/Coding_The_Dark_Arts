@@ -8,6 +8,7 @@ body {
   font-size: 10px;
   color: $main-black;
   overflow-x: hidden;
+  background-color: $main-purple;
 }
 
 a {
@@ -17,7 +18,7 @@ a {
 }
 
 button, input {
-  border: 2px solid $main-blue;
+  border: 2px solid $dark-blue;
   background-color: white;
   padding: 10px 18px;
   border-radius: 6px;

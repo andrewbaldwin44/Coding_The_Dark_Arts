@@ -1,61 +1,57 @@
 .c-navbar {
-  background-color: $dark-blue;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   color: $main-white;
   font-weight: bold;
-  padding: 15px;
-  display: flex;
-  justify-content: space-evenly;
   letter-spacing: 2.5px;
   font-size: 15px;
-  height: 70px;
+  background-color: $main-blue;
+  box-shadow: 0 2px 2px $black-shadow;
 
-  .c-navbar__heading {
-    display: flex;
+  height: $navbar-height;
+  padding: 0 $padding-at-small;
+
+  @media #{$at-bp-medium} {
+    padding: 0 $padding-at-medium;
   }
 
-  .c-navbar__links {
-    display: none;
+  @media #{$at-bp-large} {
+    padding: 0 $padding-at-large;
   }
+}
+
+.c-navbar__heading-container {
+  display: flex;
+  cursor: pointer;
+
+  h3 {
+    margin-left: 30px;
+  }
+
+  img {
+    color: white;
+  }
+}
+
+.c-navbar__links {
+  display: flex;
 
   a {
-    padding: 8px;
-    margin: 0 75px;
     display: flex;
     align-items: center;
     justify-content: center;
+
     text-align: center;
-    width: 33%;
+    line-height: 2.5;
+
+    &:not(:last-child) {
+      padding-right: 50px;
+    }
 
     &:hover {
       text-decoration: underline;
     }
-  }
-}
-
-.c-navbar.menu {
-  .c-navbar__heading {
-    display: none;
-  }
-
-  .c-navbar__links {
-    display: flex;
-  }
-}
-
-.c-button {
-  position: absolute;
-  right: 8px;
-  top: 18px;
-  outline: none;
-  width: 25%;
-
-  &:active {
-    border: 1px solid;
-  }
-
-  .c-button-icon {
-    color: $main-purple;
-    font-size: 26px;
   }
 }
