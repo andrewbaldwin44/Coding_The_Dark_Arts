@@ -108,12 +108,8 @@ $auth-form-container: 500px;
 }
 
 .c-login__footer-google-button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	width: 100%;
 	margin-bottom: 35px;
-	font-family: 'Inter', sans-serif;
 
 	img {
 		height: 38px;
@@ -132,11 +128,13 @@ $auth-form-container: 500px;
 	justify-content: center;
 
 	font-size: 1.4em;
+	font-weight: 400;
 	color: black;
-	border: 1px solid black;
 	border-radius: 6px;
+	border: 1px solid black;
+	box-shadow: 1px 1px 5px $black-shadow;
+
 	background-color: white;
-	box-shadow: 1px 1px 5px #4B515D;
 	height: 65px;
 	width: $auth-form-container;
 

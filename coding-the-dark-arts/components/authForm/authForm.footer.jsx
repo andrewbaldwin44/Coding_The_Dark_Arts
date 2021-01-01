@@ -9,7 +9,10 @@ function Footer({ accountCreated, successRedirect, sendErrorCode }) {
         <span>OR</span>
       </p>
 
-      <button className="c-login__footer-google-button" onClick={() => null}>
+      <button
+        className="c-login__footer-google-button c-login__footer-redirect-wrapper"
+        onClick={() => null}
+      >
         <Image
           src="/google-icon.svg"
           alt="Google Logo"
