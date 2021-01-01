@@ -4,12 +4,20 @@ import {
 	watchFirebaseRegister,
 	watchFirebaseLogin,
 	watchFirebaseLogout,
+	handleFirebaseError,
 } from './auth/firebase.saga';
 
 export default function* rootSaga() {
-	yield all([
-		watchFirebaseRegister(),
-		watchFirebaseLogin(),
-		watchFirebaseLogout(),
-	])
+	try {
+		yield all([
+			watchFirebaseRegister(),
+			watchFirebaseLogin(),
+			watchFirebaseLogout(),
+		])
+	}
+	catch ({ code }) {
+		if (code.includes('auth')) {
+			yield handleFirebaseError(code);
+		}
+	}
 }

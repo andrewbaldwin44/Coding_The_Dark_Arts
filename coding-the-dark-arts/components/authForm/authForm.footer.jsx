@@ -10,7 +10,12 @@ function Footer({ accountCreated, successRedirect, sendErrorCode }) {
       </p>
 
       <button className="c-login__footer-google-button" onClick={() => null}>
-        <Image src='/google-icon.svg' alt='Google Logo' height='40px' width='40px' />
+        <Image
+          src="/google-icon.svg"
+          alt="Google Logo"
+          height="40px"
+          width="40px"
+        />
         <span>Continue with Google</span>
       </button>
       {accountCreated ? (
@@ -24,7 +29,7 @@ function Footer({ accountCreated, successRedirect, sendErrorCode }) {
         <div className="c-login__footer-redirect-wrapper">
           <span>Already Have an Account?</span>
           <Link href="/login">
-          <p className="c-login__redirect-link">Log In</p>
+            <p className="c-login__redirect-link">Log In</p>
           </Link>
         </div>
       )}

@@ -1,9 +1,7 @@
-import AuthFormContainer from '../../components/authForm/authForm.container';
+import AuthFormContainer from "../../components/authForm/authForm.container";
 
 function SignUp() {
-	return (
-		<AuthFormContainer />
-	)
+  return <AuthFormContainer />;
 }
 
 export default SignUp;

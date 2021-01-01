@@ -1,10 +1,10 @@
-export default function authFormReducer(state = null, { type, payload }) {
-	switch (type) {
-	  case "ERROR_MESSAGE": {
-		  return { errorMessage: payload.message };
-	  }
+export default function authFormReducer(state = {}, { type, message }) {
+  switch (type) {
+    case "ERROR_MESSAGE": {
+      return { errorMessage: message };
+    }
 
-	  default:
-			return state
-		}
+    default:
+      return state;
   }
+}

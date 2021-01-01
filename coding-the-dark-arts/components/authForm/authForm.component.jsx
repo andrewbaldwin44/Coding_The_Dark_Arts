@@ -1,34 +1,20 @@
 import { createRef } from "react";
 import Router from "next/router";
+import cx from "classnames";
 
 import Footer from "./authForm.footer";
-
-// import {
-//   PASSWORD_REQUIREMENTS,
-//   AUTHENTICATION_ERROR_MESSAGES,
-// } from "./form.constants";
-// const {
-//   minimumPasswordRequirements,
-//   minimumPasswordLength,
-// } = PASSWORD_REQUIREMENTS;
-// const {
-//   invalidEmail,
-//   wrongPassword,
-//   emailInUse,
-//   passwordTooShort,
-//   missingPasswordRequirements,
-//   defaultMessage,
-// } = AUTHENTICATION_ERROR_MESSAGES;
+import { PASSWORD_REQUIREMENTS } from "../../auth/auth.constants";
+const { minimumPasswordLength } = PASSWORD_REQUIREMENTS;
 
 function AuthForm({
   accountCreated,
-  createUserErrorMessage,
   errorMessage,
   initiateLogin,
   initiateRegister,
   isStrongPassword,
   redirectHome,
   sendErrorCode,
+  setErrorMessage,
   userData,
 }) {
   const emailField = createRef(null);
@@ -60,6 +46,10 @@ function AuthForm({
     else userSignup();
   };
 
+  const errorMessageClasses = cx("c-login__error-message", {
+    error: !!errorMessage,
+  });
+
   if (userData) {
     redirectHome();
     return null;
@@ -72,7 +62,13 @@ function AuthForm({
           {accountCreated ? "Welcome Back!" : "Welcome!"}
         </h2>
         <form className="c-login__form" onSubmit={submitForm}>
-          <input className="c-login__input-field" type="email" label="Email" ref={emailField} required />
+          <input
+            className="c-login__input-field"
+            type="email"
+            label="Email"
+            ref={emailField}
+            required
+          />
           <input
             className="c-login__input-field"
             type="password"
@@ -83,7 +79,7 @@ function AuthForm({
           <button className="c-login__submit-button" type="submit">
             {accountCreated ? "Log In" : "Sign Up"}
           </button>
-          <div className="c-login__error-message" errorMessage={errorMessage}>
+          <div className={errorMessageClasses}>
             <span>{errorMessage}</span>
           </div>
         </form>
