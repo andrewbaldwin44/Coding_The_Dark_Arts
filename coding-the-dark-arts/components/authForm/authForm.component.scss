@@ -1,0 +1,145 @@
+$auth-form-container: 500px;
+
+.c-login-wrapper {
+	display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.c-login-wrapper__container {
+	display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  height: 80vh;
+  width: $auth-form-container;
+}
+
+.c-login__page-label {
+	font-size: 2.4em;
+  font-weight: 600;
+  align-self: flex-start;
+  padding: 0 15px;
+}
+
+.c-login__form {
+	display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 2px solid $main-blue;
+  border-radius: 6px;
+  padding: 0 25px;
+  height: 40%;
+  width: 100%;
+  background-color: white;
+  box-shadow: 1px 1px 5px $black-shadow;
+
+	.c-login__input-field {
+		margin-left: 0px;
+	}
+}
+
+.c-login__submit-button {
+	height: 40px;
+	width: 100%;
+	font-size: 1.5em;
+	color: black;
+	padding: 0 15px;
+	border: 2px solid white;
+	border-radius: 6px;
+	transition: all 0.4s ease-in;
+
+	&:hover {
+		border-color: #40c4ff;
+	}
+}
+
+.c-login__error-message {
+	display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  background-color: #FFE3E3;
+  color: #f13240;
+  padding: 20px 10px;
+}
+
+/* ==========================================================================
+   Footer Styling
+   ========================================================================== */
+
+.c-login__footer-seperator {
+	margin: 45px 0;
+	font-size: 1.2em;
+	line-height: 0.5;
+	text-align: center;
+	color: $main-white;
+
+	span {
+		display: inline-block;
+		position: relative;
+
+		&:before, &:after {
+			content: "";
+			position: absolute;
+			border-bottom: 1px solid $main-white;
+			opacity: 0.7;
+			width: calc(500px / 2 - 40px);
+			top: 50%;
+		}
+
+		&:before {
+			right: 100%;
+			margin-right: 15px;
+		}
+
+		&:after {
+			left: 100%;
+			margin-left: 15px;
+		}
+	}
+}
+
+.c-login__footer-google-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 35px;
+	font-family: 'Inter', sans-serif;
+
+	img {
+		height: 38px;
+		width: 38px;
+		margin-right: 25px;
+	}
+
+	span {
+		width: 240px;
+	}
+}
+
+.c-login__footer-redirect-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-size: 1.4em;
+	color: black;
+	border: 1px solid black;
+	border-radius: 6px;
+	background-color: white;
+	box-shadow: 1px 1px 5px #4B515D;
+	height: 65px;
+	width: $auth-form-container;
+
+	.c-login__redirect-link {
+		color: #0366d6;
+		text-decoration: underline;
+		padding-left: 10px;
+		cursor: pointer;
+	}
+}

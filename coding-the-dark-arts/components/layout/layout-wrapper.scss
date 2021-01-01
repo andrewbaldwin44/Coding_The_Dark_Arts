@@ -32,9 +32,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  font-style: italic;
-  background-color: #293241;
-  color: white;
+    font-style: italic;
+    background-color: #293241;
+    color: white;
   }
 
   .footer img {
@@ -135,7 +135,7 @@
 }
 
 .c-main-wrapper {
-  background: $main-purple;
+  background-color: $main-purple;
   min-height: 100vh;
   width: 100%;
   display: flex;
