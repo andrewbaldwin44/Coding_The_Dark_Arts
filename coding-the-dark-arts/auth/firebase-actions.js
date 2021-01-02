@@ -27,3 +27,21 @@ export const logoutSuccess = () => ({
 export const initiateLogout = () => ({
   type: "INITIATE_LOGOUT",
 });
+
+export const initiateGoogleLogin = () => ({
+  type: "INITIATE_GOOGLE_LOGIN"
+})
+
+export const initiateGithubLogin = () => ({
+  type: "INITIATE_GITHUB_LOGIN"
+})
+
+export const googleLoginSuccess = () => ({
+  type: "GOOGLE_LOGIN_SUCCESS",
+  currentUser: auth.currentUser.toJSON(),
+})
+
+export const githubLoginSuccess = () => ({
+  type: "GITHUB_LOGIN_SUCCESS",
+  currentUser: auth.currentUser.toJSON(),
+})

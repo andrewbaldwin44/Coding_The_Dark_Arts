@@ -16,6 +16,8 @@ function AuthForm({
 	sendErrorCode,
 	setErrorMessage,
 	userData,
+	initiateGoogleLogin,
+	initiateGithubLogin
 }) {
 	const emailField = createRef(null);
 	const passwordField = createRef(null);
@@ -86,6 +88,8 @@ function AuthForm({
 					</div>
 				</form>
 				<Footer
+					initiateGoogleLogin={initiateGoogleLogin}
+					initiateGithubLogin={initiateGithubLogin}
 					accountCreated={accountCreated}
 					successRedirect={redirectHome}
 					sendErrorCode={sendErrorCode}

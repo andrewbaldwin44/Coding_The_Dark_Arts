@@ -6,6 +6,10 @@ import firebaseConfig from "./config";
 
 const auth = firebase.auth();
 
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+const githubProvider = new firebase.auth.GithubAuthProvider()
+
 // Helper method for initial load of site
 // Firebase takes a second to determine currentUser object
 // So we can use local storage for initial UI purposes
@@ -15,4 +19,4 @@ const getAuthenticationStatus = () => {
 
 
 
-export { auth, getAuthenticationStatus }
+export { auth, googleProvider, githubProvider, getAuthenticationStatus }

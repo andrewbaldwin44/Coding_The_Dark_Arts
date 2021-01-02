@@ -2,9 +2,10 @@ import Router from "next/router";
 import { connect } from "react-redux";
 
 import AuthForm from "./authForm.component";
-import { initiateLogin, initiateRegister } from "../../auth/firebase-actions";
+import { initiateLogin, initiateRegister, initiateGoogleLogin, initiateGithubLogin } from "../../auth/firebase-actions";
 import { setErrorMessage } from "./authForm.actions.js";
 import { PASSWORD_REQUIREMENTS } from "../../auth/auth.constants";
+
 const { minimumPasswordRequirements } = PASSWORD_REQUIREMENTS;
 
 const redirectHome = () => Router.push("/");
@@ -21,6 +22,8 @@ const actionCreators = {
   initiateLogin,
   initiateRegister,
   setErrorMessage,
+  initiateGoogleLogin,
+  initiateGithubLogin,
 };
 
 function AuthFormContainer({ ...props }) {

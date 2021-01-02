@@ -1,7 +1,13 @@
 import { put, takeEvery } from "redux-saga/effects";
-import { registerSuccess, loginSuccess, logoutSuccess } from "./firebase-actions";
-import { auth } from "../auth/auth-service";
-import { setErrorMessage } from '../components/authForm/authForm.actions.js';
+import {
+  registerSuccess,
+  loginSuccess,
+  logoutSuccess,
+  googleLoginSuccess,
+  githubLoginSuccess,
+} from "./firebase-actions";
+import { auth, googleProvider, githubProvider } from "../auth/auth-service";
+import { setErrorMessage } from "../components/authForm/authForm.actions.js";
 import {
   PASSWORD_REQUIREMENTS,
   AUTHENTICATION_ERROR_MESSAGES,
@@ -31,6 +37,14 @@ export function* watchFirebaseLogout() {
   yield takeEvery("INITIATE_LOGOUT", firebaseLogout);
 }
 
+export function* watchGoogleLogin() {
+  yield takeEvery("INITIATE_GOOGLE_LOGIN", signInWithGoogle);
+}
+
+export function* watchGithubLogin() {
+  yield takeEvery("INITIATE_GITHUB_LOGIN", signInWithGithub);
+}
+
 function* firebaseRegister({ payload: { email, password } }) {
   yield auth.createUserWithEmailAndPassword(email, password);
   yield put(registerSuccess());
@@ -44,6 +58,17 @@ function* firebaseLogin({ payload: { email, password } }) {
 function* firebaseLogout() {
   yield auth.signOut();
   yield put(logoutSuccess());
+}
+
+function* signInWithGoogle() {
+  yield auth.signInWithPopup(googleProvider);
+  yield put(googleLoginSuccess());
+}
+
+function* signInWithGithub() {
+  console.log('hello')
+  yield auth.signInWithPopup(githubProvider);
+  yield put(githubLoginSuccess());
 }
 
 export function* handleFirebaseError(code) {

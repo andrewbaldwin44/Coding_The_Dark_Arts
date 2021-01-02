@@ -2,7 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-function Footer({ accountCreated, successRedirect, sendErrorCode }) {
+function Footer({ accountCreated, successRedirect, sendErrorCode, initiateGithubLogin, initiateGoogleLogin }) {
+
+
   return (
     <div className="c-login__footer-wrapper">
       <p className="c-login__footer-seperator">
@@ -11,7 +13,7 @@ function Footer({ accountCreated, successRedirect, sendErrorCode }) {
 
       <button
         className="c-login__footer-google-button c-login__footer-redirect-wrapper"
-        onClick={() => null}
+        onClick={initiateGithubLogin}
       >
         <Image
           src="/google-icon.svg"
