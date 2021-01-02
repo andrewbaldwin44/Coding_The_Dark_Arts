@@ -4,10 +4,10 @@ const initialState = {
 
 export default function firebaseReducer(state = initialState, action) {
   switch (action.type) {
-    case "GOOGLE_LOGIN_SUCCESS":
-    case "REGISTER_SUCCESS":
-    case "GITHUB_LOGIN_SUCCESS":
-    case "LOGIN_SUCCESS": {
+    case 'GOOGLE_LOGIN_SUCCESS':
+    case 'REGISTER_SUCCESS':
+    case 'GITHUB_LOGIN_SUCCESS':
+    case 'LOGIN_SUCCESS': {
       return {
         ...state,
         userData: {
@@ -16,7 +16,7 @@ export default function firebaseReducer(state = initialState, action) {
       };
     }
 
-    case "LOGOUT_SUCCESS": {
+    case 'LOGOUT_SUCCESS': {
       return initialState;
     }
 

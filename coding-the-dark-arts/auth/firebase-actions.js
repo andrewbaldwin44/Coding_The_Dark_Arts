@@ -1,47 +1,47 @@
-import { auth } from "./auth-service";
+import { auth } from './auth-service';
 
 export const loginSuccess = () => ({
-  type: "LOGIN_SUCCESS",
+  type: 'LOGIN_SUCCESS',
   currentUser: auth.currentUser.toJSON(),
 });
 
 export const registerSuccess = () => ({
-  type: "REGISTER_SUCCESS",
+  type: 'REGISTER_SUCCESS',
   currentUser: auth.currentUser.toJSON(),
 });
 
-export const initiateLogin = (payload) => ({
-  type: "INITIATE_LOGIN",
+export const initiateLogin = payload => ({
+  type: 'INITIATE_LOGIN',
   payload,
 });
 
-export const initiateRegister = (payload) => ({
-  type: "INITIATE_REGISTER",
+export const initiateRegister = payload => ({
+  type: 'INITIATE_REGISTER',
   payload,
 });
 
 export const logoutSuccess = () => ({
-  type: "LOGOUT_SUCCESS",
+  type: 'LOGOUT_SUCCESS',
 });
 
 export const initiateLogout = () => ({
-  type: "INITIATE_LOGOUT",
+  type: 'INITIATE_LOGOUT',
 });
 
 export const initiateGoogleLogin = () => ({
-  type: "INITIATE_GOOGLE_LOGIN"
-})
+  type: 'INITIATE_GOOGLE_LOGIN',
+});
 
 export const initiateGithubLogin = () => ({
-  type: "INITIATE_GITHUB_LOGIN"
-})
+  type: 'INITIATE_GITHUB_LOGIN',
+});
 
 export const googleLoginSuccess = () => ({
-  type: "GOOGLE_LOGIN_SUCCESS",
+  type: 'GOOGLE_LOGIN_SUCCESS',
   currentUser: auth.currentUser.toJSON(),
-})
+});
 
 export const githubLoginSuccess = () => ({
-  type: "GITHUB_LOGIN_SUCCESS",
+  type: 'GITHUB_LOGIN_SUCCESS',
   currentUser: auth.currentUser.toJSON(),
-})
+});
