@@ -19,7 +19,7 @@ const Navbar = ({ initiateLogout, userData }) => {
           <Link href="/">
             <a>Home</a>
           </Link>
-          <Link href="/">
+          <Link href="/posts/all">
             <a>Posts</a>
           </Link>
           <Link href="/">

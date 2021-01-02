@@ -3,7 +3,18 @@
 	flex-wrap: wrap;
 }
 
-.single-post-wrapper {
+.c-post__wrapper {
+	height: 250px;
+	width: 400px;
+}
+
+.dataPiece-sml {
+	height: 150px;
+	max-width: 175px;
+	border-radius: 5px;
+}
+
+.c-single-post__wrapper {
 	width: 50vw;
 	min-width: 500px;
 	text-align: justify;

@@ -65,7 +65,7 @@ export default function individualPost() {
 			<Head>
 				<title>{data.postTitle}</title>
 			</Head>
-			<div className="single-post-wrapper">
+			<div className="c-single-post__wrapper">
 				<div>
 					<h1>{data.postTitle}</h1>
 					<h2>{data.postDescription}</h2>

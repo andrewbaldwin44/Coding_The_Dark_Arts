@@ -2,45 +2,47 @@ $auth-form-container: 500px;
 
 .c-login-wrapper {
 	display: flex;
-  align-items: center;
-  justify-content: center;
+	align-items: center;
+	justify-content: center;
 
-  height: $container-height;
+	height: $container-height;
 	width: 100%;
 }
 
 .c-login-wrapper__container {
 	display: flex;
-  align-items: center;
-  flex-direction: column;
+	align-items: center;
+	flex-direction: column;
 
-  height: 85%;
-  width: $auth-form-container;
+	height: 85%;
+	width: $auth-form-container;
 }
 
 .c-login__page-label {
 	align-self: flex-start;
 
 	font-size: 2.4em;
-  font-weight: 600;
-  padding: 0 15px;
+	font-weight: 600;
+	padding: 0 15px;
 }
 
 .c-login__form {
 	display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+	flex-direction: column;
+	justify-content: space-evenly;
+	border: 2px solid $dark-blue;
+	border-radius: 6px;
+	padding: 0 25px;
+	height: 42%;
+	width: 100%;
+	padding-top: 15px;
 
-  border: 2px solid $dark-blue;
-  border-radius: 6px;
-  padding: 0 25px;
-  height: 42%;
-  width: 100%;
-  background-color: white;
-  box-shadow: 1px 1px 5px $black-shadow;
+	background-color: white;
+	box-shadow: 1px 1px 5px $black-shadow;
 
 	.c-login__input-field {
 		margin-left: 0px;
+		
 	}
 }
 
@@ -61,14 +63,14 @@ $auth-form-container: 500px;
 
 .c-login__error-message {
 	display: none;
-  align-items: center;
-  justify-content: center;
+	align-items: center;
+	justify-content: center;
 
-  width: 100%;
-  height: 50px;
-  background-color: #FFE3E3;
-  color: #f13240;
-  padding: 20px 10px;
+	width: 100%;
+	height: 50px;
+	background-color: #ffe3e3;
+	color: #f13240;
+	padding: 20px 10px;
 }
 
 .c-login__error-message.error {
@@ -90,7 +92,8 @@ $auth-form-container: 500px;
 		display: inline-block;
 		position: relative;
 
-		&:before, &:after {
+		&:before,
+		&:after {
 			content: "";
 			position: absolute;
 			border-bottom: 1px solid $main-white;
