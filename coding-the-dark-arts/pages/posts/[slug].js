@@ -3,6 +3,7 @@ import React from "react";
 import gql from "graphql-tag";
 import ApolloClient from "apollo-boost";
 import { useRouter } from "next/router";
+import ReactMarkdown from 'react-markdown'
 
 const client = new ApolloClient({
 	uri: `${process.env.NEXT_PUBLIC_URI}`,
@@ -73,7 +74,7 @@ export default function individualPost() {
 					<img src={data.image.asset.url} />
 				</div>
 				<div>
-					<p>{data.postContent}</p>
+					<ReactMarkdown>{data.postContent}</ReactMarkdown>
 				</div>
 			</div>
 		</>
