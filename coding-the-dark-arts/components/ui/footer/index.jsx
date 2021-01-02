@@ -1,10 +1,10 @@
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className='footer'>
       <a
-        href="https://github.com/andrewbaldwin44/Coding_The_Dark_Arts"
-        target="_blank"
-        rel="noopener noreferrer"
+        href='https://github.com/andrewbaldwin44/Coding_The_Dark_Arts'
+        target='_blank'
+        rel='noopener noreferrer'
       >
         Powered by CDA
       </a>

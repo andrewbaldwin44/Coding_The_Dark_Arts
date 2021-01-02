@@ -1,4 +1,4 @@
-export const setErrorMessage = (message) => ({
-  type: "ERROR_MESSAGE",
+export const setErrorMessage = message => ({
+  type: 'ERROR_MESSAGE',
   message,
 });
