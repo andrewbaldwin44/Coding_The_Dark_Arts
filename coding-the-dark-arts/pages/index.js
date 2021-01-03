@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const icons = [
-  { src: '/javascript.svg', alt: 'JavaScript' },
-  { src: '/react.svg', alt: 'React.js' },
-  { src: '/redux.svg', alt: 'Redux.js' },
-  { src: '/next-dot-js.svg', alt: 'Next.js' },
-  { src: '/sass.svg', alt: 'Sass' },
+  { src: '/javascript.svg', alt: 'JavaScript', slug: 'javascript' },
+  { src: '/react.svg', alt: 'React.js', slug: 'react' },
+  { src: '/redux.svg', alt: 'Redux.js', slug: 'redux' },
+  { src: '/next-dot-js.svg', alt: 'Next.js', slug: 'next' },
+  { src: '/sass.svg', alt: 'Sass', slug: 'sass' },
 ];
 
 export default function Home() {
@@ -32,19 +33,21 @@ export default function Home() {
       <div className='c-home__heading-container'>
         <h1>Coding The Dark Arts</h1>
         <h2>With Andrew and Kolby</h2>
-        <h3 className='c-home__blog-redirect'>
-          Go to the Blog
-          <Image src='/arrow.svg' alt='Arrow Icon' height='30px' width='30px' />
-        </h3>
+        <Link href='/posts'>
+          <h3 className='c-home__blog-redirect'>
+            Go to the Blog
+            <Image src='/arrow.svg' alt='Arrow Icon' height='30px' width='30px' />
+          </h3>
+        </Link>
       </div>
       <div
         className='c-home__icon-container'
         onMouseEnter={() => setMouseOnContainer(true)}
         onMouseLeave={() => setMouseOnContainer(false)}
       >
-        {icons.map(({ src, alt }, index) => {
+        {icons.map(({ src, alt, slug }, index) => {
           const { x, y } = mousePosition;
-          
+
           const randomAcceleration = Math.floor(Math.random() * 300 + 200);
 
           let activityX = 40;
@@ -66,16 +69,18 @@ export default function Home() {
           };
 
           return (
-            <div key={`home-icon-${index}`} className='c-home__icon-square'>
-              <div className='c-home__icon' style={transform}>
-                <Image
-                  src={src}
-                  alt={alt}
-                  height='80px'
-                  width='80px'
-                />
+            <Link href={`posts/${slug}`}>
+              <div key={`home-icon-${index}`} className='c-home__icon-square'>
+                <div className='c-home__icon' style={transform}>
+                  <Image
+                    src={src}
+                    alt={alt}
+                    height='80px'
+                    width='80px'
+                  />
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
