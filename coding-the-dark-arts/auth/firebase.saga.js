@@ -1,21 +1,15 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery } from 'redux-saga/effects';
 import {
   registerSuccess,
   loginSuccess,
   logoutSuccess,
   googleLoginSuccess,
   githubLoginSuccess,
-} from "./firebase-actions";
-import { auth, googleProvider, githubProvider } from "../auth/auth-service";
-import { setErrorMessage } from "../components/authForm/authForm.actions.js";
-import {
-  PASSWORD_REQUIREMENTS,
-  AUTHENTICATION_ERROR_MESSAGES,
-} from "./auth.constants";
-const {
-  minimumPasswordRequirements,
-  minimumPasswordLength,
-} = PASSWORD_REQUIREMENTS;
+} from './firebase-actions';
+import { auth, googleProvider, githubProvider } from '../auth/auth-service';
+import { setErrorMessage } from '../components/authForm/authForm.actions.js';
+import { PASSWORD_REQUIREMENTS, AUTHENTICATION_ERROR_MESSAGES } from './auth.constants';
+const { minimumPasswordRequirements, minimumPasswordLength } = PASSWORD_REQUIREMENTS;
 const {
   invalidEmail,
   wrongPassword,
@@ -26,23 +20,23 @@ const {
 } = AUTHENTICATION_ERROR_MESSAGES;
 
 export function* watchFirebaseRegister() {
-  yield takeEvery("INITIATE_REGISTER", firebaseRegister);
+  yield takeEvery('INITIATE_REGISTER', firebaseRegister);
 }
 
 export function* watchFirebaseLogin() {
-  yield takeEvery("INITIATE_LOGIN", firebaseLogin);
+  yield takeEvery('INITIATE_LOGIN', firebaseLogin);
 }
 
 export function* watchFirebaseLogout() {
-  yield takeEvery("INITIATE_LOGOUT", firebaseLogout);
+  yield takeEvery('INITIATE_LOGOUT', firebaseLogout);
 }
 
 export function* watchGoogleLogin() {
-  yield takeEvery("INITIATE_GOOGLE_LOGIN", signInWithGoogle);
+  yield takeEvery('INITIATE_GOOGLE_LOGIN', signInWithGoogle);
 }
 
 export function* watchGithubLogin() {
-  yield takeEvery("INITIATE_GITHUB_LOGIN", signInWithGithub);
+  yield takeEvery('INITIATE_GITHUB_LOGIN', signInWithGithub);
 }
 
 function* firebaseRegister({ payload: { email, password } }) {
@@ -66,25 +60,25 @@ function* signInWithGoogle() {
 }
 
 function* signInWithGithub() {
-  console.log('hello')
+  console.log('hello');
   yield auth.signInWithPopup(githubProvider);
   yield put(githubLoginSuccess());
 }
 
 export function* handleFirebaseError(code) {
-  let newErrorMessage = "";
+  let newErrorMessage = '';
   switch (code) {
-    case "auth/user-not-found":
+    case 'auth/user-not-found':
       newErrorMessage = invalidEmail;
       break;
-    case "auth/wrong-password":
+    case 'auth/wrong-password':
       newErrorMessage = wrongPassword;
       break;
-    case "auth/email-already-in-use":
+    case 'auth/email-already-in-use':
       newErrorMessage = emailInUse;
       break;
-    case "auth/cancelled-popup-request":
-    case "auth/popup-closed-by-user":
+    case 'auth/cancelled-popup-request':
+    case 'auth/popup-closed-by-user':
       return;
     default:
       newErrorMessage = defaultMessage;

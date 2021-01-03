@@ -1,9 +1,9 @@
-import Head from "next/head";
-import React from "react";
-import gql from "graphql-tag";
-import ApolloClient from "apollo-boost";
-import { useRouter } from "next/router";
-import Markdown from '../../components/markdown'
+import Head from 'next/head';
+import React from 'react';
+import gql from 'graphql-tag';
+import ApolloClient from 'apollo-boost';
+import { useRouter } from 'next/router';
+import Markdown from '../../components/markdown';
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_URI}`,
@@ -15,7 +15,7 @@ export default function individualPost() {
   const mounted = () => {
     return;
   };
-  
+
   const [data, setData] = React.useState(null);
 
   const { query } = useRouter();
@@ -46,8 +46,8 @@ export default function individualPost() {
           slug: slug,
         },
       })
-      .then((info) => setData(info.data.allBlogPost[0]))
-      .catch((error) => console.error(error));
+      .then(info => setData(info.data.allBlogPost[0]))
+      .catch(error => console.error(error));
   }, [mounted]);
 
   if (!data) {
@@ -60,23 +60,21 @@ export default function individualPost() {
       </>
     );
   }
-  
-  
 
   return (
     <>
       <Head>
         <title>{data.postTitle}</title>
       </Head>
-      <div className="c-single-post__wrapper">
+      <div className='c-single-post__wrapper'>
         <div>
           <h1>{data.postTitle}</h1>
           <h2>{data.postDescription}</h2>
         </div>
-        <div className="single-post-img">
+        <div className='single-post-img'>
           <img src={data.image.asset.url} />
         </div>
-		<Markdown children={data.postContent} />
+        <Markdown children={data.postContent} />
       </div>
     </>
   );
