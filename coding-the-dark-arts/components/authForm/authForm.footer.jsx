@@ -16,11 +16,37 @@ function Footer({
       </p>
 
       <button
-        className='c-login__footer-google-button c-login__footer-redirect-wrapper'
+
+        className="c-login__footer-login-button c-login__footer-redirect-wrapper"
+
         onClick={initiateGithubLogin}
       >
         <Image src='/google-icon.svg' alt='Google Logo' height='40px' width='40px' />
         <span>Continue with Google</span>
+      </button>
+      <button
+        className="c-login__footer-login-button c-login__footer-redirect-wrapper"
+        onClick={initiateGithubLogin}
+      >
+        <Image
+          src="/github-icon.svg"
+          alt="Github Logo"
+          height="40px"
+          width="40px"
+        />
+        <span>Continue with Github</span>
+      </button>
+      <button
+        className="c-login__footer-login-button c-login__footer-redirect-wrapper"
+        onClick={() => null}
+      >
+        <Image
+          src="/twitter-icon.svg"
+          alt="Github Logo"
+          height="40px"
+          width="40px"
+        />
+        <span>Continue with Twitter</span>
       </button>
       {accountCreated ? (
         <div className='c-login__footer-redirect-wrapper'>
