@@ -22,8 +22,8 @@ const Navbar = ({ initiateLogout, userData }) => {
           <Link href='/posts/all'>
             <a>Posts</a>
           </Link>
-          <Link href='/'>
-            <a>About</a>
+          <Link href='/contact'>
+            <a>Contact</a>
           </Link>
           {userData ? (
             <Link href='/'>

@@ -116,7 +116,7 @@ $auth-form-container: 500px;
 
 .c-login__footer-login-button {
 	width: 100%;
-	margin-bottom: 35px;
+	margin: 0 15px 35px 15px;
 
 	img {
 		height: 38px;
@@ -125,8 +125,12 @@ $auth-form-container: 500px;
 	}
 
 	span {
-		width: 240px;
+		width: 140px;
 	}
+}
+
+.testing-wrapper {
+	display: flex;
 }
 
 .c-login__footer-redirect-wrapper {
@@ -143,7 +147,7 @@ $auth-form-container: 500px;
 
 	background-color: white;
 	height: 65px;
-	width: $auth-form-container;
+	width: 100%;
 
 	.c-login__redirect-link {
 		color: #0366d6;

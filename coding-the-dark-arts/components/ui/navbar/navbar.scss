@@ -26,6 +26,8 @@
 .c-navbar__heading-container {
   display: flex;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
 
   h3 {
     margin-left: 30px;
@@ -54,5 +56,13 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.c-navbar__heading {
+  font-size: 1.8vw;
+
+  @media (max-width: 900px) {
+    display: none;
   }
 }

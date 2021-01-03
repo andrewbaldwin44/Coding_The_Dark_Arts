@@ -14,40 +14,26 @@ function Footer({
       <p className='c-login__footer-seperator'>
         <span>OR</span>
       </p>
-
-      <button
-
-        className="c-login__footer-login-button c-login__footer-redirect-wrapper"
-
-        onClick={initiateGithubLogin}
-      >
-        <Image src='/google-icon.svg' alt='Google Logo' height='40px' width='40px' />
-        <span>Continue with Google</span>
-      </button>
-      <button
-        className="c-login__footer-login-button c-login__footer-redirect-wrapper"
-        onClick={initiateGithubLogin}
-      >
-        <Image
-          src="/github-icon.svg"
-          alt="Github Logo"
-          height="40px"
-          width="40px"
-        />
-        <span>Continue with Github</span>
-      </button>
-      <button
-        className="c-login__footer-login-button c-login__footer-redirect-wrapper"
-        onClick={() => null}
-      >
-        <Image
-          src="/twitter-icon.svg"
-          alt="Github Logo"
-          height="40px"
-          width="40px"
-        />
-        <span>Continue with Twitter</span>
-      </button>
+      <div className='testing-wrapper'>
+        <button
+          className='c-login__footer-login-button c-login__footer-redirect-wrapper'
+          onClick={initiateGithubLogin}
+        >
+          <Image src='/google-icon.svg' alt='Signin With Google' height='40px' width='40px' />
+        </button>
+        <button
+          className='c-login__footer-login-button c-login__footer-redirect-wrapper'
+          onClick={initiateGithubLogin}
+        >
+          <Image src='/github-icon.svg' alt='Signin With Github' height='40px' width='40px' />
+        </button>
+        <button
+          className='c-login__footer-login-button c-login__footer-redirect-wrapper'
+          onClick={() => null}
+        >
+          <Image src='/twitter-icon.svg' alt='Signin With Twitter' height='40px' width='40px' />
+        </button>
+      </div>
       {accountCreated ? (
         <div className='c-login__footer-redirect-wrapper'>
           <span>New here?</span>
