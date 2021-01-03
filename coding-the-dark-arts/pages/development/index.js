@@ -1,4 +1,4 @@
-import Test from "../../components/test";
+import Test from '../../components/test';
 
 export default function Development() {
   return (

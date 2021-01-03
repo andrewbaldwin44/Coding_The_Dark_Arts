@@ -17,12 +17,12 @@ export default function Home() {
 
   const handleMouseMove = ({ clientX: x, clientY: y }) => {
     setMousePosition({ x, y });
-  }
+  };
 
   useEffect(() => {
     document.onmousemove = handleMouseMove;
 
-    return () => document.onmousemove = null;
+    return () => (document.onmousemove = null);
   }, []);
 
   return (
@@ -51,7 +51,7 @@ export default function Home() {
           const randomAcceleration = Math.floor(Math.random() * 300 + 200);
 
           let activityX = 40;
-          let activityY = 20
+          let activityY = 20;
           let offsetX = 900;
           let offsetY = 460;
           if (mouseOnContainer) {
@@ -61,8 +61,8 @@ export default function Home() {
             offsetY = 300;
           }
 
-          const transformX = ((x - offsetX + randomAcceleration) / activityX);
-          const transformY = ((y - offsetY) / activityY);
+          const transformX = (x - offsetX + randomAcceleration) / activityX;
+          const transformY = (y - offsetY) / activityY;
 
           const transform = {
             transform: `translate(${transformX}px, ${transformY}px)`,
@@ -72,12 +72,7 @@ export default function Home() {
             <Link href={`posts/${slug}`}>
               <div key={`home-icon-${index}`} className='c-home__icon-square'>
                 <div className='c-home__icon' style={transform}>
-                  <Image
-                    src={src}
-                    alt={alt}
-                    height='80px'
-                    width='80px'
-                  />
+                  <Image src={src} alt={alt} height='80px' width='80px' />
                 </div>
               </div>
             </Link>
