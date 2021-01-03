@@ -2,14 +2,27 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 
+const icons = [
+  { src: '/javascript.svg', alt: 'JavaScript' },
+  { src: '/react.svg', alt: 'React.js' },
+  { src: '/redux.svg', alt: 'Redux.js' },
+  { src: '/next-dot-js.svg', alt: 'Next.js' },
+  { src: '/sass.svg', alt: 'Sass' },
+];
+
 export default function Home() {
-  const icons = [
-    { src: '/javascript.svg', alt: 'JavaScript' },
-    { src: '/react.svg', alt: 'React.js' },
-    { src: '/redux.svg', alt: 'Redux.js' },
-    { src: '/next-dot-js.svg', alt: 'Next.js' },
-    { src: '/sass.svg', alt: 'Sass' },
-  ];
+  const [mousePosition, setMousePosition] = useState({});
+  const [mouseOnContainer, setMouseOnContainer] = useState(false);
+
+  const handleMouseMove = ({ clientX: x, clientY: y }) => {
+    setMousePosition({ x, y });
+  }
+
+  useEffect(() => {
+    document.onmousemove = handleMouseMove;
+
+    return () => document.onmousemove = null;
+  }, []);
 
   return (
     <>
@@ -24,15 +37,38 @@ export default function Home() {
           <Image src='/arrow.svg' alt='Arrow Icon' height='30px' width='30px' />
         </h3>
       </div>
-      <div className='c-home__icon-container'>
+      <div
+        className='c-home__icon-container'
+        onMouseEnter={() => setMouseOnContainer(true)}
+        onMouseLeave={() => setMouseOnContainer(false)}
+      >
         {icons.map(({ src, alt }, index) => {
+          const { x, y } = mousePosition;
+          
+          const randomAcceleration = Math.floor(Math.random() * 300 + 200);
 
+          let activityX = 40;
+          let activityY = 20
+          let offsetX = 900;
+          let offsetY = 460;
+          if (mouseOnContainer) {
+            activityX = 8;
+            activityY = 10;
+            offsetX = 1500;
+            offsetY = 300;
+          }
+
+          const transformX = ((x - offsetX + randomAcceleration) / activityX);
+          const transformY = ((y - offsetY) / activityY);
+
+          const transform = {
+            transform: `translate(${transformX}px, ${transformY}px)`,
+          };
 
           return (
             <div key={`home-icon-${index}`} className='c-home__icon-square'>
-              <div>
+              <div className='c-home__icon' style={transform}>
                 <Image
-                  className='c-home__icon'
                   src={src}
                   alt={alt}
                   height='80px'

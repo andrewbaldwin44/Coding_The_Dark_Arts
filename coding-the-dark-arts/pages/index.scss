@@ -1,9 +1,17 @@
+@keyframes move-in {
+  to {
+    transform: translateY(25px);
+  }
+}
+
 .c-home__heading-container {
   position: absolute;
   margin: 0 $padding-at-small;
-  margin-top: 150px;
+  margin-top: 125px;
 
   font-family: Montserrat;
+
+  animation: move-in 0.5s forwards;
 
   @media #{$at-bp-medium} {
     padding: 0 $padding-at-medium;
@@ -40,8 +48,6 @@
   }
 }
 
-
-
 .c-home__icon-container {
   position: absolute;
   display: flex;
@@ -68,5 +74,9 @@
 
     width: calc(100% / 3);
     height: 50%;
+  }
+
+  .c-home__icon {
+    transition: transform 0.6s ease;
   }
 }
