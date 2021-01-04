@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
 import React from 'react';
 import Wrapper from '../../components/postsStyle/Wrapper';
+import SearchWidget from '../../components/searchWidget';
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_URI}`,
@@ -62,6 +63,9 @@ export default function Development() {
       {console.log(process.env.NEXT_PUBLIC_URI)}
       <h1>All Posts</h1>
       <div className='body'>
+        <div className='search-component'>
+          <SearchWidget />
+        </div>
         <div className='container-1'>
           {data &&
             data.map(dataPiece => {
