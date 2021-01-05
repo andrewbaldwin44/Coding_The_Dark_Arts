@@ -1,80 +1,80 @@
 $auth-form-container: 500px;
 
 .c-login-wrapper {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-	height: $container-height;
-	width: 100%;
+  height: $container-height;
+  width: 100%;
 }
 
 .c-login-wrapper__container {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
-	height: 85%;
-	width: $auth-form-container;
+  height: 85%;
+  width: $auth-form-container;
 }
 
 .c-login__page-label {
-	align-self: flex-start;
+  align-self: flex-start;
 
-	font-size: 2.4em;
-	font-weight: 600;
-	padding: 0 15px;
+  font-size: 2.4em;
+  font-weight: 600;
+  padding: 0 15px;
+  margin-bottom: 10px;
 }
 
 .c-login__form {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	border: 2px solid $dark-blue;
-	border-radius: 6px;
-	padding: 0 25px;
-	height: 42%;
-	width: 100%;
-	padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 2px solid $dark-blue;
+  border-radius: 6px;
+  padding: 0 25px;
+  height: 42%;
+  width: 100%;
+  padding-top: 15px;
 
-	background-color: white;
-	box-shadow: 1px 1px 5px $black-shadow;
+  background-color: white;
+  box-shadow: 1px 1px 5px $black-shadow;
 
-	.c-login__input-field {
-		margin-left: 0px;
-		
-	}
+  .c-login__input-field {
+    margin-left: 0px;
+  }
 }
 
 .c-login__submit-button {
-	height: 40px;
-	width: 100%;
-	font-size: 1.5em;
-	color: black;
-	padding: 0 15px;
-	border: 2px solid white;
-	border-radius: 6px;
-	transition: all 0.4s ease-in;
+  height: 40px;
+  width: 100%;
+  font-size: 1.5em;
+  color: black;
+  padding: 0 15px;
+  border: 2px solid white;
+  border-radius: 6px;
+  transition: all 0.4s ease-in;
 
-	&:hover {
-		border-color: #40c4ff;
-	}
+  &:hover {
+    border-color: #40c4ff;
+  }
 }
 
 .c-login__error-message {
-	display: none;
-	align-items: center;
-	justify-content: center;
+  display: none;
+  align-items: center;
+  justify-content: center;
 
-	width: 100%;
-	height: 50px;
-	background-color: #ffe3e3;
-	color: #f13240;
-	padding: 20px 10px;
+  width: 100%;
+  height: 50px;
+  background-color: #ffe3e3;
+  color: #f13240;
+  padding: 20px 10px;
 }
 
 .c-login__error-message.error {
-	display: flex;
+  display: flex;
 }
 
 /* ==========================================================================
@@ -82,77 +82,77 @@ $auth-form-container: 500px;
    ========================================================================== */
 
 .c-login__footer-seperator {
-	margin: 45px 0;
-	font-size: 1.2em;
-	line-height: 0.5;
-	text-align: center;
-	color: $main-white;
+  margin: 45px 0;
+  font-size: 1.2em;
+  line-height: 0.5;
+  text-align: center;
+  color: $main-white;
 
-	span {
-		display: inline-block;
-		position: relative;
+  span {
+    display: inline-block;
+    position: relative;
 
-		&:before,
-		&:after {
-			content: "";
-			position: absolute;
-			border-bottom: 1px solid $main-white;
-			opacity: 0.7;
-			width: calc(#{$auth-form-container} / 2 - 40px);
-			top: 50%;
-		}
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      border-bottom: 1px solid $main-white;
+      opacity: 0.7;
+      width: calc(#{$auth-form-container} / 2 - 40px);
+      top: 50%;
+    }
 
-		&:before {
-			right: 100%;
-			margin-right: 15px;
-		}
+    &:before {
+      right: 100%;
+      margin-right: 15px;
+    }
 
-		&:after {
-			left: 100%;
-			margin-left: 15px;
-		}
-	}
+    &:after {
+      left: 100%;
+      margin-left: 15px;
+    }
+  }
 }
 
 .c-login__footer-login-button {
-	width: 100%;
-	margin: 0 15px 35px 15px;
+  width: 100%;
+  margin: 0 15px 35px 15px;
 
-	img {
-		height: 38px;
-		width: 38px;
-		margin-right: 25px;
-	}
+  img {
+    height: 38px;
+    width: 38px;
+    margin-right: 25px;
+  }
 
-	span {
-		width: 140px;
-	}
+  span {
+    width: 140px;
+  }
 }
 
 .testing-wrapper {
-	display: flex;
+  display: flex;
 }
 
 .c-login__footer-redirect-wrapper {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-	font-size: 1.4em;
-	font-weight: 400;
-	color: black;
-	border-radius: 6px;
-	border: 1px solid black;
-	box-shadow: 1px 1px 5px $black-shadow;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: black;
+  border-radius: 6px;
+  border: 1px solid black;
+  box-shadow: 1px 1px 5px $black-shadow;
 
-	background-color: white;
-	height: 65px;
-	width: 100%;
+  background-color: white;
+  height: 65px;
+  width: 100%;
 
-	.c-login__redirect-link {
-		color: #0366d6;
-		text-decoration: underline;
-		padding-left: 10px;
-		cursor: pointer;
-	}
+  .c-login__redirect-link {
+    color: #0366d6;
+    text-decoration: underline;
+    padding-left: 10px;
+    cursor: pointer;
+  }
 }

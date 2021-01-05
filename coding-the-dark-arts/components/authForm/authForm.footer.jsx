@@ -4,10 +4,10 @@ import Image from 'next/image';
 
 function Footer({
   accountCreated,
-  successRedirect,
-  sendErrorCode,
   initiateGithubLogin,
   initiateGoogleLogin,
+  sendErrorCode,
+  successRedirect,
 }) {
   return (
     <div className='c-login__footer-wrapper'>
@@ -17,7 +17,7 @@ function Footer({
       <div className='testing-wrapper'>
         <button
           className='c-login__footer-login-button c-login__footer-redirect-wrapper'
-          onClick={initiateGithubLogin}
+          onClick={initiateGoogleLogin}
         >
           <Image src='/google-icon.svg' alt='Signin With Google' height='40px' width='40px' />
         </button>

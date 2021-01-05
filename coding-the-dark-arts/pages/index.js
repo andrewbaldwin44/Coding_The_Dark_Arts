@@ -33,7 +33,7 @@ export default function Home() {
       <div className='c-home__heading-container'>
         <h1>Coding The Dark Arts</h1>
         <h2>With Andrew and Kolby</h2>
-        <Link href='/posts'>
+        <Link href='/posts/all'>
           <h3 className='c-home__blog-redirect'>
             Go to the Blog
             <Image src='/arrow.svg' alt='Arrow Icon' height='30px' width='30px' />
@@ -69,7 +69,7 @@ export default function Home() {
           };
 
           return (
-            <Link href={`posts/${slug}`}>
+            <Link href={`posts/tags/${slug}`}>
               <div key={`home-icon-${index}`} className='c-home__icon-square'>
                 <div className='c-home__icon' style={transform}>
                   <Image src={src} alt={alt} height='80px' width='80px' />
