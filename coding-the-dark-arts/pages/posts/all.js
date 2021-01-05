@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
 import React from 'react';
 import Wrapper from '../../components/postsStyle/Wrapper';
+import SearchWidget from '../../components/searchWidget';
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_URI}`,
@@ -45,25 +46,30 @@ export default function AllPosts() {
       </Head>
 
       {console.log(process.env.NEXT_PUBLIC_URI)}
-      <h1>All Posts</h1>
-      <div className='all-posts-cont'>
-        {data &&
-          data.map(dataPiece => {
-            return (
-              // redirects based on which post is clicked
-              <div className='c-post__wrapper'>
-                <Link href={`/posts/${dataPiece.slug.current}`}>
-                  <a>
-                    <Wrapper key={`post-title-${dataPiece.postTitle}`}>
-                      <h1>{dataPiece.postTitle}</h1>
-                      <h2>{dataPiece.postDescription}</h2>
-                      <img className='dataPiece-sml' src={dataPiece.image.asset.url} />
-                    </Wrapper>
-                  </a>
-                </Link>
-              </div>
-            );
-          })}
+      <div className='all-post-wrapper'>
+        <h1>All Posts</h1>
+        <div className='search-component'>
+          <SearchWidget />
+        </div>
+        <div className='all-posts-cont'>
+          {data &&
+            data.map(dataPiece => {
+              return (
+                // redirects based on which post is clicked
+                <div className='c-post__wrapper'>
+                  <Link href={`/posts/${dataPiece.slug.current}`}>
+                    <a>
+                      <Wrapper key={`post-title-${dataPiece.postTitle}`}>
+                        <h1>{dataPiece.postTitle}</h1>
+                        <h2>{dataPiece.postDescription}</h2>
+                        <img className='dataPiece-sml' src={dataPiece.image.asset.url} />
+                      </Wrapper>
+                    </a>
+                  </Link>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );

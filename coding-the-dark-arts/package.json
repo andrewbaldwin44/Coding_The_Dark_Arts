@@ -9,6 +9,9 @@
     "format": "prettier --write \"**/*.{js,jsx}\""
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "emailjs-com": "^2.6.4",
     "next": "10.0.3",
     "react": "17.0.1",
