@@ -69,8 +69,8 @@ export default function Home() {
           };
 
           return (
-            <Link href={`posts/tags/${slug}`}>
-              <div key={`home-icon-${index}`} className='c-home__icon-square'>
+            <Link href={`posts/tags/${slug}`} key={`home-icon-${index}`}>
+              <div className='c-home__icon-square'>
                 <div className='c-home__icon' style={transform}>
                   <Image src={src} alt={alt} height='80px' width='80px' />
                 </div>
