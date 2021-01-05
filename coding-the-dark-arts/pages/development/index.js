@@ -60,7 +60,6 @@ export default function Development() {
         <title>All Posts</title>
       </Head>
 
-      {console.log(process.env.NEXT_PUBLIC_URI)}
       <h1>All Posts</h1>
       <div className='body'>
         <div className='search-component'>

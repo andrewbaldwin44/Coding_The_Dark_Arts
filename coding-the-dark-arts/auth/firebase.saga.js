@@ -60,7 +60,6 @@ function* signInWithGoogle() {
 }
 
 function* signInWithGithub() {
-  console.log('hello');
   yield auth.signInWithPopup(githubProvider);
   yield put(githubLoginSuccess());
 }

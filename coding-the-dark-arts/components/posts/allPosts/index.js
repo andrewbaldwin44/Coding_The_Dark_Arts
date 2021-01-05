@@ -45,7 +45,6 @@ export default function AllPosts() {
         <title>All Posts</title>
       </Head>
 
-      {console.log(process.env.NEXT_PUBLIC_URI)}
       <div className='all-post-wrapper'>
         <h1>All Posts</h1>
         <div className='search-component'>
