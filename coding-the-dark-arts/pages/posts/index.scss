@@ -3,6 +3,7 @@
 	flex-wrap: wrap;
 }
 
+
 .c-post__wrapper {
 	height: 250px;
 	width: 400px;
@@ -31,8 +32,9 @@
 	border: 1px solid black;
 	border-radius: 8px;
 	box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.5);
-	margin: 25px;
+	margin: 25px auto;
 	padding: 10px 25px;
+	
 	position: relative;
 	background: $light-main-purple;
 	h1 {
