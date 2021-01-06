@@ -6,6 +6,7 @@ function Footer({
   accountCreated,
   initiateGithubLogin,
   initiateGoogleLogin,
+  initiateTwitterLogin,
   sendErrorCode,
   successRedirect,
 }) {
@@ -29,7 +30,7 @@ function Footer({
         </button>
         <button
           className='c-login__footer-login-button c-login__footer-redirect-wrapper'
-          onClick={() => null}
+          onClick={initiateTwitterLogin}
         >
           <Image src='/twitter-icon.svg' alt='Signin With Twitter' height='40px' width='40px' />
         </button>

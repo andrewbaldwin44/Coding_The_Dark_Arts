@@ -36,6 +36,10 @@ export const initiateGithubLogin = () => ({
   type: 'INITIATE_GITHUB_LOGIN',
 });
 
+export const initiateTwitterLogin = () => ({
+  type: 'INITIATE_TWITTER_LOGIN',
+});
+
 export const googleLoginSuccess = () => ({
   type: 'GOOGLE_LOGIN_SUCCESS',
   currentUser: auth.currentUser.toJSON(),
@@ -43,5 +47,10 @@ export const googleLoginSuccess = () => ({
 
 export const githubLoginSuccess = () => ({
   type: 'GITHUB_LOGIN_SUCCESS',
+  currentUser: auth.currentUser.toJSON(),
+});
+
+export const twitterLoginSuccess = () => ({
+  type: 'TWITTER_LOGIN_SUCCESS',
   currentUser: auth.currentUser.toJSON(),
 });

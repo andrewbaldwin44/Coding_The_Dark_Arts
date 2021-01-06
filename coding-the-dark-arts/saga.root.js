@@ -7,6 +7,7 @@ import {
   handleFirebaseError,
   watchGoogleLogin,
   watchGithubLogin,
+  watchTwitterLogin,
 } from './auth/firebase.saga';
 
 export default function* rootSaga() {
@@ -17,6 +18,7 @@ export default function* rootSaga() {
       watchFirebaseLogout(),
       watchGoogleLogin(),
       watchGithubLogin(),
+      watchTwitterLogin(),
     ]);
   } catch ({ code }) {
     if (code.includes('auth')) {

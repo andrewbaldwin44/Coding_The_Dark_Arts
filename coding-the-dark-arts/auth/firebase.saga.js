@@ -5,19 +5,12 @@ import {
   logoutSuccess,
   googleLoginSuccess,
   githubLoginSuccess,
+  twitterLoginSuccess,
 } from './firebase-actions';
-import { auth, googleProvider, githubProvider } from '../auth/auth-service';
+import { auth, googleProvider, githubProvider, twitterProvider } from '../auth/auth-service';
 import { setErrorMessage } from '../components/authForm/authForm.actions.js';
 import { PASSWORD_REQUIREMENTS, AUTHENTICATION_ERROR_MESSAGES } from './auth.constants';
-const { minimumPasswordRequirements, minimumPasswordLength } = PASSWORD_REQUIREMENTS;
-const {
-  invalidEmail,
-  wrongPassword,
-  emailInUse,
-  passwordTooShort,
-  missingPasswordRequirements,
-  defaultMessage,
-} = AUTHENTICATION_ERROR_MESSAGES;
+const { invalidEmail, wrongPassword, emailInUse, defaultMessage } = AUTHENTICATION_ERROR_MESSAGES;
 
 export function* watchFirebaseRegister() {
   yield takeEvery('INITIATE_REGISTER', firebaseRegister);
@@ -39,6 +32,10 @@ export function* watchGithubLogin() {
   yield takeEvery('INITIATE_GITHUB_LOGIN', signInWithGithub);
 }
 
+export function* watchTwitterLogin() {
+  yield takeEvery('INITIATE_TWITTER_LOGIN', signInWithTwitter);
+}
+
 function* firebaseRegister({ payload: { email, password } }) {
   yield auth.createUserWithEmailAndPassword(email, password);
   yield put(registerSuccess());
@@ -57,6 +54,11 @@ function* firebaseLogout() {
 function* signInWithGoogle() {
   yield auth.signInWithPopup(googleProvider);
   yield put(googleLoginSuccess());
+}
+
+function* signInWithTwitter() {
+  yield auth.signInWithPopup(twitterProvider);
+  yield put(twitterLoginSuccess());
 }
 
 function* signInWithGithub() {

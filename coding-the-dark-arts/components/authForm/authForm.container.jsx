@@ -7,6 +7,7 @@ import {
   initiateRegister,
   initiateGoogleLogin,
   initiateGithubLogin,
+  initiateTwitterLogin,
 } from '../../auth/firebase-actions';
 import { setErrorMessage } from './authForm.actions.js';
 import { PASSWORD_REQUIREMENTS } from '../../auth/auth.constants';
@@ -28,6 +29,7 @@ const actionCreators = {
   setErrorMessage,
   initiateGoogleLogin,
   initiateGithubLogin,
+  initiateTwitterLogin,
 };
 
 function AuthFormContainer({ ...props }) {

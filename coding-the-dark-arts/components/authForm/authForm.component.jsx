@@ -4,6 +4,7 @@ import cx from 'classnames';
 
 import Footer from './authForm.footer';
 import { PASSWORD_REQUIREMENTS } from '../../auth/auth.constants';
+import { initiateTwitterLogin } from '../../auth/firebase-actions';
 const { minimumPasswordLength } = PASSWORD_REQUIREMENTS;
 
 function AuthForm({
@@ -18,6 +19,7 @@ function AuthForm({
   userData,
   initiateGoogleLogin,
   initiateGithubLogin,
+  initiateTwitterLogin,
 }) {
   const emailField = createRef(null);
   const passwordField = createRef(null);
@@ -89,6 +91,7 @@ function AuthForm({
           initiateGoogleLogin={initiateGoogleLogin}
           initiateGithubLogin={initiateGithubLogin}
           accountCreated={accountCreated}
+          initiateTwitterLogin={initiateTwitterLogin}
           successRedirect={redirectHome}
           sendErrorCode={sendErrorCode}
         />

@@ -7,11 +7,13 @@ export default function firebaseReducer(state = initialState, action) {
     case 'GOOGLE_LOGIN_SUCCESS':
     case 'REGISTER_SUCCESS':
     case 'GITHUB_LOGIN_SUCCESS':
+    case 'TWITTER_LOGIN_SUCCESS':
     case 'LOGIN_SUCCESS': {
       return {
         ...state,
         userData: {
           email: action.currentUser.email,
+          displayName: action.current.displayName,
         },
       };
     }
