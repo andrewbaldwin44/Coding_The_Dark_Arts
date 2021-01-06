@@ -25,9 +25,9 @@ export default function ContactForm() {
 
   return (
     <div className='contact-wrapper'>
-      <h1 className='contact-title'>Contact Us</h1>
       <form id='contact' className='contact-form' onSubmit={sendEmail}>
-        <div>
+        <h1 className='contact-title'>Contact Us</h1>
+        <div className='contact-flex'>
           <div className='contact-elem'>
             <input className='contact-input' type='text' placeholder='Name' name='name' />
           </div>
@@ -44,9 +44,6 @@ export default function ContactForm() {
           </div>
           <div className='contact-elem'>
             <textarea
-              id=''
-              cols='40'
-              rows='8'
               placeholder=' Your message'
               name='message'
               className='contact-textarea'

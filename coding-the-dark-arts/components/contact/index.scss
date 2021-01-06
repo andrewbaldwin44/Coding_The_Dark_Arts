@@ -1,69 +1,66 @@
-.contact-wrapper {
-  margin: 50px auto 25px auto;
-  padding: 15px;
-  background-color: white;
-  border-radius: 14px;
-  width: 400px;
-  .submit-contact {
-    margin-left: 10px;
-  }
-}
-
-.contact-title {
-  text-decoration: underline;
-  text-align: center;
-  letter-spacing: 3.5px;
-  margin-bottom: 10px;
-  margin-top: 0;
-}
-
 .contact-form {
+  width: 30vw;
+  min-width: 350px;
+  height: 60vh;
+  margin: 50px auto;
+  border: 1px solid black;
+  border-radius: 8px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 25px;
+  padding: 25px;
+  @media (max-width: 600px) {
+    padding: 5px;
+    width: 350px;
+  }
+}
+
+.contact-title {
+  position: absolute;
+  top: -25px;
+  left: 5px;
+}
+
+input {
+  width: 75%;
+  font-family: "Montserrat", sans-serif;
+  ::placeholder {
+    font-family: "Montserrat", sans-serif;
+  }
 }
 
 .contact-elem {
-  margin: 5px;
-  @media (min-width: 780px) {
-    margin: 15px;
-  }
+  display: flex;
+  align-items: flex-start;
 }
 
-.contact-input {
-  background: none;
-  border: 2px solid black;
-  color: black;
-  border-radius: 5px;
-  padding: 8px;
-  font-style: italic;
-  width: 100%;
-  ::placeholder {
-    color: black;
-    font-family: "Montserrat", sans-serif;
-    padding: 1px;
-  }
+.contact-flex {
+  margin: auto;
 }
 
 .contact-textarea {
-  background: none;
   border: 2px solid black;
   resize: none;
   color: black;
   border-radius: 5px;
   padding: 8px;
   font-family: "Montserrat", sans-serif;
+  height: 100px;
+  width: 300px;
 
   ::placeholder {
     color: black;
     font-family: "Montserrat", sans-serif;
   }
+
+  @media (max-width: 600px) {
+    width: 275px;
+  }
 }
 
 .contact-send {
-  background: none;
   cursor: pointer;
   border: 2px solid black;
   border-radius: 5px;
@@ -81,5 +78,5 @@
 }
 
 .contact-success {
-    font-size: 2rem;
+  font-size: 2rem;
 }
