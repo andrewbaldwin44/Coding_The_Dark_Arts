@@ -69,9 +69,7 @@
   }
 
   .c-home__icon-square {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
 
     width: calc(100% / 3);
     height: 50%;

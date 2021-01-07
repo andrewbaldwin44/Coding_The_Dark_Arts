@@ -24,10 +24,8 @@
 }
 
 .c-navbar__heading-container {
-  display: flex;
+  @include flex-center;
   cursor: pointer;
-  justify-content: center;
-  align-items: center;
 
   h3 {
     margin-left: 30px;
@@ -42,9 +40,7 @@
   display: flex;
 
   a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
 
     text-align: center;
     line-height: 2.5;

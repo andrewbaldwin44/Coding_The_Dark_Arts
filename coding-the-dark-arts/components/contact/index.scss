@@ -1,4 +1,7 @@
 .contact-form {
+  @include flex-center;
+  flex-direction: column;
+
   width: 30vw;
   min-width: 350px;
   height: 60vh;
@@ -6,11 +9,8 @@
   border: 1px solid black;
   border-radius: 8px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 25px;
+
   @media (max-width: 600px) {
     padding: 5px;
     width: 350px;
@@ -23,7 +23,7 @@
   left: 5px;
 }
 
-input {
+.contact-form input {
   width: 75%;
   font-family: "Montserrat", sans-serif;
   ::placeholder {

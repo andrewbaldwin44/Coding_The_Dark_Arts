@@ -1,9 +1,7 @@
 $auth-form-container: 500px;
 
 .c-login-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 
   height: $container-height;
   width: 100%;
@@ -134,9 +132,7 @@ $auth-form-container: 500px;
 }
 
 .c-login__footer-redirect-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 
   font-size: 1.4em;
   font-weight: 400;
