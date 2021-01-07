@@ -1,69 +1,73 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import {
-  registerSuccess,
-  loginSuccess,
+  INITIATE_LOGIN,
+  INITIATE_REGISTER,
+  INITIATE_LOGOUT,
+  INITIATE_GOOGLE_LOGIN,
+  INITIATE_GITHUB_LOGIN,
+  INITIATE_TWITTER_LOGIN,
+  AUTHENTICATION_SUCCESS,
+  LOGOUT_SUCCESS,
+  authenticationSuccess,
   logoutSuccess,
-  googleLoginSuccess,
-  githubLoginSuccess,
-  twitterLoginSuccess,
 } from './firebase-actions';
 import { auth, googleProvider, githubProvider, twitterProvider } from '../auth/auth-service';
 import { setErrorMessage } from '../components/authForm/authForm.actions.js';
 import { AUTHENTICATION_ERROR_MESSAGES } from './auth.constants';
 const { invalidEmail, wrongPassword, emailInUse, defaultMessage } = AUTHENTICATION_ERROR_MESSAGES;
 
-export function* watchFirebaseRegister() {
-  yield takeEvery('INITIATE_REGISTER', firebaseRegister);
-}
-
 export function* watchFirebaseLogin() {
-  yield takeEvery('INITIATE_LOGIN', firebaseLogin);
+  yield takeEvery(INITIATE_LOGIN, firebaseLogin);
 }
 
-export function* watchFirebaseLogout() {
-  yield takeEvery('INITIATE_LOGOUT', firebaseLogout);
+export function* watchFirebaseRegister() {
+  yield takeEvery(INITIATE_REGISTER, firebaseRegister);
 }
 
 export function* watchGoogleLogin() {
-  yield takeEvery('INITIATE_GOOGLE_LOGIN', signInWithGoogle);
+  yield takeEvery(INITIATE_GOOGLE_LOGIN, signInWithGoogle);
 }
 
 export function* watchGithubLogin() {
-  yield takeEvery('INITIATE_GITHUB_LOGIN', signInWithGithub);
+  yield takeEvery(INITIATE_GITHUB_LOGIN, signInWithGithub);
 }
 
 export function* watchTwitterLogin() {
-  yield takeEvery('INITIATE_TWITTER_LOGIN', signInWithTwitter);
+  yield takeEvery(INITIATE_TWITTER_LOGIN, signInWithTwitter);
+}
+
+export function* watchFirebaseLogout() {
+  yield takeEvery(INITIATE_LOGOUT, firebaseLogout);
 }
 
 function* firebaseRegister({ payload: { email, password } }) {
   yield auth.createUserWithEmailAndPassword(email, password);
-  yield put(registerSuccess());
+  yield put(authenticationSuccess());
 }
 
 function* firebaseLogin({ payload: { email, password } }) {
   yield auth.signInWithEmailAndPassword(email, password);
-  yield put(loginSuccess());
+  yield put(authenticationSuccess());
+}
+
+function* signInWithGoogle() {
+  yield auth.signInWithPopup(googleProvider);
+  yield put(authenticationSuccess());
+}
+
+function* signInWithTwitter() {
+  yield auth.signInWithPopup(twitterProvider);
+  yield put(authenticationSuccess());
+}
+
+function* signInWithGithub() {
+  yield auth.signInWithPopup(githubProvider);
+  yield put(authenticationSuccess());
 }
 
 function* firebaseLogout() {
   yield auth.signOut();
   yield put(logoutSuccess());
-}
-
-function* signInWithGoogle() {
-  yield auth.signInWithPopup(googleProvider);
-  yield put(googleLoginSuccess());
-}
-
-function* signInWithTwitter() {
-  yield auth.signInWithPopup(twitterProvider);
-  yield put(twitterLoginSuccess());
-}
-
-function* signInWithGithub() {
-  yield auth.signInWithPopup(githubProvider);
-  yield put(githubLoginSuccess());
 }
 
 export function* handleFirebaseError(code) {

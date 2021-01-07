@@ -1,24 +1,23 @@
+import { AUTHENTICATION_SUCCESS, LOGOUT_SUCCESS } from './firebase-actions';
+
 const initialState = {
   userData: null,
 };
 
-export default function firebaseReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'GOOGLE_LOGIN_SUCCESS':
-    case 'REGISTER_SUCCESS':
-    case 'GITHUB_LOGIN_SUCCESS':
-    case 'TWITTER_LOGIN_SUCCESS':
-    case 'LOGIN_SUCCESS': {
+export default function firebaseReducer(state = initialState, { payload, type }) {
+  console.log(payload);
+  switch (type) {
+    case AUTHENTICATION_SUCCESS: {
       return {
         ...state,
         userData: {
-          email: action.currentUser.email,
-          displayName: action.currentUser.displayName,
+          email: payload.email,
+          displayName: payload.displayName,
         },
       };
     }
 
-    case 'LOGOUT_SUCCESS': {
+    case LOGOUT_SUCCESS: {
       return initialState;
     }
 
