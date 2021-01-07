@@ -10,7 +10,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel='preconnect' href='https://fonts.gstatic.com' />
+          <link href='https://fonts.gstatic.com' rel='preconnect' />
           <link
             href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Redressed&display=swap'
             rel='stylesheet'

@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
 import React from 'react';

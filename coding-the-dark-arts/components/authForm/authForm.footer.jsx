@@ -20,19 +20,19 @@ function Footer({
           className='c-login__footer-login-button c-login__footer-redirect-wrapper'
           onClick={initiateGoogleLogin}
         >
-          <Image src='/google-icon.svg' alt='Signin With Google' height='40px' width='40px' />
+          <Image alt='Signin With Google' height='40px' src='/google-icon.svg' width='40px' />
         </button>
         <button
           className='c-login__footer-login-button c-login__footer-redirect-wrapper'
           onClick={initiateGithubLogin}
         >
-          <Image src='/github-icon.svg' alt='Signin With Github' height='40px' width='40px' />
+          <Image alt='Signin With Github' height='40px' src='/github-icon.svg' width='40px' />
         </button>
         <button
           className='c-login__footer-login-button c-login__footer-redirect-wrapper'
           onClick={initiateTwitterLogin}
         >
-          <Image src='/twitter-icon.svg' alt='Signin With Twitter' height='40px' width='40px' />
+          <Image alt='Signin With Twitter' height='40px' src='/twitter-icon.svg' width='40px' />
         </button>
       </div>
       {accountCreated ? (

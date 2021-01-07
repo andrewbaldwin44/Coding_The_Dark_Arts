@@ -1,5 +1,6 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
+
 const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID;
 const USER_ID = process.env.NEXT_PUBLIC_USER_ID;
 
@@ -25,32 +26,28 @@ export default function ContactForm() {
 
   return (
     <div className='contact-wrapper'>
-      <form id='contact' className='contact-form' onSubmit={sendEmail}>
+      <form className='contact-form' id='contact' onSubmit={sendEmail}>
         <h1 className='contact-title'>Contact Us</h1>
         <div className='contact-flex'>
           <div className='contact-elem'>
-            <input className='contact-input' type='text' placeholder='Name' name='name' />
+            <input className='contact-input' name='name' placeholder='Name' type='text' />
           </div>
           <div className='contact-elem'>
             <input
               className='contact-input'
-              type='email'
-              placeholder='Email Address'
               name='email'
+              placeholder='Email Address'
+              type='email'
             />
           </div>
           <div className='contact-elem'>
-            <input className='contact-input' type='text' placeholder='Subject' name='subject' />
+            <input className='contact-input' name='subject' placeholder='Subject' type='text' />
           </div>
           <div className='contact-elem'>
-            <textarea
-              placeholder=' Your message'
-              name='message'
-              className='contact-textarea'
-            ></textarea>
+            <textarea className='contact-textarea' name='message' placeholder=' Your message' />
           </div>
           <div className='submit-contact'>
-            <input className='contact-send' type='submit' value='Send Message'></input>
+            <input className='contact-send' type='submit' value='Send Message' />
           </div>
         </div>
         {emailStatus && <p className='contact-success'>Thanks for reaching out!</p>}

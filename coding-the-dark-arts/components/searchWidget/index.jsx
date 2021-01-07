@@ -1,9 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export default function SearchWidget() {
-	
   React.useEffect(() => {
     const search = document.querySelector('.search');
     const btn = document.querySelector('.btn-search');
@@ -11,19 +10,18 @@ export default function SearchWidget() {
 
     btn.addEventListener('click', () => {
       search.classList.toggle('active');
-	  input.focus();
-	  
-	});
+      input.focus();
+    });
   }, []);
 
   return (
-	  <div className="search-container">
-		  <div className="search">
-			  <input type="text" placeholder="Search..." className="input-search"/>
-			  <button className="btn-search">
-			  	<FontAwesomeIcon icon={faSearch} />
-			  </button>
-		  </div>
-	  </div>
-  )
+    <div className='search-container'>
+      <div className='search'>
+        <input className='input-search' placeholder='Search...' type='text' />
+        <button className='btn-search'>
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </div>
+    </div>
+  );
 }

@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function Test() {
   return (
-    <div class='box'>
-      <i class='fas fa-quote-left fa2'></i>
-      <div class='text'>
-        <i class='fas fa-quote-right fa1'></i>
+    <div className='box'>
+      <i className='fas fa-quote-left fa2' />
+      <div className='text'>
+        <i className='fas fa-quote-right fa1' />
         <div>
           <h3>Quote the day</h3>
           <p>

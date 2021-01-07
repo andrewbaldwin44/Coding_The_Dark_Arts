@@ -8,7 +8,7 @@ const Layout = ({ children, title }) => {
     <div className='c-layout-wrapper'>
       <Head>
         <title>Coding the Dark Arts</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link href='/favicon.ico' rel='icon' />
       </Head>
       <Navbar />
       <div className='c-main-wrapper'>{children}</div>
