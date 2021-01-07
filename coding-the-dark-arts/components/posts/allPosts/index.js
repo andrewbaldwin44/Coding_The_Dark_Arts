@@ -52,10 +52,10 @@ export default function AllPosts() {
         </div>
         <div className='all-posts-cont'>
           {data &&
-            data.map(dataPiece => {
+            data.map((dataPiece, index) => {
               return (
                 // redirects based on which post is clicked
-                <div className='c-post__wrapper'>
+                <div className='c-post__wrapper' key={`allposts-post-${index}`}>
                   <Link href={`/posts/${dataPiece.slug.current}`}>
                     <a>
                       <Wrapper key={`post-title-${dataPiece.postTitle}`}>
