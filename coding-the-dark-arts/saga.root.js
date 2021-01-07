@@ -20,9 +20,13 @@ export default function* rootSaga() {
       watchGithubLogin(),
       watchTwitterLogin(),
     ]);
-  } catch ({ code }) {
-    if (code.includes('auth')) {
-      yield handleFirebaseError(code);
+  } catch (error) {
+    const { code } = error;
+
+    if (code && code.includes('auth')) {
+      yield handleFirebaseError(error.code);
+    } else {
+      throw new Error(error);
     }
   }
 }

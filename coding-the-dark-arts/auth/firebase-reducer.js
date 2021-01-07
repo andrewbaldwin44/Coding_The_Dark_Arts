@@ -13,7 +13,7 @@ export default function firebaseReducer(state = initialState, action) {
         ...state,
         userData: {
           email: action.currentUser.email,
-          displayName: action.current.displayName,
+          displayName: action.currentUser.displayName,
         },
       };
     }

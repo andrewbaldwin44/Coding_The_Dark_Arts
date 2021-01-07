@@ -4,10 +4,10 @@ import Image from 'next/image';
 
 function Footer({
   accountCreated,
+  clearErrorMessage,
   initiateGithubLogin,
   initiateGoogleLogin,
   initiateTwitterLogin,
-  sendErrorCode,
   successRedirect,
 }) {
   return (
@@ -39,14 +39,18 @@ function Footer({
         <div className='c-login__footer-redirect-wrapper'>
           <span>New here?</span>
           <Link href='/sign-up'>
-            <p className='c-login__redirect-link'>Create an Account</p>
+            <p className='c-login__redirect-link' onClick={clearErrorMessage}>
+              Create an Account
+            </p>
           </Link>
         </div>
       ) : (
         <div className='c-login__footer-redirect-wrapper'>
           <span>Already Have an Account?</span>
           <Link href='/login'>
-            <p className='c-login__redirect-link'>Log In</p>
+            <p className='c-login__redirect-link' onClick={clearErrorMessage}>
+              Log In
+            </p>
           </Link>
         </div>
       )}

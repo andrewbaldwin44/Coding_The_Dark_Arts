@@ -3,23 +3,25 @@ import Router from 'next/router';
 import cx from 'classnames';
 
 import Footer from './authForm.footer';
-import { PASSWORD_REQUIREMENTS } from '../../auth/auth.constants';
+import { AUTHENTICATION_ERROR_MESSAGES } from '../../auth/auth.constants';
 import { initiateTwitterLogin } from '../../auth/firebase-actions';
-const { minimumPasswordLength } = PASSWORD_REQUIREMENTS;
+
+const { missingPasswordRequirements, passwordTooShort } = AUTHENTICATION_ERROR_MESSAGES;
 
 function AuthForm({
   accountCreated,
   errorMessage,
   initiateLogin,
   initiateRegister,
-  isStrongPassword,
-  redirectHome,
-  sendErrorCode,
-  setErrorMessage,
-  userData,
   initiateGoogleLogin,
   initiateGithubLogin,
   initiateTwitterLogin,
+  isStrongPassword,
+  minimumPasswordLength,
+  redirectHome,
+  setErrorMessage,
+  clearErrorMessage,
+  userData,
 }) {
   const emailField = createRef(null);
   const passwordField = createRef(null);
@@ -88,12 +90,12 @@ function AuthForm({
           </div>
         </form>
         <Footer
+          accountCreated={accountCreated}
+          clearErrorMessage={clearErrorMessage}
           initiateGoogleLogin={initiateGoogleLogin}
           initiateGithubLogin={initiateGithubLogin}
-          accountCreated={accountCreated}
           initiateTwitterLogin={initiateTwitterLogin}
           successRedirect={redirectHome}
-          sendErrorCode={sendErrorCode}
         />
       </div>
     </div>

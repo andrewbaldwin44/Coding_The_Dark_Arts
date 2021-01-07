@@ -9,13 +9,12 @@ import {
   initiateGithubLogin,
   initiateTwitterLogin,
 } from '../../auth/firebase-actions';
-import { setErrorMessage } from './authForm.actions.js';
+import { setErrorMessage, clearErrorMessage } from './authForm.actions.js';
 import { PASSWORD_REQUIREMENTS } from '../../auth/auth.constants';
 
-const { minimumPasswordRequirements } = PASSWORD_REQUIREMENTS;
+const { minimumPasswordLength, minimumPasswordRequirements } = PASSWORD_REQUIREMENTS;
 
 const redirectHome = () => Router.push('/');
-const sendErrorCode = ({ code }) => createUserErrorMessage(code);
 const isStrongPassword = password => minimumPasswordRequirements.test(password);
 
 const storeConnector = ({ authForm, firebase }) => ({
@@ -26,10 +25,11 @@ const storeConnector = ({ authForm, firebase }) => ({
 const actionCreators = {
   initiateLogin,
   initiateRegister,
-  setErrorMessage,
   initiateGoogleLogin,
   initiateGithubLogin,
   initiateTwitterLogin,
+  setErrorMessage,
+  clearErrorMessage,
 };
 
 function AuthFormContainer({ ...props }) {
@@ -37,8 +37,8 @@ function AuthFormContainer({ ...props }) {
     <AuthForm
       {...props}
       isStrongPassword={isStrongPassword}
+      minimumPasswordLength={minimumPasswordLength}
       redirectHome={redirectHome}
-      sendErrorCode={sendErrorCode}
     />
   );
 }
