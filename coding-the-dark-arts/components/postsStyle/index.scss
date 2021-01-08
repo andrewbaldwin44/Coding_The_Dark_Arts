@@ -1,18 +1,18 @@
 .post-wrapper {
-	border: 1px solid black;
-	border-radius: 8px;
-	max-width: 350px;
-	padding: 10px 25px;
-	box-shadow: 0 0 5px 3px $light-purple;
-	color: $main-white;
-	background-color: $main-blue;
-	margin: 8px;
-	text-align: center;
-	height: 65px;
-	overflow: hidden;
+  border: 1px solid black;
+  border-radius: 8px;
+  max-width: 350px;
+  padding: 10px 25px;
+  box-shadow: 0 0 5px 3px $light-purple;
+  color: $main-white;
+  background-color: $main-blue;
+  margin: 8px;
+  text-align: center;
+  height: 65px;
+  overflow: hidden;
 
-	&:hover {
-		height: 300px;
-	}
-	transition: height 0.8s ease-in-out;
+  &:hover {
+    height: 300px;
+  }
+  transition: height 0.8s ease-in-out;
 }

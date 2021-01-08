@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Footer from '../ui/footer';
 import Navbar from '../ui/navbar';
@@ -15,6 +16,11 @@ const Layout = ({ children, title }) => {
       <Footer />
     </div>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string,
 };
 
 export default Layout;

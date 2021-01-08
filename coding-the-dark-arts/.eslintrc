@@ -20,14 +20,41 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "no-console": "off",
+    "no-unused-expressions": "off",
+    "import/no-extraneous-dependencies": "off",
     "react/jsx-sort-props": 2,
     "react/sort-prop-types": 2,
-    "no-use-before-define": 0,
+    "no-use-before-define": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": "off",
     "react/no-array-index-key": "off",
-    "import/no-extraneous-dependencies": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-unescaped-entities": "off",
+    "react/require-default-props": "off",
+    "react/no-children-prop": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
     "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/ban-types": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

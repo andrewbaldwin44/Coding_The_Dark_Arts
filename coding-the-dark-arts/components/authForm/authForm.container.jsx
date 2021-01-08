@@ -9,7 +9,7 @@ import {
   initiateGithubLogin,
   initiateTwitterLogin,
 } from '../../auth/firebase-actions';
-import { setErrorMessage, clearErrorMessage } from './authForm.actions.js';
+import { setErrorMessage, clearErrorMessage } from './authForm.actions';
 import { PASSWORD_REQUIREMENTS } from '../../auth/auth.constants';
 
 const { minimumPasswordLength, minimumPasswordRequirements } = PASSWORD_REQUIREMENTS;

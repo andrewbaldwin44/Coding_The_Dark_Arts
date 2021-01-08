@@ -1,12 +1,30 @@
 import { createRef } from 'react';
-import Router from 'next/router';
 import cx from 'classnames';
 
 import Footer from './authForm.footer';
 import { AUTHENTICATION_ERROR_MESSAGES } from '../../auth/auth.constants';
-import { initiateTwitterLogin } from '../../auth/firebase-actions';
+import { IUser } from '../types/types';
 
 const { missingPasswordRequirements, passwordTooShort } = AUTHENTICATION_ERROR_MESSAGES;
+
+export interface IAuthFormFooter {
+  accountCreated: boolea;
+  clearErrorMessage: () => void;
+  initiateGithubLogin: () => void;
+  initiateGoogleLogin: () => void;
+  initiateTwitterLogin: () => void;
+}
+
+interface IAuthForm extends IAuthFormFooter {
+  errorMessage: string;
+  initiateLogin: () => void;
+  initiateRegister: () => void;
+  isStrongPassword: () => boolean;
+  minimumPasswordLength: integer;
+  redirectHome: () => void;
+  setErrorMessage: () => void;
+  userData: IUser;
+}
 
 function AuthForm({
   accountCreated,
@@ -22,7 +40,7 @@ function AuthForm({
   setErrorMessage,
   clearErrorMessage,
   userData,
-}) {
+}: IAuthForm) {
   const emailField = createRef(null);
   const passwordField = createRef(null);
 
@@ -95,7 +113,6 @@ function AuthForm({
           initiateGithubLogin={initiateGithubLogin}
           initiateGoogleLogin={initiateGoogleLogin}
           initiateTwitterLogin={initiateTwitterLogin}
-          successRedirect={redirectHome}
         />
       </div>
     </div>

@@ -4,10 +4,9 @@
   border-radius: 8px;
   padding: 10px 25px;
   min-height: 500px;
-  
-  
+
   h1 {
-	// some style
+    // some style
   }
 
   h2 {
@@ -16,18 +15,18 @@
 
   code {
     // some style
-	// white-space: pre-line;
-	white-space: break-spaces;
+    // white-space: pre-line;
+    white-space: break-spaces;
   }
 
   ol {
-	list-style-type: upper-alpha;
+    list-style-type: upper-alpha;
   }
 
   blockquote {
-	  border-radius: 8px;
-	  background: $main-almond;
-	  padding: 5px;
-	  color: $font-pop;
+    border-radius: 8px;
+    background: $main-almond;
+    padding: 5px;
+    color: $font-pop;
   }
 }

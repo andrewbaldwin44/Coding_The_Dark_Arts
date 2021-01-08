@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
 
@@ -77,7 +77,11 @@ function AllPosts({ searchValue }) {
                     <Wrapper key={`post-title-${dataPiece.postTitle}`}>
                       <h1>{dataPiece.postTitle}</h1>
                       <h2>{dataPiece.postDescription}</h2>
-                      <img className='dataPiece-sml' src={dataPiece.image.asset.url} />
+                      <img
+                        alt='Post Thumbnail'
+                        className='dataPiece-sml'
+                        src={dataPiece.image.asset.url}
+                      />
                     </Wrapper>
                   </a>
                 </Link>
@@ -89,5 +93,9 @@ function AllPosts({ searchValue }) {
     </div>
   );
 }
+
+AllPosts.propTypes = {
+  searchValue: PropTypes.string,
+};
 
 export default connect(({ search }) => ({ searchValue: search.searchValue }))(AllPosts);
