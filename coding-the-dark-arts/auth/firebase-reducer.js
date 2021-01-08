@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export default function firebaseReducer(state = initialState, { payload, type }) {
-  console.log(payload);
   switch (type) {
     case AUTHENTICATION_SUCCESS: {
       return {
