@@ -12,9 +12,7 @@ const client = new ApolloClient({
 export default function individualPost() {
   // This test function is literally here only for the useEffect callback, it does nothing else
 
-  const mounted = () => {
-    return;
-  };
+  const mounted = () => {};
 
   const [data, setData] = React.useState(null);
 
@@ -22,7 +20,7 @@ export default function individualPost() {
   // since slug is initially undefined for half a second, we cannot query based of it
   // but since the useEffect rerenders based off when the "test" function is defined
   // then the slug is available and we can render the data based on it
-  const slug = query.slug;
+  const { slug } = query;
   console.log(slug);
   const postQuery = gql`
     query BlogPost($slug: String) {
@@ -43,7 +41,7 @@ export default function individualPost() {
       .query({
         query: postQuery,
         variables: {
-          slug: slug,
+          slug,
         },
       })
       .then(info => setData(info.data.allBlogPost[0]))

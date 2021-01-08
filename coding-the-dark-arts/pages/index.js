@@ -22,7 +22,9 @@ export default function Home() {
   useEffect(() => {
     document.onmousemove = handleMouseMove;
 
-    return () => (document.onmousemove = null);
+    return () => {
+      document.onmousemove = null;
+    };
   }, []);
 
   return (
@@ -36,7 +38,7 @@ export default function Home() {
         <Link href='/posts/all'>
           <h3 className='c-home__blog-redirect'>
             Go to the Blog
-            <Image src='/arrow.svg' alt='Arrow Icon' height='30px' width='30px' />
+            <Image alt='Arrow Icon' height='30px' src='/arrow.svg' width='30px' />
           </h3>
         </Link>
       </div>
@@ -69,10 +71,10 @@ export default function Home() {
           };
 
           return (
-            <Link href={`posts/tags/${slug}`} key={`home-icon-${index}`}>
+            <Link key={`home-icon-${index}`} href={`posts/tags/${slug}`}>
               <div className='c-home__icon-square'>
                 <div className='c-home__icon' style={transform}>
-                  <Image src={src} alt={alt} height='80px' width='80px' />
+                  <Image alt={alt} height='80px' src={src} width='80px' />
                 </div>
               </div>
             </Link>

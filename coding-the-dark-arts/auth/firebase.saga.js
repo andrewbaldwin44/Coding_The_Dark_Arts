@@ -11,9 +11,10 @@ import {
   authenticationSuccess,
   logoutSuccess,
 } from './firebase-actions';
-import { auth, googleProvider, githubProvider, twitterProvider } from '../auth/auth-service';
+import { auth, googleProvider, githubProvider, twitterProvider } from './auth-service';
 import { setErrorMessage } from '../components/authForm/authForm.actions.js';
 import { AUTHENTICATION_ERROR_MESSAGES } from './auth.constants';
+
 const { invalidEmail, wrongPassword, emailInUse, defaultMessage } = AUTHENTICATION_ERROR_MESSAGES;
 
 export function* watchFirebaseLogin() {

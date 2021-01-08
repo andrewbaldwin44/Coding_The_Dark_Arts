@@ -11,7 +11,7 @@ const Navbar = ({ initiateLogout, userData }) => {
       <nav className='c-navbar'>
         <Link href='/'>
           <div className='c-navbar__heading-container'>
-            <Image height='45' width='45' src='/wizard.svg' />
+            <Image height='45' src='/wizard.svg' width='45' />
             <h3 className='c-navbar__heading'>Welcome to the Dark Arts</h3>
           </div>
         </Link>

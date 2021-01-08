@@ -67,20 +67,20 @@ function AuthForm({
         <h2 className='c-login__page-label'>{accountCreated ? 'Welcome Back!' : 'Welcome!'}</h2>
         <form className='c-login__form' onSubmit={submitForm}>
           <input
-            className='c-login__input-field'
-            type='email'
-            label='Email'
             ref={emailField}
+            className='c-login__input-field'
+            label='Email'
             placeholder='Email'
             required
+            type='email'
           />
           <input
-            className='c-login__input-field'
-            type='password'
-            label='Password'
             ref={passwordField}
+            className='c-login__input-field'
+            label='Password'
             placeholder='Password'
             required
+            type='password'
           />
           <button className='c-login__submit-button' type='submit'>
             {accountCreated ? 'Log In' : 'Sign Up'}
@@ -92,8 +92,8 @@ function AuthForm({
         <Footer
           accountCreated={accountCreated}
           clearErrorMessage={clearErrorMessage}
-          initiateGoogleLogin={initiateGoogleLogin}
           initiateGithubLogin={initiateGithubLogin}
+          initiateGoogleLogin={initiateGoogleLogin}
           initiateTwitterLogin={initiateTwitterLogin}
           successRedirect={redirectHome}
         />
