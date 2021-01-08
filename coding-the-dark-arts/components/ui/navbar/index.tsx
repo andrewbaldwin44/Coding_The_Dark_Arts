@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { connect } from 'react-redux';
-import cx from 'classnames';
 
-import { initiateLogout } from '../../../auth/firebase-actions';
+import { initiateLogout as initiateLogoutAction } from '../../../auth/firebase-actions';
+import { IUser } from '../../types/types';
 
-const Navbar = ({ initiateLogout, userData }) => {
+interface INavbar {
+  initiateLogout: () => void;
+  userData: IUser;
+}
+
+const Navbar = ({ initiateLogout, userData }: INavbar) => {
   return (
     <>
       <nav className='c-navbar'>
@@ -27,7 +32,9 @@ const Navbar = ({ initiateLogout, userData }) => {
           </Link>
           {userData ? (
             <Link href='/'>
-              <button onClick={initiateLogout}>Logout</button>
+              <button onClick={initiateLogout} type='button'>
+                Logout
+              </button>
             </Link>
           ) : (
             <Link href='/login'>Login</Link>
@@ -43,6 +50,6 @@ export default connect(
     userData: firebase.userData,
   }),
   {
-    initiateLogout,
+    initiateLogout: initiateLogoutAction,
   },
 )(Navbar);

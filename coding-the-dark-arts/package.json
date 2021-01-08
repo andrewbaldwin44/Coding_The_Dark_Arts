@@ -7,14 +7,19 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --write \"**/*.{js,jsx}\"",
-    "lint": "eslint '**/**/*.{js,jsx,ts,tsx}'"
+    "lint:js": "eslint '{auth,components,pages,reducers}/**/*.{js,jsx,ts,tsx}'",
+    "lint:css": "stylelint '{components,pages,styles}/**/*.scss' && prettier --list-different '{components,pages,styles}/**/*.scss'",
+    "lint": "yarn lint:js && yarn lint:css"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "apollo-boost": "^0.4.9",
     "emailjs-com": "^2.6.4",
+    "graphql-tag": "^2.11.0",
     "next": "10.0.3",
+    "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-markdown": "^5.0.3",

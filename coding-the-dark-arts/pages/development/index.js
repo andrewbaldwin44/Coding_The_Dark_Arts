@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
-import React from 'react';
 import Wrapper from '../../components/postsStyle/Wrapper';
 import SearchWidget from '../../components/searchWidget';
 
@@ -11,7 +11,7 @@ const client = new ApolloClient({
 });
 
 export default function Development() {
-  React.useEffect(() => {
+  useEffect(() => {
     const panels = document.querySelectorAll('.panel');
     panels.forEach(panel => {
       panel.addEventListener('mouseenter', () => {
@@ -26,9 +26,9 @@ export default function Development() {
     }
   }, []);
 
-  const [data, setData] = React.useState(null);
+  const [data, setData] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     client
       .query({
         query: gql`
@@ -49,8 +49,7 @@ export default function Development() {
           }
         `,
       })
-      .then(info => setData(info.data.allBlogPost))
-      .catch(error => console.error(error));
+      .then(info => setData(info.data.allBlogPost));
   }, []);
 
   return (
@@ -69,13 +68,17 @@ export default function Development() {
             data.map(dataPiece => {
               return (
                 // redirects based on which post is clicked
-                <div className='panel'>
+                <div key={`post-title-${dataPiece.postTitle}`} className='panel'>
                   <Link href={`/posts/${dataPiece.slug.current}`}>
-                    <a>
-                      <Wrapper key={`post-title-${dataPiece.postTitle}`}>
+                    <a href='/#'>
+                      <Wrapper>
                         <h1>{dataPiece.postTitle}</h1>
                         <h2>{dataPiece.postDescription}</h2>
-                        <img className='dataPiece-sml' src={dataPiece.image.asset.url} />
+                        <img
+                          alt='Post Thumbnail'
+                          className='dataPiece-sml'
+                          src={dataPiece.image.asset.url}
+                        />
                       </Wrapper>
                     </a>
                   </Link>

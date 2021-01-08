@@ -6,13 +6,11 @@ import {
   INITIATE_GOOGLE_LOGIN,
   INITIATE_GITHUB_LOGIN,
   INITIATE_TWITTER_LOGIN,
-  AUTHENTICATION_SUCCESS,
-  LOGOUT_SUCCESS,
   authenticationSuccess,
   logoutSuccess,
 } from './firebase-actions';
 import { auth, googleProvider, githubProvider, twitterProvider } from './auth-service';
-import { setErrorMessage } from '../components/authForm/authForm.actions.js';
+import { setErrorMessage } from '../components/authForm/authForm.actions';
 import { AUTHENTICATION_ERROR_MESSAGES } from './auth.constants';
 
 const { invalidEmail, wrongPassword, emailInUse, defaultMessage } = AUTHENTICATION_ERROR_MESSAGES;

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Head from 'next/head';
 import React from 'react';
 import gql from 'graphql-tag';
