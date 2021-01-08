@@ -2,9 +2,9 @@ import React, { createRef } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { newSearch } from './search.actions';
+import { newSearch, resetSearch } from './search.actions';
 
-function SearchWidget({ newSearch, searchValue }) {
+function SearchWidget({ newSearch, searchValue, resetSearch }) {
   const search = createRef(null);
   React.useEffect(() => {
     const search = document.querySelector('.search');
@@ -15,10 +15,15 @@ function SearchWidget({ newSearch, searchValue }) {
       search.classList.toggle('active');
       input.focus();
     });
+    resetValue();
   }, []);
 
   const submitForm = ({ target }) => {
     newSearch({ searchValue: target.value });
+  };
+
+  const resetValue = () => {
+    resetSearch({ searchValue: '' });
   };
 
   return (
@@ -29,13 +34,7 @@ function SearchWidget({ newSearch, searchValue }) {
           e.preventDefault();
         }}
       >
-        <input
-          className='input-search'
-          placeholder='Search...'
-          type='text'
-          onInput={submitForm}
-          defaultValue={searchValue}
-        />
+        <input className='input-search' placeholder='Search...' type='text' onInput={submitForm} />
         <button className='btn-search' type='submit'>
           <FontAwesomeIcon icon={faSearch} />
         </button>
@@ -44,6 +43,7 @@ function SearchWidget({ newSearch, searchValue }) {
   );
 }
 
-export default connect(({ search }) => ({ searchValue: search.searchValue }), { newSearch })(
-  SearchWidget,
-);
+export default connect(({ search }) => ({ searchValue: search.searchValue }), {
+  newSearch,
+  resetSearch,
+})(SearchWidget);
