@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { newSearch as newSearchAction } from './search.actions';
+import { newSearch, resetSearch } from './search.actions';
 
-function SearchWidget({ newSearch, searchValue }) {
-  useEffect(() => {
+function SearchWidget({ newSearch, searchValue, resetSearch }) {
+  const search = createRef(null);
+  React.useEffect(() => {
+
     const search = document.querySelector('.search');
     const btn = document.querySelector('.btn-search');
     const input = document.querySelector('.input-search');
@@ -15,10 +17,15 @@ function SearchWidget({ newSearch, searchValue }) {
       search.classList.toggle('active');
       input.focus();
     });
+    resetValue();
   }, []);
 
   const submitForm = ({ target }) => {
     newSearch({ searchValue: target.value });
+  };
+
+  const resetValue = () => {
+    resetSearch({ searchValue: '' });
   };
 
   return (
@@ -29,13 +36,9 @@ function SearchWidget({ newSearch, searchValue }) {
           e.preventDefault();
         }}
       >
-        <input
-          className='input-search'
-          defaultValue={searchValue}
-          onInput={submitForm}
-          placeholder='Search...'
-          type='text'
-        />
+
+        <input className='input-search' placeholder='Search...' type='text' onInput={submitForm} />
+
         <button className='btn-search' type='submit'>
           <FontAwesomeIcon icon={faSearch} />
         </button>
@@ -44,11 +47,7 @@ function SearchWidget({ newSearch, searchValue }) {
   );
 }
 
-SearchWidget.propTypes = {
-  newSearch: PropTypes.func.isRequired,
-  searchValue: PropTypes.string.isRequired,
-};
-
 export default connect(({ search }) => ({ searchValue: search.searchValue }), {
-  newSearch: newSearchAction,
+  newSearch,
+  resetSearch,
 })(SearchWidget);

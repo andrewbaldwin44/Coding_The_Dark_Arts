@@ -12,6 +12,7 @@
   height: 150px;
   max-width: 175px;
   border-radius: 5px;
+  margin-top: 25px;
 }
 
 .search-component {
@@ -22,6 +23,11 @@
 
 .markdown-li {
   background: red;
+}
+
+.all-post-title {
+  font-size: 4rem;
+  text-align: center;
 }
 
 .c-single-post__wrapper {

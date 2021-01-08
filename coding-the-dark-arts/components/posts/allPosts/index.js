@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
-
+import { resetSearch } from '../../searchWidget/search.actions';
 import Wrapper from '../../postsStyle/Wrapper';
 import SearchWidget from '../../searchWidget';
 
@@ -63,7 +63,7 @@ function AllPosts({ searchValue }) {
       </Head>
 
       <div className='all-post-wrapper'>
-        <h1>All Posts</h1>
+        <h1 className='all-post-title'>All Posts</h1>
         <div className='search-component'>
           <SearchWidget />
         </div>
