@@ -94,10 +94,15 @@
   color: white;
   font-size: 20px;
   display: none;
+  transition: transform 0.7s ease;
   transform: rotate(90deg);
   @media #{$at-bp-small} {
     display: unset;
   }
+}
+
+.hamburger-icon.hamburger-icon-open {
+  transform: rotate(270deg);
 }
 
 .c-navbar__heading {

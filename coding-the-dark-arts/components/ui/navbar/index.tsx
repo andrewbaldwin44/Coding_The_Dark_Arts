@@ -45,7 +45,10 @@ const Navbar = ({ initiateLogout, userData }: INavbar) => {
             <Link href='/login'>Login</Link>
           )}
         </div>
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className='hamburger-icon'>
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className={isMenuOpen ? 'hamburger-icon hamburger-icon-open' : 'hamburger-icon'}
+        >
           <FontAwesomeIcon icon={faChevronCircleDown} />
         </button>
       </nav>
