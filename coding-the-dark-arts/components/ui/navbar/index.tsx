@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-
+import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import cx from 'classnames';
 import { initiateLogout as initiateLogoutAction } from '../../../auth/firebase-actions';
 import { IUser } from '../../types/types';
 
@@ -11,6 +14,8 @@ interface INavbar {
 }
 
 const Navbar = ({ initiateLogout, userData }: INavbar) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navbarLinksClasses = cx('c-navbar__links', { 'c-navbar__links_open': isMenuOpen });
   return (
     <>
       <nav className='c-navbar'>
@@ -20,7 +25,7 @@ const Navbar = ({ initiateLogout, userData }: INavbar) => {
             <h3 className='c-navbar__heading'>Welcome to the Dark Arts</h3>
           </div>
         </Link>
-        <div className='c-navbar__links'>
+        <div className={navbarLinksClasses}>
           <Link href='/'>
             <a>Home</a>
           </Link>
@@ -40,6 +45,9 @@ const Navbar = ({ initiateLogout, userData }: INavbar) => {
             <Link href='/login'>Login</Link>
           )}
         </div>
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className='hamburger-icon'>
+          <FontAwesomeIcon icon={faChevronCircleDown} />
+        </button>
       </nav>
     </>
   );

@@ -27,6 +27,9 @@ function AllPosts({ searchValue }) {
               postTitle
               postContent
               postDescription
+              postTags {
+                tagName
+              }
               image {
                 asset {
                   url
@@ -77,6 +80,7 @@ function AllPosts({ searchValue }) {
                     <Wrapper key={`post-title-${dataPiece.postTitle}`}>
                       <h1>{dataPiece.postTitle}</h1>
                       <h2>{dataPiece.postDescription}</h2>
+                      <h3>{dataPiece.postTags.map(tag => tag.tagName).join(', ')}</h3>
                       <img
                         alt='Post Thumbnail'
                         className='dataPiece-sml'

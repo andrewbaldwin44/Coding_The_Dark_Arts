@@ -1,8 +1,19 @@
+@keyframes navAnimation {
+  from {
+    right: -500px;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
 .c-navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  position: relative;
   color: $main-white;
   font-weight: bold;
   letter-spacing: 2.5px;
@@ -12,7 +23,6 @@
 
   height: $navbar-height;
   padding: 0 $padding-at-small;
-  z-index: 20;
 
   @media #{$at-bp-medium} {
     padding: 0 $padding-at-medium;
@@ -52,6 +62,41 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  @media #{$at-bp-small} {
+    display: none;
+  }
+}
+
+.c-navbar__links.c-navbar__links_open {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  background-color: $main-blue;
+  @include flex-center;
+  padding-bottom: 8px;
+  flex-direction: column;
+  animation: navAnimation 1s ease forwards;
+  top: $navbar-height;
+  border-top: 1px solid white;
+
+  a {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.hamburger-icon {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  display: none;
+  transform: rotate(90deg);
+  @media #{$at-bp-small} {
+    display: unset;
   }
 }
 
