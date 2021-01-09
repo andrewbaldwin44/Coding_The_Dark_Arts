@@ -16,6 +16,12 @@ export default {
       description: "Blog Description",
     },
     {
+      name: "postTags",
+      title: "Tags",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "tag" }] }],
+    },
+    {
       name: "postContent",
       title: "Post Content",
       type: "markdown",
