@@ -1,8 +1,8 @@
 export default {
-  apiKey: 'AIzaSyCPS5G-kMY9o4ipCfsEaKTyp0w4T8vXXt4',
-  authDomain: 'coding-the-dark-arts.firebaseapp.com',
-  projectId: 'coding-the-dark-arts',
-  storageBucket: 'coding-the-dark-arts.appspot.com',
-  messagingSenderId: '54561193333',
-  appId: '1:54561193333:web:c5de73872260c7f3fda73c',
+  apiKey: process.env.NEXT_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_FIREBASE_DATABASE_URL,
+  projectId: process.env.NEXT_FIREBASE_PROJECT_ID,
+  messagingSenderId: process.env.NEXT_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_FIREBASE_APP_ID,
 };
