@@ -22,7 +22,7 @@ export default function individualPost() {
   // but since the useEffect rerenders based off when the "test" function is defined
   // then the slug is available and we can render the data based on it
   const { slug } = query;
-  console.log(slug);
+
   const postQuery = gql`
     query BlogPost($slug: String) {
       allBlogPost(where: { slug: { current: { eq: $slug } } }) {

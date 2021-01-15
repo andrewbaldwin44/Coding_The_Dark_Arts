@@ -9,5 +9,5 @@ export default async (req, res) => {
   const mahBeans = await queryDatabase('test', 'test');
 
   res.statusCode = 200;
-  res.json({ cool: mahBeans });
+  res.json(mahBeans);
 };

@@ -8,7 +8,8 @@ import {
   watchGoogleLogin,
   watchGithubLogin,
   watchTwitterLogin,
-} from './auth/firebase.saga';
+} from '../auth/firebase.saga';
+import { watchFetchCommentPayload } from '../pages/posts/posts.saga';
 
 export default function* rootSaga() {
   try {
@@ -19,6 +20,7 @@ export default function* rootSaga() {
       watchGoogleLogin(),
       watchGithubLogin(),
       watchTwitterLogin(),
+      watchFetchCommentPayload(),
     ]);
   } catch (error) {
     const { code } = error;

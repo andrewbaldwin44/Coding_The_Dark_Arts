@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import Layout from '../components/layout';
 import '../styles/index.scss';
-import configureStore from '../store';
+import configureStore from '../redux/store';
 
 interface IApp {
   Component: React.ReactElement;
