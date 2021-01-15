@@ -6,7 +6,7 @@ export function* watchFetchCommentPayload() {
 }
 
 function* fetchCommentPayload() {
-  const response = yield fetch('http://localhost:3000/api/comments');
+  const response = yield fetch('http://localhost:3000/api/comments/test');
   const comments = yield response.json();
 
   yield put(sendCommentPayload(comments));

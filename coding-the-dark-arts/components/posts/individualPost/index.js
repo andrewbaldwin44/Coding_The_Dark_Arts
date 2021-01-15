@@ -1,27 +1,24 @@
 /* eslint-disable */
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
-import React from 'react';
 import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
-import { useRouter } from 'next/router';
+
 import Markdown from '../../markdown';
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_URI}`,
 });
 
-export default function individualPost() {
-  // This test function is literally here only for the useEffect callback, it does nothing else
-
+export default function individualPost({ comments, slug }) {
+  // This test function is literally here only for the useEffect
+  // callback, it does nothing else
   const mounted = () => {};
 
-  const [data, setData] = React.useState(null);
-
-  const { query } = useRouter();
+  const [data, setData] = useState(null);
   // since slug is initially undefined for half a second, we cannot query based of it
   // but since the useEffect rerenders based off when the "test" function is defined
   // then the slug is available and we can render the data based on it
-  const { slug } = query;
 
   const postQuery = gql`
     query BlogPost($slug: String) {
@@ -37,7 +34,8 @@ export default function individualPost() {
       }
     }
   `;
-  React.useEffect(() => {
+
+  useEffect(() => {
     client
       .query({
         query: postQuery,
@@ -60,11 +58,16 @@ export default function individualPost() {
     );
   }
 
+  const handleSubmit = event => {
+    event.preventDefault();
+  };
+
   return (
     <>
       <Head>
         <title>{data.postTitle}</title>
       </Head>
+
       <div className='c-single-post__wrapper'>
         <div>
           <h1>{data.postTitle}</h1>
@@ -75,6 +78,23 @@ export default function individualPost() {
         </div>
         <Markdown children={data.postContent} />
       </div>
+
+      <form onSubmit={handleSubmit}>
+        <label>Write a comment</label>
+        <input type='text' placeholder='Name' />
+        <input type='text' placeholder='Comment' />
+        <button type='submit'>Post</button>
+      </form>
+
+      {comments &&
+        comments.map(({ user, comment }, index) => {
+          return (
+            <div key={`${slug}-post-comment-${index}`}>
+              <p>{user}</p>
+              <p>{comment}</p>
+            </div>
+          );
+        })}
     </>
   );
 }

@@ -1,13 +1,9 @@
-import { database } from '../../auth/auth-service';
-
-async function queryDatabase(path, doc) {
-  const reference = await database.collection(path).doc(doc).get();
-  return reference.data();
+async function writeDatabase(path, doc, newData, database) {
+  const reference = database.collection(path).doc(doc);
+  return reference.set(newData);
 }
 
-export default async (req, res) => {
-  const mahBeans = await queryDatabase('test', 'test');
-
-  res.statusCode = 200;
-  res.json(mahBeans);
-};
+async function updateDatabase(path, doc, newData, database) {
+  const reference = database.collection(path).doc(doc);
+  return reference.update(newData);
+}

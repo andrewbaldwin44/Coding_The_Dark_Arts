@@ -7,5 +7,5 @@ export const fetchCommentPayload = () => ({
 
 export const sendCommentPayload = payload => ({
   type: SEND_COMMENT_PAYLOAD,
-  payload,
+  comments: payload,
 });
