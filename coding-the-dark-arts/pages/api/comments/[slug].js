@@ -6,15 +6,22 @@ async function queryDatabase(path, doc) {
 }
 
 export default async (req, res) => {
-  const blogComments = await queryDatabase('comments', 'test');
+  const { slug } = req.query;
 
-  const parsedComments = Object.entries(blogComments).map(([user, comment]) => {
-    return {
-      user,
-      comment,
-    };
-  });
+  try {
+    const blogComments = await queryDatabase('comments', slug);
 
-  res.statusCode = 200;
-  res.json(parsedComments);
+    const parsedComments = Object.entries(blogComments).map(([user, comment]) => {
+      return {
+        user,
+        comment,
+      };
+    });
+
+    res.statusCode = 200;
+    res.json({ status: 404, comments: parsedComments });
+  } catch ({ message }) {
+    res.status = 404;
+    res.json({ status: 404, message });
+  }
 };
