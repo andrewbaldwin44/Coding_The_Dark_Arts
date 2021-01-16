@@ -9,7 +9,7 @@ import {
   watchGithubLogin,
   watchTwitterLogin,
 } from '../auth/firebase.saga';
-import { watchFetchCommentPayload } from '../pages/posts/posts.saga';
+import { watchFetchArticlePayload, watchFetchCommentPayload } from '../pages/posts/posts.saga';
 
 export default function* rootSaga() {
   try {
@@ -20,6 +20,7 @@ export default function* rootSaga() {
       watchGoogleLogin(),
       watchGithubLogin(),
       watchTwitterLogin(),
+      watchFetchArticlePayload(),
       watchFetchCommentPayload(),
     ]);
   } catch (error) {
