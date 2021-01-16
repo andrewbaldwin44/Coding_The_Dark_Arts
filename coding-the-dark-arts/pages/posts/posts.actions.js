@@ -1,11 +1,13 @@
-export const CLEAR_PAYLOAD = 'CLEAR_PAYLOAD';
+export const CLEAR_POST_DATA = 'CLEAR_POST_DATA';
 export const FETCH_ARTICLE_PAYLOAD = 'FETCH_ARTICLE_PAYLOAD';
 export const SEND_ARTICLE_PAYLOAD = 'SEND_ARTICLE_PAYLOAD';
 export const FETCH_COMMENT_PAYLOAD = 'FETCH_COMMENT_PAYLOAD';
 export const SEND_COMMENT_PAYLOAD = 'SEND_COMMENT_PAYLOAD';
+export const POST_COMMENT = 'POST_COMMENT';
+export const UPDATE_COMMENTS = 'UPDATE_COMMENTS';
 
-export const clearPayload = () => ({
-  type: CLEAR_PAYLOAD,
+export const clearPostData = () => ({
+  type: CLEAR_POST_DATA,
 });
 
 export const fetchArticlePayload = slug => ({
@@ -15,7 +17,7 @@ export const fetchArticlePayload = slug => ({
 
 export const sendArticlePayload = payload => ({
   type: SEND_ARTICLE_PAYLOAD,
-  articles: payload,
+  payload,
 });
 
 export const fetchCommentPayload = slug => ({
@@ -25,5 +27,15 @@ export const fetchCommentPayload = slug => ({
 
 export const sendCommentPayload = payload => ({
   type: SEND_COMMENT_PAYLOAD,
-  comments: payload,
+  payload,
+});
+
+export const postComment = payload => ({
+  type: POST_COMMENT,
+  ...payload,
+});
+
+export const updateComments = payload => ({
+  type: UPDATE_COMMENTS,
+  payload,
 });

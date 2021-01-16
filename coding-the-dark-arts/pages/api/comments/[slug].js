@@ -9,17 +9,14 @@ export default async (req, res) => {
   const { slug } = req.query;
 
   try {
-    const blogComments = await queryDatabase('comments', slug);
+    const comments = await queryDatabase('comments', slug);
 
-    const parsedComments = Object.entries(blogComments).map(([user, comment]) => {
-      return {
-        user,
-        comment,
-      };
-    });
+    const parsedComments = Object.entries(comments)
+      .sort(([indexA], [indexB]) => Date.parse(indexB) - Date.parse(indexA))
+      .map(([index, comment]) => comment);
 
     res.statusCode = 200;
-    res.json({ status: 404, comments: parsedComments });
+    res.json({ status: 200, comments: parsedComments });
   } catch ({ message }) {
     res.status = 404;
     res.json({ status: 404, message });

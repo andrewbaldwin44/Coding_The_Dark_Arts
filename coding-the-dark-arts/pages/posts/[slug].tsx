@@ -1,8 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, createRef } from 'react';
 import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import { clearPayload, fetchArticlePayload, fetchCommentPayload } from './posts.actions';
+import {
+  clearPostData,
+  fetchArticlePayload,
+  fetchCommentPayload,
+  postComment,
+} from './posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
 
 interface IArticles {
@@ -35,9 +40,12 @@ function IndividualPostContainer({
   clearPayload,
   fetchArticlePayload,
   fetchCommentPayload,
+  postComment,
 }: IIndividualPostContainer) {
   const { query } = useRouter();
   const { slug } = query;
+  const userFieldInput = createRef(null);
+  const commentFieldInput = createRef(null);
 
   useEffect(() => {
     if (slug) {
@@ -46,24 +54,43 @@ function IndividualPostContainer({
     }
 
     return () => {
-      clearPayload();
+      clearPostData();
     };
   }, [slug]);
 
+  useEffect(() => {
+    if (userFieldInput.current && commentFieldInput.current) {
+      userFieldInput.current.value = '';
+      commentFieldInput.current.value = '';
+    }
+  }, [commentFieldInput, comments, userFieldInput]);
+
   const onSubmitComment = event => {
     event.preventDefault();
+
+    const user = userFieldInput.current.value;
+    const comment = commentFieldInput.current.value;
+
+    postComment({ comment, slug, user });
   };
 
   if (articles) {
     return (
-      <IndividualPost articles={articles} comments={comments} onSubmitComment={onSubmitComment} />
+      <IndividualPost
+        articles={articles}
+        commentFieldInput={commentFieldInput}
+        comments={comments}
+        onSubmitComment={onSubmitComment}
+        userFieldInput={userFieldInput}
+      />
     );
   }
   return null;
 }
 
 export default connect(({ posts }) => ({ articles: posts.articles, comments: posts.comments }), {
-  clearPayload,
+  clearPostData,
   fetchArticlePayload,
   fetchCommentPayload,
+  postComment,
 })(IndividualPostContainer);

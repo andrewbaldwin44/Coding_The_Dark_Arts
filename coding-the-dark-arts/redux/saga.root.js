@@ -9,7 +9,11 @@ import {
   watchGithubLogin,
   watchTwitterLogin,
 } from '../auth/firebase.saga';
-import { watchFetchArticlePayload, watchFetchCommentPayload } from '../pages/posts/posts.saga';
+import {
+  watchFetchArticlePayload,
+  watchFetchCommentPayload,
+  watchPostComment,
+} from '../pages/posts/posts.saga';
 
 export default function* rootSaga() {
   try {
@@ -22,6 +26,7 @@ export default function* rootSaga() {
       watchTwitterLogin(),
       watchFetchArticlePayload(),
       watchFetchCommentPayload(),
+      watchPostComment(),
     ]);
   } catch (error) {
     const { code } = error;

@@ -1,22 +1,34 @@
-import { CLEAR_PAYLOAD, SEND_ARTICLE_PAYLOAD, SEND_COMMENT_PAYLOAD } from './posts.actions';
+import {
+  CLEAR_POST_DATA,
+  SEND_ARTICLE_PAYLOAD,
+  SEND_COMMENT_PAYLOAD,
+  UPDATE_COMMENTS,
+} from './posts.actions';
 
-export default function postsReducer(state = {}, { articles, comments, type }) {
+export default function postsReducer(state = {}, { payload, type }) {
   switch (type) {
     case SEND_ARTICLE_PAYLOAD: {
       return {
         ...state,
-        articles,
+        articles: payload,
       };
     }
 
     case SEND_COMMENT_PAYLOAD: {
       return {
         ...state,
-        comments,
+        comments: payload,
       };
     }
 
-    case CLEAR_PAYLOAD: {
+    case UPDATE_COMMENTS: {
+      return {
+        ...state,
+        comments: [payload, ...state.comments],
+      };
+    }
+
+    case CLEAR_POST_DATA: {
       return {};
     }
 

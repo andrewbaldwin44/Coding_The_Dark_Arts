@@ -11,8 +11,10 @@ export default function individualPost({
     postDescription,
     postTitle,
   },
+  commentFieldInput,
   comments,
   onSubmitComment,
+  userFieldInput,
 }) {
   return (
     <>
@@ -33,8 +35,8 @@ export default function individualPost({
 
       <form onSubmit={onSubmitComment}>
         <label>Write a comment</label>
-        <input placeholder='Name' type='text' />
-        <input placeholder='Comment' type='text' />
+        <input ref={userFieldInput} placeholder='Name' type='text' />
+        <input ref={commentFieldInput} placeholder='Comment' type='text' />
         <button type='submit'>Post</button>
       </form>
 
