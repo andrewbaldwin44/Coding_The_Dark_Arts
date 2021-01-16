@@ -5,7 +5,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import gql from 'graphql-tag';
 import ApolloClient from 'apollo-boost';
-import { resetSearch } from '../../searchWidget/search.actions';
 import Wrapper from '../../postsStyle/Wrapper';
 import SearchWidget from '../../searchWidget';
 

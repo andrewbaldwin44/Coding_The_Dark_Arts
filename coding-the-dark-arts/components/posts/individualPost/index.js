@@ -11,10 +11,8 @@ export default function individualPost({
     postDescription,
     postTitle,
   },
-  articles,
   comments,
   onSubmitComment,
-  slug,
 }) {
   return (
     <>
@@ -28,7 +26,7 @@ export default function individualPost({
           <h2>{postDescription}</h2>
         </div>
         <div className='single-post-img'>
-          <img src={imageURL} />
+          <img alt='Post Thumbnail' src={imageURL} />
         </div>
         <Markdown children={postContent} />
       </div>
@@ -43,7 +41,7 @@ export default function individualPost({
       {comments &&
         comments.map(({ user, comment }, index) => {
           return (
-            <div key={`${slug}-post-comment-${index}`}>
+            <div key={`post-comment-${index}`}>
               <p>{user}</p>
               <p>{comment}</p>
             </div>

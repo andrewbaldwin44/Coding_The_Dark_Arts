@@ -46,7 +46,7 @@ function* fetchArticlePayload({ slug }) {
 }
 
 function* fetchCommentPayload({ slug }) {
-  const response = yield fetch('http://localhost:3000/api/comments/test');
+  const response = yield fetch(`http://localhost:3000/api/comments/${slug}`);
   const comments = yield response.json();
 
   yield put(sendCommentPayload(comments));

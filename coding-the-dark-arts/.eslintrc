@@ -30,7 +30,9 @@
         "tsx": "never"
       }
     ],
+    "jsx-a11y/label-has-associated-control": "off",
     "no-console": "off",
+    "no-shadow": "off",
     "no-unused-expressions": "off",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-sort-props": 2,
