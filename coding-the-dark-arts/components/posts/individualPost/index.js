@@ -13,7 +13,12 @@ export default function individualPost({
   },
   commentFieldInput,
   comments,
+  editingComment,
   onSubmitComment,
+  onUpdateComment,
+  setEditingComment,
+  updatedCommentFieldInput,
+  updatedUserFieldInput,
   userFieldInput,
 }) {
   return (
@@ -41,11 +46,34 @@ export default function individualPost({
       </form>
 
       {comments &&
-        comments.map(({ user, comment }, index) => {
+        comments.map(({ id, comment: { user, comment } }, index) => {
           return (
             <div key={`post-comment-${index}`}>
-              <p>{user}</p>
-              <p>{comment}</p>
+              {editingComment === id ? (
+                <form onSubmit={onUpdateComment}>
+                  <input
+                    ref={updatedUserFieldInput}
+                    defaultValue={user}
+                    type='text'
+                    width='200px'
+                  />
+                  <input
+                    ref={updatedCommentFieldInput}
+                    defaultValue={comment}
+                    type='text'
+                    width='200px'
+                  />
+                  <button type='submit'>Save</button>
+                </form>
+              ) : (
+                <>
+                  <p>{user}</p>
+                  <p>{comment}</p>
+                  <button onClick={() => setEditingComment(id)} type='button'>
+                    Edit
+                  </button>
+                </>
+              )}
             </div>
           );
         })}

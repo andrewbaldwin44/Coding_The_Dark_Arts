@@ -13,12 +13,15 @@ export default async (req, res) => {
 
     const parsedComments = Object.entries(comments)
       .sort(([indexA], [indexB]) => Date.parse(indexB) - Date.parse(indexA))
-      .map(([index, comment]) => comment);
+      .map(([index, comment]) => ({
+        id: index,
+        comment,
+      }));
 
-    res.statusCode = 200;
+    res.status(200);
     res.json({ status: 200, comments: parsedComments });
   } catch ({ message }) {
-    res.status = 404;
+    res.status(404);
     res.json({ status: 404, message });
   }
 };

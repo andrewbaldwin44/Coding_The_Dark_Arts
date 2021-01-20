@@ -4,7 +4,8 @@ export const SEND_ARTICLE_PAYLOAD = 'SEND_ARTICLE_PAYLOAD';
 export const FETCH_COMMENT_PAYLOAD = 'FETCH_COMMENT_PAYLOAD';
 export const SEND_COMMENT_PAYLOAD = 'SEND_COMMENT_PAYLOAD';
 export const POST_COMMENT = 'POST_COMMENT';
-export const UPDATE_COMMENTS = 'UPDATE_COMMENTS';
+export const UPDATE_COMMENT_SECTION = 'UPDATE_COMMENT_SECTION';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 
 export const clearPostData = () => ({
   type: CLEAR_POST_DATA,
@@ -35,7 +36,12 @@ export const postComment = payload => ({
   ...payload,
 });
 
-export const updateComments = payload => ({
-  type: UPDATE_COMMENTS,
+export const updateCommentSection = payload => ({
+  type: UPDATE_COMMENT_SECTION,
   payload,
+});
+
+export const updateComment = payload => ({
+  type: UPDATE_COMMENT,
+  ...payload,
 });

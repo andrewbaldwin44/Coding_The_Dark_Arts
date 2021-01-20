@@ -1,4 +1,4 @@
-import { useEffect, createRef } from 'react';
+import { useEffect, createRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -7,6 +7,7 @@ import {
   fetchArticlePayload,
   fetchCommentPayload,
   postComment,
+  updateComment,
 } from './posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
 
@@ -22,30 +23,37 @@ interface IArticles {
 }
 
 interface IComments {
-  user: string;
   comment: string;
+  user: string;
 }
 
 interface IIndividualPostContainer {
   articles: IArticles;
+  clearPostData: () => void;
   comments: IComments[];
-  clearPayload: () => void;
   fetchArticlePayload: () => void;
   fetchCommentPayload: () => void;
+  postComment: () => void;
+  updateComment: () => void;
 }
 
 function IndividualPostContainer({
   articles,
+  clearPostData,
   comments,
-  clearPayload,
   fetchArticlePayload,
   fetchCommentPayload,
   postComment,
+  updateComment,
 }: IIndividualPostContainer) {
   const { query } = useRouter();
   const { slug } = query;
   const userFieldInput = createRef(null);
   const commentFieldInput = createRef(null);
+
+  const updatedUserFieldInput = createRef(null);
+  const updatedCommentFieldInput = createRef(null);
+  const [editingComment, setEditingComment] = useState('');
 
   useEffect(() => {
     if (slug) {
@@ -65,6 +73,12 @@ function IndividualPostContainer({
     }
   }, [commentFieldInput, comments, userFieldInput]);
 
+  useEffect(() => {
+    if (editingComment) {
+      setEditingComment('');
+    }
+  }, [comments]);
+
   const onSubmitComment = event => {
     event.preventDefault();
 
@@ -74,13 +88,27 @@ function IndividualPostContainer({
     postComment({ comment, slug, user });
   };
 
+  const onUpdateComment = event => {
+    event.preventDefault();
+
+    const user = updatedUserFieldInput.current.value;
+    const comment = updatedCommentFieldInput.current.value;
+
+    updateComment({ commentID: editingComment, comment, slug, user });
+  };
+
   if (articles) {
     return (
       <IndividualPost
         articles={articles}
         commentFieldInput={commentFieldInput}
         comments={comments}
+        editingComment={editingComment}
         onSubmitComment={onSubmitComment}
+        onUpdateComment={onUpdateComment}
+        setEditingComment={setEditingComment}
+        updatedCommentFieldInput={updatedCommentFieldInput}
+        updatedUserFieldInput={updatedUserFieldInput}
         userFieldInput={userFieldInput}
       />
     );
@@ -93,4 +121,5 @@ export default connect(({ posts }) => ({ articles: posts.articles, comments: pos
   fetchArticlePayload,
   fetchCommentPayload,
   postComment,
+  updateComment,
 })(IndividualPostContainer);

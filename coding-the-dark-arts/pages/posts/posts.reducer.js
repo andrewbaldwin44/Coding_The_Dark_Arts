@@ -2,7 +2,7 @@ import {
   CLEAR_POST_DATA,
   SEND_ARTICLE_PAYLOAD,
   SEND_COMMENT_PAYLOAD,
-  UPDATE_COMMENTS,
+  UPDATE_COMMENT_SECTION,
 } from './posts.actions';
 
 export default function postsReducer(state = {}, { payload, type }) {
@@ -21,7 +21,7 @@ export default function postsReducer(state = {}, { payload, type }) {
       };
     }
 
-    case UPDATE_COMMENTS: {
+    case UPDATE_COMMENT_SECTION: {
       return {
         ...state,
         comments: [payload, ...state.comments],

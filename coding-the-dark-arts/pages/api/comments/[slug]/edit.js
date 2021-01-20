@@ -1,17 +1,17 @@
 import { database } from '../../../../auth/auth-service';
 
-async function writeDatabase(path, doc, newData) {
+async function updateDatabase(path, doc, newData) {
   const reference = database.collection(path).doc(doc);
   return reference.update(newData);
 }
 
 export default async (req, res) => {
   const { slug } = req.query;
-  const { comment, user } = req.body;
+  const { commentID, user, comment } = req.body;
 
   try {
-    await writeDatabase('comments', slug, {
-      [String(new Date())]: {
+    await updateDatabase('comments', slug, {
+      [commentID]: {
         user,
         comment,
       },
