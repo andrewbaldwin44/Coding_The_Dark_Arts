@@ -1,5 +1,47 @@
 $auth-form-container: 500px;
 
+.form-control {
+  position: relative;
+  margin: 8px 0;
+  width: 300px;
+}
+
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid $dark-main-purple;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: $dark-main-purple;
+}
+
+.form-control input:focus,
+.form-control input:valid {
+  outline: 0;
+  border-bottom-color: $dark-main-purple;
+}
+
+.form-control label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+}
+
+.form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus + label span,
+.form-control input:valid + label span {
+  color: $dark-main-purple;
+  transform: translateY(-30px);
+}
+
 .c-login-wrapper {
   @include flex-center;
 
@@ -32,7 +74,7 @@ $auth-form-container: 500px;
   border: 2px solid $dark-blue;
   border-radius: 6px;
   padding: 0 25px;
-  height: 42%;
+  height: 50%;
   width: 100%;
   padding-top: 15px;
 
@@ -50,12 +92,13 @@ $auth-form-container: 500px;
   font-size: 1.5em;
   color: black;
   padding: 0 15px;
+  margin-bottom: 15px;
   border: 2px solid white;
   border-radius: 6px;
   transition: all 0.4s ease-in;
 
   &:hover {
-    border-color: #40c4ff;
+    border-color: $dark-blue;
   }
 }
 

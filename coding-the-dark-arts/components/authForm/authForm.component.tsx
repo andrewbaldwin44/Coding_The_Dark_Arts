@@ -1,4 +1,4 @@
-import { createRef } from 'react';
+import { createRef, useEffect } from 'react';
 import cx from 'classnames';
 
 import Footer from './authForm.footer';
@@ -74,6 +74,18 @@ function AuthForm({
     error: !!errorMessage,
   });
 
+  useEffect(() => {
+    const labels = document.querySelectorAll('.form-control label');
+
+    labels.forEach(label => {
+      label.innerHTML = label.innerText
+        .split('')
+        .map((letter, i) => `<span style="transition-delay:${i * 50}ms">${letter}</span>`)
+        .join('');
+      // Take off transition delay for the entire word to transition at the same time
+    });
+  }, []);
+
   if (userData) {
     redirectHome();
     return null;
@@ -84,22 +96,26 @@ function AuthForm({
       <div className='c-login-wrapper__container'>
         <h2 className='c-login__page-label'>{accountCreated ? 'Welcome Back!' : 'Welcome!'}</h2>
         <form className='c-login__form' onSubmit={submitForm}>
-          <input
-            ref={emailField}
-            className='c-login__input-field'
-            label='Email'
-            placeholder='Email'
-            required
-            type='email'
-          />
-          <input
-            ref={passwordField}
-            className='c-login__input-field'
-            label='Password'
-            placeholder='Password'
-            required
-            type='password'
-          />
+          <div className='form-control'>
+            <input
+              ref={emailField}
+              className='c-login__input-field'
+              label='Email'
+              required
+              type='email'
+            />
+            <label htmlFor='email'>Email</label>
+          </div>
+          <div className='form-control'>
+            <input
+              ref={passwordField}
+              className='c-login__input-field'
+              label='Password'
+              required
+              type='password'
+            />
+            <label htmlFor='password'>Password</label>
+          </div>
           <button className='c-login__submit-button' type='submit'>
             {accountCreated ? 'Log In' : 'Sign Up'}
           </button>
