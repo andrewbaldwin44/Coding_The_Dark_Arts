@@ -14,6 +14,7 @@ import {
   watchFetchCommentPayload,
   watchPostComment,
   watchUpdateComment,
+  watchDeleteComment,
 } from '../pages/posts/posts.saga';
 
 export default function* rootSaga() {
@@ -29,6 +30,7 @@ export default function* rootSaga() {
       watchFetchCommentPayload(),
       watchPostComment(),
       watchUpdateComment(),
+      watchDeleteComment(),
     ]);
   } catch (error) {
     const { code } = error;

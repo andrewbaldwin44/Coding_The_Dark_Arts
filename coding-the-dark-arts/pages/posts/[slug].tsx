@@ -8,6 +8,7 @@ import {
   fetchCommentPayload,
   postComment,
   updateComment,
+  deleteComment,
 } from './posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
 
@@ -35,6 +36,7 @@ interface IIndividualPostContainer {
   fetchCommentPayload: () => void;
   postComment: () => void;
   updateComment: () => void;
+  deleteComment: () => void;
 }
 
 function IndividualPostContainer({
@@ -45,6 +47,7 @@ function IndividualPostContainer({
   fetchCommentPayload,
   postComment,
   updateComment,
+  deleteComment,
 }: IIndividualPostContainer) {
   const { query } = useRouter();
   const { slug } = query;
@@ -88,6 +91,12 @@ function IndividualPostContainer({
     postComment({ comment, slug, user });
   };
 
+  const onDeleteComment = event => {
+    event.preventDefault();
+
+    deleteComment();
+  };
+
   const onUpdateComment = event => {
     event.preventDefault();
 
@@ -104,6 +113,7 @@ function IndividualPostContainer({
         commentFieldInput={commentFieldInput}
         comments={comments}
         editingComment={editingComment}
+        onDeleteComment={onDeleteComment}
         onSubmitComment={onSubmitComment}
         onUpdateComment={onUpdateComment}
         setEditingComment={setEditingComment}
@@ -122,4 +132,5 @@ export default connect(({ posts }) => ({ articles: posts.articles, comments: pos
   fetchCommentPayload,
   postComment,
   updateComment,
+  deleteComment,
 })(IndividualPostContainer);

@@ -17,6 +17,7 @@ export default function individualPost({
   onSubmitComment,
   onUpdateComment,
   setEditingComment,
+  onDeleteComment,
   updatedCommentFieldInput,
   updatedUserFieldInput,
   userFieldInput,
@@ -49,6 +50,7 @@ export default function individualPost({
         comments.map(({ id, comment: { user, comment } }, index) => {
           return (
             <div key={`post-comment-${index}`}>
+              <button onClick={onDeleteComment}>xXxXx</button>
               {editingComment === id ? (
                 <form onSubmit={onUpdateComment}>
                   <input
