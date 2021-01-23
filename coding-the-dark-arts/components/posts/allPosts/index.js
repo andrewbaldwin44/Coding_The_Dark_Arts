@@ -4,13 +4,10 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 import Link from 'next/link';
 import gql from 'graphql-tag';
-import ApolloClient from 'apollo-boost';
+
+import ApolloClient from '../../../apollo/apollo.config';
 import Wrapper from '../../postsStyle/Wrapper';
 import SearchWidget from '../../searchWidget';
-
-const client = new ApolloClient({
-  uri: `${process.env.NEXT_PUBLIC_URI}`,
-});
 
 function AllPosts({ searchValue }) {
   const [data, setData] = useState(null);
@@ -18,29 +15,28 @@ function AllPosts({ searchValue }) {
   const allPosts = searchResults || data || [];
 
   useEffect(() => {
-    client
-      .query({
-        query: gql`
-          query allBlogPost {
-            allBlogPost {
-              postTitle
-              postContent
-              postDescription
-              postTags {
-                tagName
-              }
-              image {
-                asset {
-                  url
-                }
-              }
-              slug {
-                current
+    ApolloClient.query({
+      query: gql`
+        query allBlogPost {
+          allBlogPost {
+            postTitle
+            postContent
+            postDescription
+            postTags {
+              tagName
+            }
+            image {
+              asset {
+                url
               }
             }
+            slug {
+              current
+            }
           }
-        `,
-      })
+        }
+      `,
+    })
       .then(info => setData(info.data.allBlogPost))
       .catch(error => console.error(error));
   }, []);
