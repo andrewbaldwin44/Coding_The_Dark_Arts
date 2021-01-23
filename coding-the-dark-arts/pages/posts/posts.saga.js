@@ -11,6 +11,7 @@ import {
   sendArticlePayload,
   sendCommentPayload,
   updateCommentSection,
+  DELETE_COMMENT,
 } from './posts.actions';
 
 export function* watchFetchArticlePayload() {
@@ -27,6 +28,10 @@ export function* watchPostComment() {
 
 export function* watchUpdateComment() {
   yield takeEvery(UPDATE_COMMENT, updateComment);
+}
+
+export function* watchDeleteComment() {
+  yield takeEvery(DELETE_COMMENT, deleteComment);
 }
 
 function* fetchArticlePayload({ slug }) {
@@ -79,6 +84,16 @@ function* postComment({ comment, slug, user }) {
 function* updateComment({ commentID, slug, comment, user }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/edit`, {
     body: JSON.stringify({ commentID, comment, user }),
+    ...postRequestHeaders,
+  });
+
+  yield response.json();
+  yield call(fetchCommentPayload, { slug });
+}
+
+function* deleteComment({ commentID, slug }) {
+  const response = yield fetch(`http://localhost:3000/api/comments/${slug}/delete`, {
+    body: JSON.stringify({ commentID }),
     ...postRequestHeaders,
   });
 
