@@ -91,10 +91,8 @@ function IndividualPostContainer({
     postComment({ comment, slug, user });
   };
 
-  const onDeleteComment = event => {
-    event.preventDefault();
-
-    deleteComment();
+  const onDeleteComment = commentID => {
+    deleteComment({ commentID, slug });
   };
 
   const onUpdateComment = event => {

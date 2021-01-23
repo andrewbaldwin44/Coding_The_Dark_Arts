@@ -91,9 +91,9 @@ function* updateComment({ commentID, slug, comment, user }) {
   yield call(fetchCommentPayload, { slug });
 }
 
-function* deleteComment({ commentID, slug, comment, user }) {
+function* deleteComment({ commentID, slug }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/delete`, {
-    body: JSON.stringify({ commentID, comment, user }),
+    body: JSON.stringify({ commentID }),
     ...postRequestHeaders,
   });
 

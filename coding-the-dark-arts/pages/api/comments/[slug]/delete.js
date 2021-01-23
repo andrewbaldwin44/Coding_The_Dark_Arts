@@ -1,21 +1,16 @@
-import { database } from '../../../../auth/auth-service';
+import { database, FieldValue } from '../../../../auth/auth-service';
 
-async function deleteDatabase(path, doc, newData) {
+async function deleteDatabase(path, doc, commentID) {
   const reference = database.collection(path).doc(doc);
-  return reference.delete(newData);
+  return reference.update({ [commentID]: FieldValue.delete() });
 }
 
 export default async (req, res) => {
   const { slug } = req.query;
-  const { commentID, user, comment } = req.body;
+  const { commentID } = req.body;
 
   try {
-    await deleteDatabase('comments', slug, {
-      [commentID]: {
-        user,
-        comment,
-      },
-    });
+    await deleteDatabase('comments', slug, commentID);
 
     res.status(200);
     res.json({ status: 200 });

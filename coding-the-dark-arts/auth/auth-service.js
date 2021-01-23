@@ -7,6 +7,7 @@ import firebaseConfig from './config';
 
 const auth = firebase.auth();
 const database = firebase.firestore();
+const FieldValue = firebase.firestore.FieldValue;
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 const githubProvider = new firebase.auth.GithubAuthProvider();
@@ -27,4 +28,5 @@ export {
   githubProvider,
   googleProvider,
   twitterProvider,
+  FieldValue,
 };

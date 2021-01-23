@@ -49,5 +49,5 @@ export const updateComment = payload => ({
 
 export const deleteComment = payload => ({
   type: DELETE_COMMENT,
-  payload,
+  ...payload,
 });
