@@ -1,9 +1,8 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import cx from 'classnames';
 import { initiateLogout as initiateLogoutAction } from '../../../auth/firebase-actions';
 import { IUser } from '../../types/types';
@@ -15,26 +14,32 @@ interface INavbar {
 
 const Navbar = ({ initiateLogout, userData }: INavbar) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navbarLinksClasses = cx('c-navbar__links', { 'c-navbar__links_open': isMenuOpen });
+  const navbarLinksClasses = cx('c-navbar', { 'c-navbar__mobile': isMenuOpen });
+
   return (
-    <>
-      <nav className='c-navbar'>
-        <Link href='/'>
-          <div className='c-navbar__heading-container'>
-            <Image height='45' src='/wizard.svg' width='45' />
-            <h3 className='c-navbar__heading'>Welcome to the Dark Arts</h3>
-          </div>
-        </Link>
-        <div className={navbarLinksClasses}>
+    <nav className={navbarLinksClasses}>
+      <Link href='/'>
+        <div className='c-navbar__heading-container'>
+          <Image height='45' src='/wizard.svg' width='45' />
+        </div>
+      </Link>
+      <ul className='c-navbar__links'>
+        <li>
           <Link href='/'>
             <a>Home</a>
           </Link>
+        </li>
+        <li>
           <Link href='/posts/all'>
             <a>Posts</a>
           </Link>
+        </li>
+        <li>
           <Link href='/contact'>
             <a>Contact</a>
           </Link>
+        </li>
+        <li>
           {userData ? (
             <Link href='/'>
               <button onClick={initiateLogout} type='button'>
@@ -44,16 +49,17 @@ const Navbar = ({ initiateLogout, userData }: INavbar) => {
           ) : (
             <Link href='/login'>Login</Link>
           )}
-        </div>
-        <button
-          className={isMenuOpen ? 'hamburger-icon hamburger-icon-open' : 'hamburger-icon'}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          type='button'
-        >
-          <FontAwesomeIcon icon={faChevronCircleDown} />
-        </button>
-      </nav>
-    </>
+        </li>
+        <li className='c-navbar__mobile-close'>
+          <button onClick={() => setIsMenuOpen(false)} type='button'>
+            X
+          </button>
+        </li>
+      </ul>
+      <button className='hamburger-icon' onClick={() => setIsMenuOpen(!isMenuOpen)} type='button'>
+        <Image height='25' src='/wand.svg' width='25' />
+      </button>
+    </nav>
   );
 };
 

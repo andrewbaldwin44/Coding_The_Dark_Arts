@@ -1,19 +1,8 @@
-@keyframes navAnimation {
-  from {
-    right: -500px;
-    opacity: 0;
-  }
-  to {
-    right: 0;
-    opacity: 1;
-  }
-}
-
 .c-navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+
   color: $main-white;
   font-weight: bold;
   letter-spacing: 2.5px;
@@ -31,15 +20,28 @@
   @media #{$at-bp-large} {
     padding: 0 $padding-at-large;
   }
+
+  li {
+    list-style: none;
+  }
+
+  .hamburger-icon {
+    display: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    transition: transform 0.7s ease;
+
+    @media #{$at-bp-small} {
+      display: unset;
+    }
+  }
 }
 
 .c-navbar__heading-container {
   @include flex-center;
   cursor: pointer;
-
-  h3 {
-    margin-left: 30px;
-  }
 
   img {
     color: white;
@@ -49,7 +51,7 @@
 .c-navbar__links {
   display: flex;
 
-  a {
+  li:not(.c-navbar__mobile-close) {
     @include flex-center;
 
     text-align: center;
@@ -64,51 +66,67 @@
     }
   }
 
-  @media #{$at-bp-small} {
+  .c-navbar__mobile-close {
     display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    button {
+      @include flex-center;
+      padding: 0;
+      height: 30px;
+      width: 30px;
+    }
   }
-}
 
-.c-navbar__links.c-navbar__links_open {
-  position: absolute;
-  right: 0;
-  width: 100%;
-  background-color: $main-blue;
-  @include flex-center;
-  padding-bottom: 8px;
-  flex-direction: column;
-  animation: navAnimation 1s ease forwards;
-  top: $navbar-height;
-  border-top: 1px solid white;
-
-  a {
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.hamburger-icon {
-  border: none;
-  background-color: transparent;
-  color: white;
-  font-size: 20px;
-  display: none;
-  transition: transform 0.7s ease;
-  transform: rotate(90deg);
   @media #{$at-bp-small} {
-    display: unset;
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: 0;
+    right: -210px;
+    height: 100%;
+    width: 200px;
+    z-index: 20;
+
+    padding: 0 30px;
+    padding-top: 45px;
+
+    background-color: $main-blue;
+    border-left: 1px solid $main-white;
+    transition: all 0.5s ease;
+
+    li:not(.c-navbar__mobile-close) {
+      display: block;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      font-size: 1.1em;
+      line-height: 3;
+    }
+
+    .c-navbar__mobile-close {
+      display: block;
+    }
   }
 }
 
-.hamburger-icon.hamburger-icon-open {
-  transform: rotate(270deg);
-}
+.c-navbar.c-navbar__mobile {
+  .c-navbar__links {
+    right: 0;
+  }
 
-.c-navbar__heading {
-  font-size: 1.5em;
+  .hamburger-icon {
+    transform: rotate(270deg);
+  }
 
-  @media (max-width: 900px) {
-    display: none;
+  .c-navbar__heading {
+    font-size: 1.5em;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
 }
