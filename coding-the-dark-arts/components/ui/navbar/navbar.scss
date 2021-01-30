@@ -3,23 +3,13 @@
   align-items: center;
   justify-content: space-between;
 
+  height: $navbar-height;
   color: $main-white;
   font-weight: bold;
   letter-spacing: 2.5px;
   font-size: 15px;
   background-color: $main-blue;
   box-shadow: 0 2px 2px $black-shadow;
-
-  height: $navbar-height;
-  padding: 0 $padding-at-small;
-
-  @media #{$at-bp-medium} {
-    padding: 0 $padding-at-medium;
-  }
-
-  @media #{$at-bp-large} {
-    padding: 0 $padding-at-large;
-  }
 
   li {
     list-style: none;

@@ -14,7 +14,7 @@ interface INavbar {
 
 const Navbar = ({ initiateLogout, userData }: INavbar) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navbarLinksClasses = cx('c-navbar', { 'c-navbar__mobile': isMenuOpen });
+  const navbarLinksClasses = cx('c-navbar', 'o-container', { 'c-navbar__mobile': isMenuOpen });
 
   return (
     <nav className={navbarLinksClasses}>

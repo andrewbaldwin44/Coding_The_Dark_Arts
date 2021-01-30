@@ -1,0 +1,11 @@
+.o-container {
+  padding: 0 $padding-at-small;
+
+  @media #{$at-bp-medium} {
+    padding: 0 $padding-at-medium;
+  }
+
+  @media #{$at-bp-large} {
+    padding: 0 $padding-at-large;
+  }
+}

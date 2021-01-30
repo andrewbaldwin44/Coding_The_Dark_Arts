@@ -32,7 +32,7 @@ export default function Home() {
       <Head>
         <title>Coding The Dark Arts</title>
       </Head>
-      <div className='c-home__heading-container'>
+      <div className='o-container c-home__heading-container'>
         <h1>Coding The Dark Arts</h1>
         <h2>With Andrew and Kolby</h2>
         <Link href='/posts/all'>
