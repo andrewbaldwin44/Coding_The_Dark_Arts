@@ -24,6 +24,11 @@ const Navbar = ({ initiateLogout, userData }: INavbar) => {
         </div>
       </Link>
       <ul className='c-navbar__links'>
+        <li className='c-navbar__mobile-close'>
+          <button onClick={() => setIsMenuOpen(false)} type='button'>
+            X
+          </button>
+        </li>
         <li>
           <Link href='/'>
             <a>Home</a>
@@ -49,11 +54,6 @@ const Navbar = ({ initiateLogout, userData }: INavbar) => {
           ) : (
             <Link href='/login'>Login</Link>
           )}
-        </li>
-        <li className='c-navbar__mobile-close'>
-          <button onClick={() => setIsMenuOpen(false)} type='button'>
-            X
-          </button>
         </li>
       </ul>
       <button className='hamburger-icon' onClick={() => setIsMenuOpen(!isMenuOpen)} type='button'>
