@@ -39,46 +39,63 @@ export default function individualPost({
         <Markdown children={postContent} />
       </div>
 
-      <form onSubmit={onSubmitComment}>
-        <label>Write a comment</label>
-        <input ref={userFieldInput} placeholder='Name' type='text' />
-        <input ref={commentFieldInput} placeholder='Comment' type='text' />
+      <form className='c-comment_form' onSubmit={onSubmitComment}>
+        <label>Leave a comment</label>
+        <input ref={userFieldInput} placeholder='Name' type='text' maxLength='25' />
+        <textarea
+          cols='50'
+          rows='4'
+          ref={commentFieldInput}
+          placeholder='Comment'
+          type='text'
+        ></textarea>
         <button type='submit'>Post</button>
       </form>
-
-      {comments &&
-        comments.map(({ id, comment: { user, comment } }, index) => {
-          return (
-            <div key={`post-comment-${index}`}>
-              <button onClick={() => onDeleteComment(id)}>X</button>
-              {editingComment === id ? (
-                <form onSubmit={onUpdateComment}>
-                  <input
-                    ref={updatedUserFieldInput}
-                    defaultValue={user}
-                    type='text'
-                    width='200px'
-                  />
-                  <input
-                    ref={updatedCommentFieldInput}
-                    defaultValue={comment}
-                    type='text'
-                    width='200px'
-                  />
-                  <button type='submit'>Save</button>
-                </form>
-              ) : (
-                <>
-                  <p>{user}</p>
-                  <p>{comment}</p>
-                  <button onClick={() => setEditingComment(id)} type='button'>
-                    Edit
-                  </button>
-                </>
-              )}
-            </div>
-          );
-        })}
+      <div className='c-comment_section'>
+        {comments &&
+          comments.map(({ id, comment: { user, comment } }, index) => {
+            return (
+              <div className='c-comment_individual' key={`post-comment-${index}`}>
+                {editingComment === id ? (
+                  <form onSubmit={onUpdateComment}>
+                    <input
+                      ref={updatedUserFieldInput}
+                      defaultValue={user}
+                      type='text'
+                      width='200px'
+                    />
+                    <input
+                      ref={updatedCommentFieldInput}
+                      defaultValue={comment}
+                      type='text'
+                      width='200px'
+                    />
+                    <button type='submit'>Save</button>
+                  </form>
+                ) : (
+                  <>
+                    <h2 className='c-comment_user'>{user}</h2>
+                    <p className='c-comment_comment'>{comment}</p>
+                    <button
+                      className='c-comment_edit c-comment_button'
+                      onClick={() => setEditingComment(id)}
+                      type='button'
+                    >
+                      Edit
+                    </button>
+                    <span>&#9679;</span>
+                    <button
+                      className='c-comment_delete c-comment_button'
+                      onClick={() => onDeleteComment(id)}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
+              </div>
+            );
+          })}
+      </div>
     </>
   );
 }
