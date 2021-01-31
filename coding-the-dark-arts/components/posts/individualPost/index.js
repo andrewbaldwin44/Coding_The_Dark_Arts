@@ -39,10 +39,16 @@ export default function individualPost({
         <Markdown children={postContent} />
       </div>
 
-      <form onSubmit={onSubmitComment}>
-        <label>Write a comment</label>
-        <input ref={userFieldInput} placeholder='Name' type='text' />
-        <input ref={commentFieldInput} placeholder='Comment' type='text' />
+      <form className='c-comment_form' onSubmit={onSubmitComment}>
+        <label>Leave a comment</label>
+        <input ref={userFieldInput} placeholder='Name' type='text' maxLength='25' />
+        <textarea
+          cols='50'
+          rows='4'
+          ref={commentFieldInput}
+          placeholder='Comment'
+          type='text'
+        ></textarea>
         <button type='submit'>Post</button>
       </form>
       <div className='c-comment_section'>
@@ -69,7 +75,7 @@ export default function individualPost({
                 ) : (
                   <>
                     <h2 className='c-comment_user'>{user}</h2>
-                    <p>{comment}</p>
+                    <p className='c-comment_comment'>{comment}</p>
                     <button
                       className='c-comment_edit c-comment_button'
                       onClick={() => setEditingComment(id)}
@@ -77,6 +83,7 @@ export default function individualPost({
                     >
                       Edit
                     </button>
+                    <span>&#9679;</span>
                     <button
                       className='c-comment_delete c-comment_button'
                       onClick={() => onDeleteComment(id)}

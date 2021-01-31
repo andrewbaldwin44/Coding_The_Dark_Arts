@@ -6,6 +6,7 @@
   border: 1px solid black;
   border-radius: 8px;
   width: 80%;
+  min-width: 325px;
   margin: 50px auto;
 }
 
@@ -13,7 +14,7 @@
   position: relative;
   width: 100%;
   padding: 8px;
-  border-bottom: 1px solid black;
+  box-shadow: 0 2px 1px -1px black;
   &:last-child {
     border-bottom: none;
   }
@@ -24,14 +25,54 @@
   background: transparent;
   cursor: pointer;
   padding: 0;
-  margin-right: 5px;
+  margin: 0 5px;
+
   border: none;
-  font-size: 12px;
-  &:hover {
+  font-size: 1.2rem;
+  &:active {
     font-style: italic;
   }
 }
 
 .c-comment_user {
   letter-spacing: 1.75px;
+  font-weight: bolder;
+}
+
+.c-comment_comment {
+  font-size: 1.5rem;
+  padding: 8px;
+  text-align: justify;
+}
+
+.c-comment_form {
+  padding: 8px;
+  label {
+    font-style: italic;
+    font-size: 1.5rem;
+  }
+  input {
+    width: 40%;
+    display: block;
+    margin: 8px 0;
+    font-weight: normal;
+  }
+  textarea {
+    display: block;
+    border: 2px solid $dark-blue;
+    border-radius: 6px;
+    font-family: inherit;
+    resize: none;
+    padding: 8px;
+    margin: 8px 0;
+  }
+  button {
+    &:hover {
+      background: $light-main-purple;
+      color: white;
+    }
+    &:active {
+      background: $dark-blue;
+    }
+  }
 }
