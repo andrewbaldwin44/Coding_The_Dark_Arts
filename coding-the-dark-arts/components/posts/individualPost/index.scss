@@ -1,0 +1,37 @@
+.c-comment_section {
+  @include flex-center;
+  flex-direction: column;
+  background: $light-main-purple;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.5);
+  border: 1px solid black;
+  border-radius: 8px;
+  width: 80%;
+  margin: 50px auto;
+}
+
+.c-comment_individual {
+  position: relative;
+  width: 100%;
+  padding: 8px;
+  border-bottom: 1px solid black;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.c-comment_button {
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 5px;
+  border: none;
+  font-size: 12px;
+  &:hover {
+    font-style: italic;
+  }
+}
+
+.c-comment_user {
+  letter-spacing: 1.75px;
+}

@@ -45,40 +45,50 @@ export default function individualPost({
         <input ref={commentFieldInput} placeholder='Comment' type='text' />
         <button type='submit'>Post</button>
       </form>
-
-      {comments &&
-        comments.map(({ id, comment: { user, comment } }, index) => {
-          return (
-            <div key={`post-comment-${index}`}>
-              <button onClick={() => onDeleteComment(id)}>X</button>
-              {editingComment === id ? (
-                <form onSubmit={onUpdateComment}>
-                  <input
-                    ref={updatedUserFieldInput}
-                    defaultValue={user}
-                    type='text'
-                    width='200px'
-                  />
-                  <input
-                    ref={updatedCommentFieldInput}
-                    defaultValue={comment}
-                    type='text'
-                    width='200px'
-                  />
-                  <button type='submit'>Save</button>
-                </form>
-              ) : (
-                <>
-                  <p>{user}</p>
-                  <p>{comment}</p>
-                  <button onClick={() => setEditingComment(id)} type='button'>
-                    Edit
-                  </button>
-                </>
-              )}
-            </div>
-          );
-        })}
+      <div className='c-comment_section'>
+        {comments &&
+          comments.map(({ id, comment: { user, comment } }, index) => {
+            return (
+              <div className='c-comment_individual' key={`post-comment-${index}`}>
+                {editingComment === id ? (
+                  <form onSubmit={onUpdateComment}>
+                    <input
+                      ref={updatedUserFieldInput}
+                      defaultValue={user}
+                      type='text'
+                      width='200px'
+                    />
+                    <input
+                      ref={updatedCommentFieldInput}
+                      defaultValue={comment}
+                      type='text'
+                      width='200px'
+                    />
+                    <button type='submit'>Save</button>
+                  </form>
+                ) : (
+                  <>
+                    <h2 className='c-comment_user'>{user}</h2>
+                    <p>{comment}</p>
+                    <button
+                      className='c-comment_edit c-comment_button'
+                      onClick={() => setEditingComment(id)}
+                      type='button'
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className='c-comment_delete c-comment_button'
+                      onClick={() => onDeleteComment(id)}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
+              </div>
+            );
+          })}
+      </div>
     </>
   );
 }
