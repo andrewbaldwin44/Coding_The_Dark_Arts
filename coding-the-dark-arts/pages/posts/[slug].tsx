@@ -11,6 +11,7 @@ import {
   deleteComment,
 } from './posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
+import { IUser } from '../../components/types/types';
 
 interface IArticles {
   image: {
@@ -28,6 +29,11 @@ interface IComments {
   user: string;
 }
 
+interface IUserData {
+  uid: string;
+  displayName: string;
+}
+
 interface IIndividualPostContainer {
   articles: IArticles;
   clearPostData: () => void;
@@ -37,6 +43,7 @@ interface IIndividualPostContainer {
   postComment: () => void;
   updateComment: () => void;
   deleteComment: () => void;
+  userData: IUserData;
 }
 
 function IndividualPostContainer({
@@ -48,6 +55,7 @@ function IndividualPostContainer({
   postComment,
   updateComment,
   deleteComment,
+  userData,
 }: IIndividualPostContainer) {
   const { query } = useRouter();
   const { slug } = query;
@@ -88,7 +96,7 @@ function IndividualPostContainer({
     const user = userFieldInput.current.value;
     const comment = commentFieldInput.current.value;
 
-    postComment({ comment, slug, user });
+    postComment({ comment, slug, user, uid: userData.uid });
   };
 
   const onDeleteComment = commentID => {
@@ -118,17 +126,28 @@ function IndividualPostContainer({
         updatedCommentFieldInput={updatedCommentFieldInput}
         updatedUserFieldInput={updatedUserFieldInput}
         userFieldInput={userFieldInput}
+        userData={userData}
       />
     );
   }
   return null;
 }
 
-export default connect(({ posts }) => ({ articles: posts.articles, comments: posts.comments }), {
-  clearPostData,
-  fetchArticlePayload,
-  fetchCommentPayload,
-  postComment,
-  updateComment,
-  deleteComment,
-})(IndividualPostContainer);
+export default connect(
+  ({ posts, firebase }) => ({
+    articles: posts.articles,
+    comments: posts.comments,
+    userData: {
+      uid: firebase.userData ? firebase.userData.uid : null,
+      displayName: firebase.userData ? firebase.userData.displayName : null,
+    },
+  }),
+  {
+    clearPostData,
+    fetchArticlePayload,
+    fetchCommentPayload,
+    postComment,
+    updateComment,
+    deleteComment,
+  },
+)(IndividualPostContainer);

@@ -1,6 +1,7 @@
 import Head from 'next/head';
-
+import React, { useEffect } from 'react';
 import Markdown from '../../markdown';
+import Filter from 'bad-words';
 
 export default function individualPost({
   articles: {
@@ -21,7 +22,10 @@ export default function individualPost({
   updatedCommentFieldInput,
   updatedUserFieldInput,
   userFieldInput,
+  userData: { uid, displayName },
 }) {
+  let filter = new Filter();
+
   return (
     <>
       <Head>
@@ -42,18 +46,13 @@ export default function individualPost({
       <form className='c-comment_form' onSubmit={onSubmitComment}>
         <label>Leave a comment</label>
         <input ref={userFieldInput} placeholder='Name' type='text' maxLength='25' />
-        <textarea
-          cols='50'
-          rows='4'
-          ref={commentFieldInput}
-          placeholder='Comment'
-          type='text'
-        ></textarea>
+        <textarea rows='4' ref={commentFieldInput} placeholder='Comment' type='text'></textarea>
         <button type='submit'>Post</button>
       </form>
       <div className='c-comment_section'>
+        {console.log(comments)}
         {comments &&
-          comments.map(({ id, comment: { user, comment } }, index) => {
+          comments.map(({ id, uid: commenterUID, comment: { user, comment } }, index) => {
             return (
               <div className='c-comment_individual' key={`post-comment-${index}`}>
                 {editingComment === id ? (
@@ -76,20 +75,24 @@ export default function individualPost({
                   <>
                     <h2 className='c-comment_user'>{user}</h2>
                     <p className='c-comment_comment'>{comment}</p>
-                    <button
-                      className='c-comment_edit c-comment_button'
-                      onClick={() => setEditingComment(id)}
-                      type='button'
-                    >
-                      Edit
-                    </button>
-                    <span>&#9679;</span>
-                    <button
-                      className='c-comment_delete c-comment_button'
-                      onClick={() => onDeleteComment(id)}
-                    >
-                      Delete
-                    </button>
+                    {uid === commenterUID && (
+                      <>
+                        <button
+                          className='c-comment_edit c-comment_button'
+                          onClick={() => setEditingComment(id)}
+                          type='button'
+                        >
+                          Edit
+                        </button>
+                        <span>&#9679;</span>
+                        <button
+                          className='c-comment_delete c-comment_button'
+                          onClick={() => onDeleteComment(id)}
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
                   </>
                 )}
               </div>

@@ -12,6 +12,7 @@ export default function firebaseReducer(state = initialState, { payload, type })
         userData: {
           email: payload.email,
           displayName: payload.displayName,
+          uid: payload.uid,
         },
       };
     }

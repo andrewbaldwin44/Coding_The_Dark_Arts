@@ -63,22 +63,23 @@ function* fetchArticlePayload({ slug }) {
 }
 
 function* fetchCommentPayload({ slug }) {
-  console.log({ slug });
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}`);
-  const { comments } = yield response.json();
+  const { comments, uid } = yield response.json();
 
-  yield put(sendCommentPayload(comments));
+  yield put(sendCommentPayload({ comments, uid }));
 }
 
-function* postComment({ comment, slug, user }) {
+function* postComment({ comment, slug, user, uid }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/add`, {
-    body: JSON.stringify({ comment, user }),
+    body: JSON.stringify({ comment, user, uid }),
     ...postRequestHeaders,
   });
 
-  yield response.json();
+  const {
+    comment: { id },
+  } = yield response.json();
 
-  yield put(updateCommentSection({ comment, user }));
+  yield put(updateCommentSection({ id, uid, comment: { comment, user } }));
 }
 
 function* updateComment({ commentID, slug, comment, user }) {

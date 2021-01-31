@@ -17,7 +17,8 @@ export default function postsReducer(state = {}, { payload, type }) {
     case SEND_COMMENT_PAYLOAD: {
       return {
         ...state,
-        comments: payload,
+        comments: payload.comments,
+        uid: payload.uid,
       };
     }
 

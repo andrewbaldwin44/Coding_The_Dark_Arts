@@ -87,6 +87,7 @@ function AuthForm({
   }, []);
 
   if (userData) {
+    console.log(userData);
     redirectHome();
     return null;
   }
