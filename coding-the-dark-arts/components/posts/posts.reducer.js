@@ -10,14 +10,14 @@ export default function postsReducer(state = {}, { payload, type }) {
     case SEND_ARTICLE_PAYLOAD: {
       return {
         ...state,
-        articles: payload,
+        post: payload,
       };
     }
 
     case SEND_COMMENT_PAYLOAD: {
       return {
         ...state,
-        comments: payload,
+        ...payload,
       };
     }
 

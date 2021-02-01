@@ -10,12 +10,12 @@ import {
   watchTwitterLogin,
 } from '../auth/firebase.saga';
 import {
-  watchFetchArticlePayload,
+  watchFetchPostPayload,
   watchFetchCommentPayload,
   watchPostComment,
   watchUpdateComment,
   watchDeleteComment,
-} from '../pages/posts/posts.saga';
+} from '../components/posts/posts.saga';
 
 export default function* rootSaga() {
   try {
@@ -26,7 +26,7 @@ export default function* rootSaga() {
       watchGoogleLogin(),
       watchGithubLogin(),
       watchTwitterLogin(),
-      watchFetchArticlePayload(),
+      watchFetchPostPayload(),
       watchFetchCommentPayload(),
       watchPostComment(),
       watchUpdateComment(),

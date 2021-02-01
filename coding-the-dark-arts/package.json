@@ -9,13 +9,15 @@
     "format": "prettier --write \"**/*.{js,jsx}\"",
     "lint:js": "eslint '{auth,components,pages,reducers}/**/*.{js,jsx,ts,tsx}'",
     "lint:css": "stylelint '{components,pages,styles}/**/*.scss' && prettier --list-different '{components,pages,styles}/**/*.scss'",
-    "lint": "yarn lint:js && yarn lint:css"
+    "lint": "yarn lint:js && yarn lint:css",
+    "type-check": "tsc"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "apollo-boost": "^0.4.9",
+    "bad-words": "^3.0.4",
     "emailjs-com": "^2.6.4",
     "firebase-admin": "^9.4.2",
     "graphql-tag": "^2.11.0",
