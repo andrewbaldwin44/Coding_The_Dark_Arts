@@ -49,10 +49,8 @@ function IndividualPostContainer({
 }: IIndividualPostContainer) {
   const { query } = useRouter();
   const { slug } = query;
-  const userFieldInput: React.RefObject<HTMLInputElement> = createRef();
   const commentFieldInput: React.RefObject<HTMLInputElement> = createRef();
 
-  const updatedUserFieldInput: React.RefObject<HTMLInputElement> = createRef();
   const updatedCommentFieldInput: React.RefObject<HTMLInputElement> = createRef();
   const [editingComment, setEditingComment] = useState('');
 
@@ -68,11 +66,10 @@ function IndividualPostContainer({
   }, [slug]);
 
   useEffect(() => {
-    if (userFieldInput.current && commentFieldInput.current) {
-      userFieldInput.current.value = '';
+    if (commentFieldInput.current) {
       commentFieldInput.current.value = '';
     }
-  }, [commentFieldInput, comments, userFieldInput]);
+  }, [commentFieldInput, comments]);
 
   useEffect(() => {
     if (editingComment) {
@@ -85,20 +82,19 @@ function IndividualPostContainer({
 
     const comment = commentFieldInput.current.value;
 
-    postComment({ comment, slug, uid: userData.uid, user: userData.displayName });
+    postComment({ comment, slug, uid: userData.uid });
   };
 
-  const onDeleteComment = commentID => {
-    deleteComment({ commentID, slug });
+  const onDeleteComment = timestamp => {
+    deleteComment({ slug, timestamp });
   };
 
   const onUpdateComment = event => {
     event.preventDefault();
 
-    const user = updatedUserFieldInput.current.value;
     const comment = updatedCommentFieldInput.current.value;
 
-    updateComment({ commentID: editingComment, comment, slug, user });
+    updateComment({ comment, slug, timestamp: editingComment, uid: userData.uid });
   };
 
   if (articles) {
@@ -113,9 +109,7 @@ function IndividualPostContainer({
         onUpdateComment={onUpdateComment}
         setEditingComment={setEditingComment}
         updatedCommentFieldInput={updatedCommentFieldInput}
-        updatedUserFieldInput={updatedUserFieldInput}
         userData={userData}
-        userFieldInput={userFieldInput}
       />
     );
   }

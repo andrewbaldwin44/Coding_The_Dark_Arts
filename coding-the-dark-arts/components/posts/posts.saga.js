@@ -64,25 +64,27 @@ function* fetchArticlePayload({ slug }) {
 
 function* fetchCommentPayload({ slug }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}`);
-  const { comments, uid } = yield response.json();
+  const { comments } = yield response.json();
 
-  yield put(sendCommentPayload({ comments, uid }));
+  yield put(sendCommentPayload({ comments }));
 }
 
-function* postComment({ comment, slug, uid, user }) {
+function* postComment({ comment, slug, uid: id }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/add`, {
-    body: JSON.stringify({ comment, uid, user }),
+    body: JSON.stringify({ comment, id }),
     ...postRequestHeaders,
   });
 
-  yield response.json();
+  const {
+    comment: { timestamp },
+  } = yield response.json();
 
-  yield put(updateCommentSection({ comment, uid, user }));
+  yield put(updateCommentSection({ comment, id, timestamp }));
 }
 
-function* updateComment({ commentID, slug, comment, user }) {
+function* updateComment({ comment, slug, timestamp, uid: id }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/edit`, {
-    body: JSON.stringify({ commentID, comment, user }),
+    body: JSON.stringify({ comment, id, timestamp }),
     ...postRequestHeaders,
   });
 
@@ -90,9 +92,9 @@ function* updateComment({ commentID, slug, comment, user }) {
   yield call(fetchCommentPayload, { slug });
 }
 
-function* deleteComment({ commentID, slug }) {
+function* deleteComment({ timestamp, slug }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/delete`, {
-    body: JSON.stringify({ commentID }),
+    body: JSON.stringify({ timestamp }),
     ...postRequestHeaders,
   });
 

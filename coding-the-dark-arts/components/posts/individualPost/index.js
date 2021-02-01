@@ -12,16 +12,14 @@ export default function individualPost({
     postTitle,
   },
   commentFieldInput,
-  comments,
+  comments = [],
   editingComment,
   onDeleteComment,
   onSubmitComment,
   onUpdateComment,
   setEditingComment,
   updatedCommentFieldInput,
-  updatedUserFieldInput,
   userData: { uid, displayName },
-  userFieldInput,
 }) {
   return (
     <>
@@ -40,61 +38,56 @@ export default function individualPost({
         <Markdown children={postContent} />
       </div>
 
-      <form className='c-comment_form' onSubmit={onSubmitComment}>
-        <label>Leave a comment</label>
-        <input ref={userFieldInput} maxLength='25' placeholder='Name' type='text' />
-        <textarea ref={commentFieldInput} placeholder='Comment' rows='4' type='text' />
-        <button type='submit'>Post</button>
-      </form>
+      {uid && (
+        <form className='c-comment_form' onSubmit={onSubmitComment}>
+          <label>Leave a comment</label>
+          <textarea ref={commentFieldInput} placeholder='Comment' rows='4' type='text' />
+          <button type='submit'>Post</button>
+        </form>
+      )}
+
       <div className='c-comment_section'>
-        {comments &&
-          comments.map(({ id, uid: commenterUID, comment: { user, comment } }, index) => {
-            return (
-              <div key={`post-comment-${index}`} className='c-comment_individual'>
-                {editingComment === id ? (
-                  <form onSubmit={onUpdateComment}>
-                    <input
-                      ref={updatedUserFieldInput}
-                      defaultValue={user}
-                      type='text'
-                      width='200px'
-                    />
-                    <input
-                      ref={updatedCommentFieldInput}
-                      defaultValue={comment}
-                      type='text'
-                      width='200px'
-                    />
-                    <button type='submit'>Save</button>
-                  </form>
-                ) : (
-                  <>
-                    <h2 className='c-comment_user'>{user}</h2>
-                    <p className='c-comment_comment'>{comment}</p>
-                    {uid === commenterUID && (
-                      <>
-                        <button
-                          className='c-comment_edit c-comment_button'
-                          onClick={() => setEditingComment(id)}
-                          type='button'
-                        >
-                          Edit
-                        </button>
-                        <span>&#9679;</span>
-                        <button
-                          className='c-comment_delete c-comment_button'
-                          onClick={() => onDeleteComment(id)}
-                          type='button'
-                        >
-                          Delete
-                        </button>
-                      </>
-                    )}
-                  </>
-                )}
-              </div>
-            );
-          })}
+        {comments.map(({ comment, id, timestamp, user }, index) => {
+          return (
+            <div key={`post-comment-${index}`} className='c-comment_individual'>
+              {editingComment === timestamp ? (
+                <form onSubmit={onUpdateComment}>
+                  <input
+                    ref={updatedCommentFieldInput}
+                    defaultValue={comment}
+                    type='text'
+                    width='200px'
+                  />
+                  <button type='submit'>Save</button>
+                </form>
+              ) : (
+                <>
+                  <h2 className='c-comment_user'>{user}</h2>
+                  <p className='c-comment_comment'>{comment}</p>
+                  {uid === id && (
+                    <>
+                      <button
+                        className='c-comment_edit c-comment_button'
+                        onClick={() => setEditingComment(timestamp)}
+                        type='button'
+                      >
+                        Edit
+                      </button>
+                      <span>&#9679;</span>
+                      <button
+                        className='c-comment_delete c-comment_button'
+                        onClick={() => onDeleteComment(timestamp)}
+                        type='button'
+                      >
+                        Delete
+                      </button>
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          );
+        })}
       </div>
     </>
   );
