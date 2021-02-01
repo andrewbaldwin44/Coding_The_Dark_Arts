@@ -32,54 +32,56 @@ export default function Home() {
       <Head>
         <title>Coding The Dark Arts</title>
       </Head>
-      <div className='o-container c-home__heading-container'>
-        <h1>Coding The Dark Arts</h1>
-        <h2>With Andrew and Kolby</h2>
-        <Link href='/posts/all'>
-          <h3 className='c-home__blog-redirect'>
-            Go to the Blog
-            <Image alt='Arrow Icon' height='30px' src='/arrow.svg' width='30px' />
-          </h3>
-        </Link>
-      </div>
-      <div
-        className='c-home__icon-container'
-        onMouseEnter={() => setMouseOnContainer(true)}
-        onMouseLeave={() => setMouseOnContainer(false)}
-      >
-        {icons.map(({ src, alt, slug }, index) => {
-          const { x, y } = mousePosition;
+      <div className='c-home_container'>
+        <div className='o-container c-home__heading-container'>
+          <h1>Coding The Dark Arts</h1>
+          <h2>With Andrew and Kolby</h2>
+          <Link href='/posts/all'>
+            <h3 className='c-home__blog-redirect'>
+              Go to the Blog
+              <Image alt='Arrow Icon' height='30px' src='/arrow.svg' width='30px' />
+            </h3>
+          </Link>
+        </div>
+        <div
+          className='c-home__icon-container'
+          onMouseEnter={() => setMouseOnContainer(true)}
+          onMouseLeave={() => setMouseOnContainer(false)}
+        >
+          {icons.map(({ src, alt, slug }, index) => {
+            const { x, y } = mousePosition;
 
-          const randomAcceleration = Math.floor(Math.random() * 300 + 200);
+            const randomAcceleration = Math.floor(Math.random() * 300 + 200);
 
-          let activityX = 40;
-          let activityY = 20;
-          let offsetX = 900;
-          let offsetY = 460;
-          if (mouseOnContainer) {
-            activityX = 8;
-            activityY = 10;
-            offsetX = 1500;
-            offsetY = 300;
-          }
+            let activityX = 40;
+            let activityY = 20;
+            let offsetX = 900;
+            let offsetY = 460;
+            if (mouseOnContainer) {
+              activityX = 8;
+              activityY = 10;
+              offsetX = 1500;
+              offsetY = 300;
+            }
 
-          const transformX = (x - offsetX + randomAcceleration) / activityX;
-          const transformY = (y - offsetY) / activityY;
+            const transformX = (x - offsetX + randomAcceleration) / activityX;
+            const transformY = (y - offsetY) / activityY;
 
-          const transform = {
-            transform: `translate(${transformX}px, ${transformY}px)`,
-          };
+            const transform = {
+              transform: `translate(${transformX}px, ${transformY}px)`,
+            };
 
-          return (
-            <Link key={`home-icon-${index}`} href={`posts/tags/${slug}`}>
-              <div className='c-home__icon-square'>
-                <div className='c-home__icon' style={transform}>
-                  <Image alt={alt} height='80px' src={src} width='80px' />
+            return (
+              <Link key={`home-icon-${index}`} href={`posts/tags/${slug}`}>
+                <div className='c-home__icon-square'>
+                  <div className='c-home__icon' style={transform}>
+                    <Image alt={alt} height='65px' src={src} width='65px' />
+                  </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </>
   );
