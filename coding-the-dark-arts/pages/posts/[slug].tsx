@@ -4,31 +4,20 @@ import { useRouter } from 'next/router';
 
 import {
   clearPostData,
-  fetchArticlePayload,
+  fetchPostPayload,
   fetchCommentPayload,
   postComment,
   updateComment,
   deleteComment,
 } from '../../components/posts/posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
-import { IUserData, IComment } from '../../components/types/types';
-
-interface IArticles {
-  image: {
-    asset: {
-      url: string;
-    };
-  };
-  postContent: string;
-  postDescription: string;
-  postTitle: string;
-}
+import { IComment, IPost, IUserData } from '../../components/types/types';
 
 interface IIndividualPostContainer {
-  articles: IArticles;
+  post: IPost;
   clearPostData: () => void;
   comments: IComment[];
-  fetchArticlePayload: (slug: string | string[]) => void;
+  fetchPostPayload: (slug: string | string[]) => void;
   fetchCommentPayload: (slug: string | string[]) => void;
   postComment: (payload: any) => void;
   updateComment: (payload: any) => void;
@@ -37,10 +26,10 @@ interface IIndividualPostContainer {
 }
 
 function IndividualPostContainer({
-  articles,
+  post,
   clearPostData,
   comments,
-  fetchArticlePayload,
+  fetchPostPayload,
   fetchCommentPayload,
   postComment,
   updateComment,
@@ -56,7 +45,7 @@ function IndividualPostContainer({
 
   useEffect(() => {
     if (slug) {
-      fetchArticlePayload(slug);
+      fetchPostPayload(slug);
       fetchCommentPayload(slug);
     }
 
@@ -97,16 +86,16 @@ function IndividualPostContainer({
     updateComment({ comment, slug, timestamp: editingComment, uid: userData.uid });
   };
 
-  if (articles) {
+  if (post) {
     return (
       <IndividualPost
-        articles={articles}
         commentFieldInput={commentFieldInput}
         comments={comments}
         editingComment={editingComment}
         onDeleteComment={onDeleteComment}
         onSubmitComment={onSubmitComment}
         onUpdateComment={onUpdateComment}
+        post={post}
         setEditingComment={setEditingComment}
         updatedCommentFieldInput={updatedCommentFieldInput}
         userData={userData}
@@ -118,7 +107,7 @@ function IndividualPostContainer({
 
 export default connect(
   ({ posts, firebase }) => ({
-    articles: posts.articles,
+    post: posts.post,
     comments: posts.comments,
     userData: {
       uid: firebase.userData ? firebase.userData.uid : null,
@@ -127,7 +116,7 @@ export default connect(
   }),
   {
     clearPostData,
-    fetchArticlePayload,
+    fetchPostPayload,
     fetchCommentPayload,
     postComment,
     updateComment,

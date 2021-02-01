@@ -3,7 +3,7 @@ import React from 'react';
 import Markdown from '../../markdown';
 
 export default function individualPost({
-  articles: {
+  post: {
     image: {
       asset: { url: imageURL },
     },
