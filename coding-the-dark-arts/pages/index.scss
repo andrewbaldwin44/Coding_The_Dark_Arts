@@ -4,23 +4,28 @@
   }
 }
 
+.c-home_container {
+  display: flex;
+  justify-content: space-evenly;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+}
+
 .c-home__heading-container {
-  position: absolute;
-
-  margin-top: 170px;
-
+  margin-top: 50px;
   font-family: Montserrat;
   line-height: 1.6;
 
   animation: move-in 0.5s forwards;
 
   h1 {
-    font-size: 5.5rem;
+    font-size: 5rem;
     font-weight: 800;
   }
 
   h2 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 400;
   }
 
@@ -34,7 +39,10 @@
 
     width: 100%;
     cursor: pointer;
-
+    transition: all 0.5s ease;
+    &:hover {
+      transform: translateX(30px);
+    }
     img {
       margin-left: 35px;
     }
@@ -42,12 +50,12 @@
 }
 
 .c-home__icon-container {
-  position: absolute;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   right: $padding-at-small;
-  top: 200px;
+  margin: 0 auto;
+  margin-top: 100px;
 
   height: 400px;
   width: 540px;
