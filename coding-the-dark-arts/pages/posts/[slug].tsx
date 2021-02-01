@@ -9,6 +9,10 @@ import {
   postComment,
   updateComment,
   deleteComment,
+  IFetchPayload,
+  IPostCommentPayload,
+  IUpdateCommentPayload,
+  IDeleteCommentPayload,
 } from '../../components/posts/posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
 import { IComment, IPost, IUserData } from '../../components/types/types';
@@ -17,11 +21,11 @@ interface IIndividualPostContainer {
   post: IPost;
   clearPostData: () => void;
   comments: IComment[];
-  fetchPostPayload: (slug: string | string[]) => void;
-  fetchCommentPayload: (slug: string | string[]) => void;
-  postComment: (payload: any) => void;
-  updateComment: (payload: any) => void;
-  deleteComment: (payload: any) => void;
+  fetchPostPayload: (slug: IFetchPayload) => void;
+  fetchCommentPayload: (slug: IFetchPayload) => void;
+  postComment: (payload: IPostCommentPayload) => void;
+  updateComment: (payload: IUpdateCommentPayload) => void;
+  deleteComment: (payload: IDeleteCommentPayload) => void;
   userData: IUserData;
 }
 
@@ -45,8 +49,8 @@ function IndividualPostContainer({
 
   useEffect(() => {
     if (slug) {
-      fetchPostPayload(slug);
-      fetchCommentPayload(slug);
+      fetchPostPayload({ slug });
+      fetchCommentPayload({ slug });
     }
 
     return () => {

@@ -17,5 +17,6 @@ export interface IUserData {
 
 export interface IComment {
   comment: string;
-  user: string;
+  timestamp: string;
+  id: string;
 }
