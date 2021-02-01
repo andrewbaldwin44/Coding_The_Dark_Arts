@@ -15,7 +15,7 @@ import {
   watchPostComment,
   watchUpdateComment,
   watchDeleteComment,
-} from '../pages/posts/posts.saga';
+} from '../components/posts/posts.saga';
 
 export default function* rootSaga() {
   try {

@@ -9,7 +9,7 @@ import {
   postComment,
   updateComment,
   deleteComment,
-} from './posts.actions';
+} from '../../components/posts/posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
 import { IUser, IComment } from '../../components/types/types';
 
