@@ -4,7 +4,7 @@ import '../styles/index.scss';
 import configureStore from '../redux/store';
 
 interface IApp {
-  Component: React.ReactElement;
+  Component: React.ElementType;
   pageProps: object;
 }
 

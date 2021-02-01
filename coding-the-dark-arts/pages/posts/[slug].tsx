@@ -11,7 +11,7 @@ import {
   deleteComment,
 } from './posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
-import { IUser } from '../../components/types/types';
+import { IUser, IComment } from '../../components/types/types';
 
 interface IArticles {
   image: {
@@ -24,11 +24,6 @@ interface IArticles {
   postTitle: string;
 }
 
-interface IComments {
-  comment: string;
-  user: string;
-}
-
 interface IUserData {
   uid: string;
   displayName: string;
@@ -37,12 +32,12 @@ interface IUserData {
 interface IIndividualPostContainer {
   articles: IArticles;
   clearPostData: () => void;
-  comments: IComments[];
-  fetchArticlePayload: () => void;
-  fetchCommentPayload: () => void;
-  postComment: () => void;
-  updateComment: () => void;
-  deleteComment: () => void;
+  comments: IComment[];
+  fetchArticlePayload: (slug: string | string[]) => void;
+  fetchCommentPayload: (slug: string | string[]) => void;
+  postComment: (payload: any) => void;
+  updateComment: (payload: any) => void;
+  deleteComment: (payload: any) => void;
   userData: IUserData;
 }
 
@@ -59,11 +54,11 @@ function IndividualPostContainer({
 }: IIndividualPostContainer) {
   const { query } = useRouter();
   const { slug } = query;
-  const userFieldInput = createRef(null);
-  const commentFieldInput = createRef(null);
+  const userFieldInput: React.RefObject<HTMLInputElement> = createRef();
+  const commentFieldInput: React.RefObject<HTMLInputElement> = createRef();
 
-  const updatedUserFieldInput = createRef(null);
-  const updatedCommentFieldInput = createRef(null);
+  const updatedUserFieldInput: React.RefObject<HTMLInputElement> = createRef();
+  const updatedCommentFieldInput: React.RefObject<HTMLInputElement> = createRef();
   const [editingComment, setEditingComment] = useState('');
 
   useEffect(() => {
@@ -96,7 +91,7 @@ function IndividualPostContainer({
     const user = userFieldInput.current.value;
     const comment = commentFieldInput.current.value;
 
-    postComment({ comment, slug, user, uid: userData.uid });
+    postComment({ comment, slug, uid: userData.uid, user: userData.displayName });
   };
 
   const onDeleteComment = commentID => {
@@ -125,8 +120,8 @@ function IndividualPostContainer({
         setEditingComment={setEditingComment}
         updatedCommentFieldInput={updatedCommentFieldInput}
         updatedUserFieldInput={updatedUserFieldInput}
-        userFieldInput={userFieldInput}
         userData={userData}
+        userFieldInput={userFieldInput}
       />
     );
   }

@@ -7,20 +7,20 @@ async function writeDatabase(path, doc, newData) {
 
 export default async (req, res) => {
   const { slug } = req.query;
-  const { comment, user, uid } = req.body;
-  const commentID = String(new Date());
+  const { comment, uid, user } = req.body;
+  const timestamp = String(new Date());
 
   try {
     await writeDatabase('comments', slug, {
-      [commentID]: {
-        user,
+      [uid]: {
         comment,
-        uid,
+        timestamp,
+        user,
       },
     });
 
     res.status(200);
-    res.json({ status: 200, comment: { user, comment, id: commentID }, uid });
+    res.json({ status: 200, comment: { comment, user } });
   } catch ({ message }) {
     res.status(400);
     res.json({ status: 400, message });

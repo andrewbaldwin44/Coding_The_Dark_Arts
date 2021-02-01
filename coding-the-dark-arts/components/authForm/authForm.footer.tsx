@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { IAuthFormFooter } from './authForm.component';
+import { IAuthFormFooter } from './authForm.container';
 
 function Footer({
   accountCreated,

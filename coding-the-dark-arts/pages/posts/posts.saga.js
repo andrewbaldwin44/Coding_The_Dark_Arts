@@ -69,17 +69,15 @@ function* fetchCommentPayload({ slug }) {
   yield put(sendCommentPayload({ comments, uid }));
 }
 
-function* postComment({ comment, slug, user, uid }) {
+function* postComment({ comment, slug, uid, user }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/add`, {
-    body: JSON.stringify({ comment, user, uid }),
+    body: JSON.stringify({ comment, uid, user }),
     ...postRequestHeaders,
   });
 
-  const {
-    comment: { id },
-  } = yield response.json();
+  yield response.json();
 
-  yield put(updateCommentSection({ id, uid, comment: { comment, user } }));
+  yield put(updateCommentSection({ comment, uid, user }));
 }
 
 function* updateComment({ commentID, slug, comment, user }) {
