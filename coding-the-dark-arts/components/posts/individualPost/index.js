@@ -1,7 +1,6 @@
 import Head from 'next/head';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Markdown from '../../markdown';
-import Filter from 'bad-words';
 
 export default function individualPost({
   articles: {
@@ -15,17 +14,15 @@ export default function individualPost({
   commentFieldInput,
   comments,
   editingComment,
+  onDeleteComment,
   onSubmitComment,
   onUpdateComment,
   setEditingComment,
-  onDeleteComment,
   updatedCommentFieldInput,
   updatedUserFieldInput,
-  userFieldInput,
   userData: { uid, displayName },
+  userFieldInput,
 }) {
-  let filter = new Filter();
-
   return (
     <>
       <Head>
@@ -45,16 +42,15 @@ export default function individualPost({
 
       <form className='c-comment_form' onSubmit={onSubmitComment}>
         <label>Leave a comment</label>
-        <input ref={userFieldInput} placeholder='Name' type='text' maxLength='25' />
-        <textarea rows='4' ref={commentFieldInput} placeholder='Comment' type='text'></textarea>
+        <input ref={userFieldInput} maxLength='25' placeholder='Name' type='text' />
+        <textarea ref={commentFieldInput} placeholder='Comment' rows='4' type='text' />
         <button type='submit'>Post</button>
       </form>
       <div className='c-comment_section'>
-        {console.log(comments)}
         {comments &&
           comments.map(({ id, uid: commenterUID, comment: { user, comment } }, index) => {
             return (
-              <div className='c-comment_individual' key={`post-comment-${index}`}>
+              <div key={`post-comment-${index}`} className='c-comment_individual'>
                 {editingComment === id ? (
                   <form onSubmit={onUpdateComment}>
                     <input
@@ -88,6 +84,7 @@ export default function individualPost({
                         <button
                           className='c-comment_delete c-comment_button'
                           onClick={() => onDeleteComment(id)}
+                          type='button'
                         >
                           Delete
                         </button>

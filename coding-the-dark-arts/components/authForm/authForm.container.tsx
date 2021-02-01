@@ -2,7 +2,7 @@ import Router from 'next/router';
 import { connect } from 'react-redux';
 
 import AuthForm from './authForm.component';
-import { IUser } from '../types/types';
+import { IUserData } from '../types/types';
 import {
   initiateLogin,
   initiateRegister,
@@ -51,7 +51,7 @@ export interface IAuthFormContainer extends IAuthFormFooter {
   initiateLogin: (input: IAuthFormInput) => void;
   initiateRegister: (input: IAuthFormInput) => void;
   setErrorMessage: (message: string) => void;
-  userData: IUser;
+  userData: IUserData;
 }
 
 function AuthFormContainer({ userData, ...props }: IAuthFormContainer) {
@@ -65,7 +65,6 @@ function AuthFormContainer({ userData, ...props }: IAuthFormContainer) {
       {...props}
       isStrongPassword={isStrongPassword}
       minimumPasswordLength={minimumPasswordLength}
-      redirectHome={redirectHome}
     />
   );
 }

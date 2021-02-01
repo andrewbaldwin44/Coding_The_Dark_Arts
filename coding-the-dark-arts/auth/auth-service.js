@@ -7,7 +7,7 @@ import firebaseConfig from './config';
 
 const auth = firebase.auth();
 const database = firebase.firestore();
-const FieldValue = firebase.firestore.FieldValue;
+const { FieldValue } = firebase.firestore;
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 const githubProvider = new firebase.auth.GithubAuthProvider();

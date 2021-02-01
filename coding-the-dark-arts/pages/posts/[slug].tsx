@@ -11,7 +11,7 @@ import {
   deleteComment,
 } from '../../components/posts/posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
-import { IUser, IComment } from '../../components/types/types';
+import { IUserData, IComment } from '../../components/types/types';
 
 interface IArticles {
   image: {
@@ -22,11 +22,6 @@ interface IArticles {
   postContent: string;
   postDescription: string;
   postTitle: string;
-}
-
-interface IUserData {
-  uid: string;
-  displayName: string;
 }
 
 interface IIndividualPostContainer {
@@ -88,7 +83,6 @@ function IndividualPostContainer({
   const onSubmitComment = event => {
     event.preventDefault();
 
-    const user = userFieldInput.current.value;
     const comment = commentFieldInput.current.value;
 
     postComment({ comment, slug, uid: userData.uid, user: userData.displayName });

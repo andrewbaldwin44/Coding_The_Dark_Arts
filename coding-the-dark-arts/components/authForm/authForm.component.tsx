@@ -13,7 +13,6 @@ interface IAuthForm extends IAuthFormFooter {
   initiateRegister: (input: IAuthFormInput) => void;
   isStrongPassword: (password: string) => boolean;
   minimumPasswordLength: number;
-  redirectHome: () => void;
   setErrorMessage: (message: string) => void;
 }
 
@@ -27,7 +26,6 @@ function AuthForm({
   initiateTwitterLogin,
   isStrongPassword,
   minimumPasswordLength,
-  redirectHome,
   setErrorMessage,
   clearErrorMessage,
 }: IAuthForm) {

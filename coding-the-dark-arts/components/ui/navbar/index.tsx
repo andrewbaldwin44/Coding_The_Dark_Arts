@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 
 import cx from 'classnames';
 import { initiateLogout as initiateLogoutAction } from '../../../auth/firebase-actions';
-import { IUser } from '../../types/types';
+import { IUserData } from '../../types/types';
 
 interface INavbar {
   initiateLogout: () => void;
-  userData: IUser;
+  userData: IUserData;
 }
 
 const Navbar = ({ initiateLogout, userData }: INavbar) => {
