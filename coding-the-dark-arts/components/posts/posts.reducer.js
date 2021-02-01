@@ -1,13 +1,13 @@
 import {
   CLEAR_POST_DATA,
-  SEND_ARTICLE_PAYLOAD,
+  SEND_POST_PAYLOAD,
   SEND_COMMENT_PAYLOAD,
   UPDATE_COMMENT_SECTION,
 } from './posts.actions';
 
 export default function postsReducer(state = {}, { payload, type }) {
   switch (type) {
-    case SEND_ARTICLE_PAYLOAD: {
+    case SEND_POST_PAYLOAD: {
       return {
         ...state,
         post: payload,
