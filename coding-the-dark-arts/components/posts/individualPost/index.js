@@ -47,7 +47,7 @@ export default function individualPost({
       )}
 
       <div className='c-comment_section'>
-        {comments.map(({ comment, uid, timestamp }, index) => {
+        {comments.map(({ comment, uid, timestamp, displayName }, index) => {
           return (
             <div key={`post-comment-${index}`} className='c-comment_individual'>
               {editingComment === timestamp ? (
@@ -62,7 +62,7 @@ export default function individualPost({
                 </form>
               ) : (
                 <>
-                  <h2 className='c-comment_user'>Put DisplayName hereee</h2>
+                  <h2 className='c-comment_user'>{displayName}</h2>
                   <p className='c-comment_comment'>{comment}</p>
                   {currentUID === uid && (
                     <>

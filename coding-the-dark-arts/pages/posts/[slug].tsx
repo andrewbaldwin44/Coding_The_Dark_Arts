@@ -75,7 +75,7 @@ function IndividualPostContainer({
 
     const comment = commentFieldInput.current.value;
 
-    postComment({ comment, slug, uid: userData.uid });
+    postComment({ comment, slug, uid: userData.uid, displayName: userData.displayName });
   };
 
   const onDeleteComment = timestamp => {
@@ -87,7 +87,13 @@ function IndividualPostContainer({
 
     const comment = updatedCommentFieldInput.current.value;
 
-    updateComment({ comment, slug, timestamp: editingComment, uid: userData.uid });
+    updateComment({
+      comment,
+      slug,
+      timestamp: editingComment,
+      uid: userData.uid,
+      displayName: userData.displayName,
+    });
   };
 
   if (post) {
@@ -115,7 +121,7 @@ export default connect(
     comments: posts.comments,
     userData: {
       uid: firebase.userData ? firebase.userData.uid : null,
-      displayName: firebase.userData ? firebase.userData.displayName : null,
+      displayName: firebase.userData ? firebase.userData.displayName || 'Anonymous' : null,
     },
   }),
   {

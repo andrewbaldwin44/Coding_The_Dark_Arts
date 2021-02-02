@@ -17,12 +17,14 @@ export interface IFetchPayload {
 export interface IPostCommentPayload extends IFetchPayload {
   comment: string;
   uid: string;
+  displayName: string;
 }
 
 export interface IUpdateCommentPayload extends IFetchPayload {
   comment: string;
   timestamp: string;
   uid: string;
+  displayName: string;
 }
 
 export interface IDeleteCommentPayload extends IFetchPayload {
