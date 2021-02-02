@@ -69,9 +69,9 @@ function* fetchCommentPayload({ slug }) {
   yield put(sendCommentPayload({ comments }));
 }
 
-function* postComment({ comment, slug, uid: id }) {
+function* postComment({ comment, slug, uid }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/add`, {
-    body: JSON.stringify({ comment, id }),
+    body: JSON.stringify({ comment, uid }),
     ...postRequestHeaders,
   });
 
@@ -79,12 +79,12 @@ function* postComment({ comment, slug, uid: id }) {
     comment: { timestamp },
   } = yield response.json();
 
-  yield put(updateCommentSection({ comment, id, timestamp }));
+  yield put(updateCommentSection({ comment, uid, timestamp }));
 }
 
-function* updateComment({ comment, slug, timestamp, uid: id }) {
+function* updateComment({ comment, slug, timestamp, uid }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/edit`, {
-    body: JSON.stringify({ comment, id, timestamp }),
+    body: JSON.stringify({ comment, uid, timestamp }),
     ...postRequestHeaders,
   });
 

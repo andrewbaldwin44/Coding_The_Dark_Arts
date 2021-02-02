@@ -19,7 +19,7 @@ export default function individualPost({
   onUpdateComment,
   setEditingComment,
   updatedCommentFieldInput,
-  userData: { uid, displayName },
+  userData: { uid: currentUID, displayName },
 }) {
   return (
     <>
@@ -38,7 +38,7 @@ export default function individualPost({
         <Markdown children={postContent} />
       </div>
 
-      {uid && (
+      {currentUID && (
         <form className='c-comment_form' onSubmit={onSubmitComment}>
           <label>Leave a comment</label>
           <textarea ref={commentFieldInput} placeholder='Comment' rows='4' type='text' />
@@ -47,7 +47,7 @@ export default function individualPost({
       )}
 
       <div className='c-comment_section'>
-        {comments.map(({ comment, id, timestamp }, index) => {
+        {comments.map(({ comment, uid, timestamp }, index) => {
           return (
             <div key={`post-comment-${index}`} className='c-comment_individual'>
               {editingComment === timestamp ? (
@@ -64,7 +64,7 @@ export default function individualPost({
                 <>
                   <h2 className='c-comment_user'>Put DisplayName hereee</h2>
                   <p className='c-comment_comment'>{comment}</p>
-                  {uid === id && (
+                  {currentUID === uid && (
                     <>
                       <button
                         className='c-comment_edit c-comment_button'
