@@ -35,7 +35,7 @@ export const clearPostData = () => ({
 
 export const fetchPostPayload = (payload: IFetchPayload) => ({
   type: FETCH_POST_PAYLOAD,
-  payload,
+  ...payload,
 });
 
 export const sendPostPayload = (payload: IPost) => ({
@@ -45,7 +45,7 @@ export const sendPostPayload = (payload: IPost) => ({
 
 export const fetchCommentPayload = (payload: IFetchPayload) => ({
   type: FETCH_COMMENT_PAYLOAD,
-  payload,
+  ...payload,
 });
 
 export const sendCommentPayload = (payload: IComment[]) => ({
