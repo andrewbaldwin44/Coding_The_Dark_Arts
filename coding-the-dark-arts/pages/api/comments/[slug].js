@@ -21,7 +21,7 @@ export default async (req, res) => {
     res.status(200);
     res.json({ status: 200, comments: parsedComments });
   } catch ({ message }) {
-    res.status(404);
-    res.json({ status: 404, message });
+    res.status(200);
+    res.json({ status: 200, comments: [] });
   }
 };

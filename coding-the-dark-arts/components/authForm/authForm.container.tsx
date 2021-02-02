@@ -36,6 +36,7 @@ const actionCreators = {
 export interface IAuthFormInput {
   email: string;
   password: string;
+  username?: string;
 }
 
 export interface IAuthFormFooter {

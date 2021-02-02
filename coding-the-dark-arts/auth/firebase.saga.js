@@ -39,8 +39,11 @@ export function* watchFirebaseLogout() {
   yield takeEvery(INITIATE_LOGOUT, firebaseLogout);
 }
 
-function* firebaseRegister({ payload: { email, password } }) {
-  yield auth.createUserWithEmailAndPassword(email, password);
+function* firebaseRegister({ payload: { email, password, username } }) {
+  const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+  yield user.updateProfile({
+    displayName: username,
+  });
   yield put(authenticationSuccess());
 }
 

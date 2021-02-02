@@ -32,13 +32,14 @@ function AuthForm({
 }: IAuthForm) {
   const emailField: React.RefObject<HTMLInputElement> = createRef();
   const passwordField: React.RefObject<HTMLInputElement> = createRef();
+  const usernameField: React.RefObject<HTMLInputElement> = createRef();
 
   const userSignup = () => {
     const { value: email } = emailField.current;
     const { value: password } = passwordField.current;
-
+    const { value: username } = usernameField.current;
     if (isStrongPassword(password)) {
-      initiateRegister({ email, password });
+      initiateRegister({ email, password, username });
     } else if (password.length < minimumPasswordLength) {
       setErrorMessage(passwordTooShort);
     } else {
@@ -68,6 +69,14 @@ function AuthForm({
       <div className='c-login-wrapper__container'>
         <h2 className='c-login__page-label'>{accountCreated ? 'Welcome Back!' : 'Welcome!'}</h2>
         <form className='c-login__form' onSubmit={submitForm}>
+          {!accountCreated && (
+            <FormControl
+              text='Username'
+              inputRef={usernameField}
+              className='c-login__input-field'
+              htmlType='text'
+            />
+          )}
           <FormControl
             text='Email'
             inputRef={emailField}
@@ -80,7 +89,6 @@ function AuthForm({
             className='c-login__input-field'
             htmlType='password'
           />
-
           <button className='c-login__submit-button' type='submit'>
             {accountCreated ? 'Log In' : 'Sign Up'}
           </button>

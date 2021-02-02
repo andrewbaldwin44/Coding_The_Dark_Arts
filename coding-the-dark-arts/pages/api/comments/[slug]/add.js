@@ -2,7 +2,13 @@ import { database } from '../../../../auth/auth-service';
 
 async function writeDatabase(path, doc, newData) {
   const reference = database.collection(path).doc(doc);
-  return reference.update(newData);
+  const snapshot = await reference.get();
+
+  if (snapshot.exists) {
+    return reference.update(newData);
+  }
+
+  return reference.set(newData);
 }
 
 export default async (req, res) => {
@@ -22,7 +28,8 @@ export default async (req, res) => {
 
     res.status(200);
     res.json({ status: 200, comment: { comment, uid, timestamp, displayName } });
-  } catch ({ message }) {
+  } catch (error) {
+    console.log({ error });
     res.status(400);
     res.json({ status: 400, message });
   }
