@@ -2,28 +2,19 @@ import { createRef, useEffect } from 'react';
 import cx from 'classnames';
 
 import Footer from './authForm.footer';
+import { IAuthFormFooter, IAuthFormInput } from './authForm.container';
 import { AUTHENTICATION_ERROR_MESSAGES } from '../../auth/auth.constants';
-import { IUser } from '../types/types';
+import { FormControl } from '../formControl/coolFunctions';
 
 const { missingPasswordRequirements, passwordTooShort } = AUTHENTICATION_ERROR_MESSAGES;
 
-export interface IAuthFormFooter {
-  accountCreated: boolea;
-  clearErrorMessage: () => void;
-  initiateGithubLogin: () => void;
-  initiateGoogleLogin: () => void;
-  initiateTwitterLogin: () => void;
-}
-
 interface IAuthForm extends IAuthFormFooter {
   errorMessage: string;
-  initiateLogin: () => void;
-  initiateRegister: () => void;
-  isStrongPassword: () => boolean;
-  minimumPasswordLength: integer;
-  redirectHome: () => void;
-  setErrorMessage: () => void;
-  userData: IUser;
+  initiateLogin: (input: IAuthFormInput) => void;
+  initiateRegister: (input: IAuthFormInput) => void;
+  isStrongPassword: (password: string) => boolean;
+  minimumPasswordLength: number;
+  setErrorMessage: (message: string) => void;
 }
 
 function AuthForm({
@@ -36,13 +27,11 @@ function AuthForm({
   initiateTwitterLogin,
   isStrongPassword,
   minimumPasswordLength,
-  redirectHome,
   setErrorMessage,
   clearErrorMessage,
-  userData,
 }: IAuthForm) {
-  const emailField = createRef(null);
-  const passwordField = createRef(null);
+  const emailField: React.RefObject<HTMLInputElement> = createRef();
+  const passwordField: React.RefObject<HTMLInputElement> = createRef();
 
   const userSignup = () => {
     const { value: email } = emailField.current;
@@ -74,48 +63,24 @@ function AuthForm({
     error: !!errorMessage,
   });
 
-  useEffect(() => {
-    const labels = document.querySelectorAll('.form-control label');
-
-    labels.forEach(label => {
-      label.innerHTML = label.innerText
-        .split('')
-        .map((letter, i) => `<span style="transition-delay:${i * 50}ms">${letter}</span>`)
-        .join('');
-      // Take off transition delay for the entire word to transition at the same time
-    });
-  }, []);
-
-  if (userData) {
-    redirectHome();
-    return null;
-  }
-
   return (
     <div className='c-login-wrapper'>
       <div className='c-login-wrapper__container'>
         <h2 className='c-login__page-label'>{accountCreated ? 'Welcome Back!' : 'Welcome!'}</h2>
         <form className='c-login__form' onSubmit={submitForm}>
-          <div className='form-control'>
-            <input
-              ref={emailField}
-              className='c-login__input-field'
-              label='Email'
-              required
-              type='email'
-            />
-            <label htmlFor='email'>Email</label>
-          </div>
-          <div className='form-control'>
-            <input
-              ref={passwordField}
-              className='c-login__input-field'
-              label='Password'
-              required
-              type='password'
-            />
-            <label htmlFor='password'>Password</label>
-          </div>
+          <FormControl
+            text='Email'
+            inputRef={emailField}
+            className='c-login__input-field'
+            htmlType='email'
+          />
+          <FormControl
+            text='Password'
+            inputRef={passwordField}
+            className='c-login__input-field'
+            htmlType='password'
+          />
+
           <button className='c-login__submit-button' type='submit'>
             {accountCreated ? 'Log In' : 'Sign Up'}
           </button>

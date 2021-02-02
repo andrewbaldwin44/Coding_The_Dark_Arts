@@ -12,10 +12,10 @@ export default async (req, res) => {
     const comments = await queryDatabase('comments', slug);
 
     const parsedComments = Object.entries(comments)
-      .sort(([indexA], [indexB]) => Date.parse(indexB) - Date.parse(indexA))
+      .sort(([timestampA], [timestampB]) => Date.parse(timestampB) - Date.parse(timestampA))
       .map(([index, comment]) => ({
-        id: index,
-        comment,
+        timestamp: index,
+        ...comment,
       }));
 
     res.status(200);

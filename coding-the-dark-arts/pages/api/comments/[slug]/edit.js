@@ -7,18 +7,18 @@ async function updateDatabase(path, doc, newData) {
 
 export default async (req, res) => {
   const { slug } = req.query;
-  const { commentID, user, comment } = req.body;
+  const { comment, uid, timestamp } = req.body;
 
   try {
     await updateDatabase('comments', slug, {
-      [commentID]: {
-        user,
+      [timestamp]: {
         comment,
+        uid,
       },
     });
 
     res.status(200);
-    res.json({ status: 200, comment: { user, comment } });
+    res.json({ status: 200, comment: { comment, uid, timestamp } });
   } catch ({ message }) {
     res.status(400);
     res.json({ status: 400, message });

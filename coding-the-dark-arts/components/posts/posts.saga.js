@@ -4,18 +4,18 @@ import gql from 'graphql-tag';
 import ApolloClient from '../../apollo/apollo.config';
 import { postRequestHeaders } from '../../utils';
 import {
-  FETCH_ARTICLE_PAYLOAD,
+  FETCH_POST_PAYLOAD,
   FETCH_COMMENT_PAYLOAD,
   POST_COMMENT,
   UPDATE_COMMENT,
-  sendArticlePayload,
+  sendPostPayload,
   sendCommentPayload,
   updateCommentSection,
   DELETE_COMMENT,
 } from './posts.actions';
 
-export function* watchFetchArticlePayload() {
-  yield takeEvery(FETCH_ARTICLE_PAYLOAD, fetchArticlePayload);
+export function* watchFetchPostPayload() {
+  yield takeEvery(FETCH_POST_PAYLOAD, fetchPostPayload);
 }
 
 export function* watchFetchCommentPayload() {
@@ -34,7 +34,7 @@ export function* watchDeleteComment() {
   yield takeEvery(DELETE_COMMENT, deleteComment);
 }
 
-function* fetchArticlePayload({ slug }) {
+function* fetchPostPayload({ slug }) {
   const postQuery = gql`
     query BlogPost($slug: String) {
       allBlogPost(where: { slug: { current: { eq: $slug } } }) {
@@ -59,31 +59,32 @@ function* fetchArticlePayload({ slug }) {
     },
   });
 
-  yield put(sendArticlePayload(articles[0]));
+  yield put(sendPostPayload(articles[0]));
 }
 
 function* fetchCommentPayload({ slug }) {
-  console.log({ slug });
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}`);
   const { comments } = yield response.json();
 
-  yield put(sendCommentPayload(comments));
+  yield put(sendCommentPayload({ comments }));
 }
 
-function* postComment({ comment, slug, user }) {
+function* postComment({ comment, slug, uid }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/add`, {
-    body: JSON.stringify({ comment, user }),
+    body: JSON.stringify({ comment, uid }),
     ...postRequestHeaders,
   });
 
-  yield response.json();
+  const {
+    comment: { timestamp },
+  } = yield response.json();
 
-  yield put(updateCommentSection({ comment, user }));
+  yield put(updateCommentSection({ comment, uid, timestamp }));
 }
 
-function* updateComment({ commentID, slug, comment, user }) {
+function* updateComment({ comment, slug, timestamp, uid }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/edit`, {
-    body: JSON.stringify({ commentID, comment, user }),
+    body: JSON.stringify({ comment, uid, timestamp }),
     ...postRequestHeaders,
   });
 
@@ -91,9 +92,9 @@ function* updateComment({ commentID, slug, comment, user }) {
   yield call(fetchCommentPayload, { slug });
 }
 
-function* deleteComment({ commentID, slug }) {
+function* deleteComment({ timestamp, slug }) {
   const response = yield fetch(`http://localhost:3000/api/comments/${slug}/delete`, {
-    body: JSON.stringify({ commentID }),
+    body: JSON.stringify({ timestamp }),
     ...postRequestHeaders,
   });
 
