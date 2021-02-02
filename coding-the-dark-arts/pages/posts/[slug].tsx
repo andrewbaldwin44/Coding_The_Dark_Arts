@@ -122,6 +122,7 @@ export default connect(
     userData: {
       uid: firebase.userData ? firebase.userData.uid : null,
       displayName: firebase.userData ? firebase.userData.displayName || 'Anonymous' : null,
+      userImage: firebase.userData ? firebase.userData.photoURL : null,
     },
   }),
   {

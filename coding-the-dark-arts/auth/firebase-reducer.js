@@ -7,12 +7,14 @@ const initialState = {
 export default function firebaseReducer(state = initialState, { payload, type }) {
   switch (type) {
     case AUTHENTICATION_SUCCESS: {
+      console.log({ payload });
       return {
         ...state,
         userData: {
           email: payload.email,
           displayName: payload.displayName,
           uid: payload.uid,
+          photoURL: payload.photoURL,
         },
       };
     }

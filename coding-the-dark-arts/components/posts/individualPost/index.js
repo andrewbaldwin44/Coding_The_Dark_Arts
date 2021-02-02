@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 import Markdown from '../../markdown';
+import Image from 'next/image';
 
 export default function individualPost({
   post: {
@@ -19,7 +20,7 @@ export default function individualPost({
   onUpdateComment,
   setEditingComment,
   updatedCommentFieldInput,
-  userData: { uid: currentUID, displayName },
+  userData: { uid: currentUID, userImage },
 }) {
   return (
     <>
@@ -62,6 +63,10 @@ export default function individualPost({
                 </form>
               ) : (
                 <>
+                  {uid === currentUID && (
+                    <img src={userImage || ''} style={{ borderRadius: '50%', width: '50px' }} />
+                  )}
+
                   <h2 className='c-comment_user'>{displayName}</h2>
                   <p className='c-comment_comment'>{comment}</p>
                   {currentUID === uid && (
