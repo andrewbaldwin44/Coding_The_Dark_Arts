@@ -1,0 +1,16 @@
+.danceWrap {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.danceFloor {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  top: 0;
+  left: 0;
+  right: 100px;
+  bottom: 100px;
+}
+
+.danceFloor img {
+  position: relative;
+}
