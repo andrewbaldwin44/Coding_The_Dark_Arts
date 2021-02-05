@@ -1,5 +1,5 @@
 import { createActionTypes } from '../../utils';
-import { IComment, IPost } from '../types/types';
+import { IComment, IPostDetails } from '../types/types';
 
 export const POSTS = createActionTypes('POSTS', [
   'FETCH_ALL',
@@ -36,13 +36,19 @@ export interface IDeleteCommentPayload extends IFetchPayload {
   timestamp: string;
 }
 
+export type IPostActionPayload =
+  | IFetchPayload
+  | IPostCommentPayload
+  | IUpdateCommentPayload
+  | IDeleteCommentPayload;
+
 export const POST_ACTIONS = {
   fetchAll: () => ({ type: POSTS.FETCH_ALL }),
   fetchDetails: (payload: IFetchPayload) => ({ type: POSTS.FETCH_DETAILS, ...payload }),
   fetchComments: (payload: IFetchPayload) => ({ type: POSTS.FETCH_COMMENTS, ...payload }),
   clearDetails: () => ({ type: POSTS.CLEAR_DETAILS }),
-  sendAll: (payload: IPost[]) => ({ type: POSTS.SEND_ALL, payload }),
-  sendDetails: (payload: IPost) => ({ type: POSTS.SEND_DETAILS, payload }),
+  sendAll: (payload: IPostDetails[]) => ({ type: POSTS.SEND_ALL, payload }),
+  sendDetails: (payload: IPostDetails) => ({ type: POSTS.SEND_DETAILS, payload }),
   sendComments: (payload: IComment[]) => ({ type: POSTS.SEND_COMMENTS, payload }),
   postComment: (payload: IPostCommentPayload) => ({ type: POSTS.POST_COMMENT, ...payload }),
   updateComment: (payload: IUpdateCommentPayload) => ({ type: POSTS.UPDATE_COMMENT, ...payload }),

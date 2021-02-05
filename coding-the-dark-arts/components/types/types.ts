@@ -1,4 +1,4 @@
-export interface IPost {
+export interface IPostDetails {
   image: {
     asset: {
       url: string;
@@ -9,6 +9,15 @@ export interface IPost {
   postTitle: string;
 }
 
+export interface IPost extends IPostDetails {
+  postTags: {
+    tagName: string;
+  };
+  slug: {
+    current: string;
+  };
+}
+
 export interface IUserData {
   email: string;
   displayName: string;
@@ -17,6 +26,7 @@ export interface IUserData {
 
 export interface IComment {
   comment: string;
+  displayName: string;
   timestamp: string;
-  id: string;
+  uid: string;
 }

@@ -10,10 +10,10 @@ import {
   IDeleteCommentPayload,
 } from '../../components/posts/posts.actions';
 import IndividualPost from '../../components/posts/individualPost';
-import { IComment, IPost, IUserData } from '../../components/types/types';
+import { IComment, IPostDetails, IUserData } from '../../components/types/types';
 
 interface IIndividualPostContainer {
-  post: IPost;
+  post: IPostDetails;
   clearPostData: () => void;
   comments: IComment[];
   fetchPostDetails: (slug: IFetchPayload) => void;
