@@ -1,31 +1,18 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
 
 import { getAllBlogPosts, getSingleBlogPost } from '../../api/sanity/queries';
 import { POSTS, POST_ACTIONS } from './posts.actions';
 import { COMMENT_CONTROLLER } from '../../api/next-api/comment-controller';
 
-export function* watchFetchAllPosts() {
-  yield takeEvery(POSTS.FETCH_ALL, fetchAllPosts);
-}
-
-export function* watchFetchPostDetails() {
-  yield takeEvery(POSTS.FETCH_DETAILS, fetchPostDetails);
-}
-
-export function* watchFetchComments() {
-  yield takeEvery(POSTS.FETCH_COMMENTS, fetchComments);
-}
-
-export function* watchPostComment() {
-  yield takeEvery(POSTS.POST_COMMENT, postComment);
-}
-
-export function* watchUpdateComment() {
-  yield takeEvery(POSTS.UPDATE_COMMENT, updateComment);
-}
-
-export function* watchDeleteComment() {
-  yield takeEvery(POSTS.DELETE_COMMENT, deleteComment);
+export function* watchBlogPostActions() {
+  yield all([
+    takeEvery(POSTS.FETCH_ALL, fetchAllPosts),
+    takeEvery(POSTS.FETCH_DETAILS, fetchPostDetails),
+    takeEvery(POSTS.FETCH_COMMENTS, fetchComments),
+    takeEvery(POSTS.POST_COMMENT, postComment),
+    takeEvery(POSTS.UPDATE_COMMENT, updateComment),
+    takeEvery(POSTS.DELETE_COMMENT, deleteComment),
+  ]);
 }
 
 function* fetchAllPosts() {

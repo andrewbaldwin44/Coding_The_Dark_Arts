@@ -9,14 +9,7 @@ import {
   watchGithubLogin,
   watchTwitterLogin,
 } from '../auth/firebase.saga';
-import {
-  watchFetchAllPosts,
-  watchFetchPostDetails,
-  watchFetchComments,
-  watchPostComment,
-  watchUpdateComment,
-  watchDeleteComment,
-} from '../components/posts/posts.saga';
+import { watchBlogPostActions } from '../components/posts/posts.saga';
 
 export default function* rootSaga() {
   try {
@@ -27,12 +20,7 @@ export default function* rootSaga() {
       watchGoogleLogin(),
       watchGithubLogin(),
       watchTwitterLogin(),
-      watchFetchPostDetails(),
-      watchFetchComments(),
-      watchPostComment(),
-      watchUpdateComment(),
-      watchDeleteComment(),
-      watchFetchAllPosts(),
+      watchBlogPostActions(),
     ]);
   } catch (error) {
     const { code } = error;
