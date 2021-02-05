@@ -10,6 +10,7 @@ import {
   watchTwitterLogin,
 } from '../auth/firebase.saga';
 import { watchBlogPostActions } from '../components/posts/posts.saga';
+import { watchTagActions } from '../components/tags/tags.saga';
 
 export default function* rootSaga() {
   try {
@@ -21,6 +22,7 @@ export default function* rootSaga() {
       watchGithubLogin(),
       watchTwitterLogin(),
       watchBlogPostActions(),
+      watchTagActions(),
     ]);
   } catch (error) {
     const { code } = error;
