@@ -1,42 +1,24 @@
-import {
-  CLEAR_POST_DATA,
-  SEND_ALL_POSTS,
-  SEND_POST_PAYLOAD,
-  SEND_COMMENT_PAYLOAD,
-  UPDATE_COMMENT_SECTION,
-} from './posts.actions';
+import { POSTS } from './posts.actions';
 
 export default function postsReducer(state = {}, { payload, type }) {
   switch (type) {
-    case SEND_ALL_POSTS: {
-      return {
-        ...state,
-        allPosts: payload,
-      };
-    }
-
-    case SEND_POST_PAYLOAD: {
-      return {
-        ...state,
-        post: payload,
-      };
-    }
-
-    case SEND_COMMENT_PAYLOAD: {
+    case POSTS.SEND_ALL:
+    case POSTS.SEND_DETAILS:
+    case POSTS.SEND_COMMENTS: {
       return {
         ...state,
         ...payload,
       };
     }
 
-    case UPDATE_COMMENT_SECTION: {
+    case POSTS.UPDATE_COMMENT_SECTION: {
       return {
         ...state,
         comments: [payload, ...state.comments],
       };
     }
 
-    case CLEAR_POST_DATA: {
+    case POSTS.CLEAR_DATA: {
       return {};
     }
 

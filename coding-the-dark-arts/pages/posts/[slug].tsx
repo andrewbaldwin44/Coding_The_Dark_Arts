@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import {
-  clearPostData,
-  fetchPostPayload,
-  fetchCommentPayload,
-  postComment,
-  updateComment,
-  deleteComment,
+  POST_ACTIONS,
   IFetchPayload,
   IPostCommentPayload,
   IUpdateCommentPayload,
@@ -21,7 +16,7 @@ interface IIndividualPostContainer {
   post: IPost;
   clearPostData: () => void;
   comments: IComment[];
-  fetchPostPayload: (slug: IFetchPayload) => void;
+  fetchPostDetails: (slug: IFetchPayload) => void;
   fetchCommentPayload: (slug: IFetchPayload) => void;
   postComment: (payload: IPostCommentPayload) => void;
   updateComment: (payload: IUpdateCommentPayload) => void;
@@ -33,8 +28,8 @@ function IndividualPostContainer({
   post,
   clearPostData,
   comments,
-  fetchPostPayload,
-  fetchCommentPayload,
+  fetchPostDetails,
+  fetchComments,
   postComment,
   updateComment,
   deleteComment,
@@ -49,8 +44,8 @@ function IndividualPostContainer({
 
   useEffect(() => {
     if (slug) {
-      fetchPostPayload({ slug });
-      fetchCommentPayload({ slug });
+      fetchPostDetails({ slug });
+      fetchComments({ slug });
     }
 
     return () => {
@@ -117,7 +112,7 @@ function IndividualPostContainer({
 
 export default connect(
   ({ posts, firebase }) => ({
-    post: posts.post,
+    post: posts.postDetails,
     comments: posts.comments,
     userData: {
       uid: firebase.userData ? firebase.userData.uid : null,
@@ -125,11 +120,11 @@ export default connect(
     },
   }),
   {
-    clearPostData,
-    fetchPostPayload,
-    fetchCommentPayload,
-    postComment,
-    updateComment,
-    deleteComment,
+    clearPostData: POST_ACTIONS.clearDetails,
+    fetchPostDetails: POST_ACTIONS.fetchDetails,
+    fetchComments: POST_ACTIONS.fetchComments,
+    postComment: POST_ACTIONS.postComment,
+    updateComment: POST_ACTIONS.updateComment,
+    deleteComment: POST_ACTIONS.deleteComment,
   },
 )(IndividualPostContainer);

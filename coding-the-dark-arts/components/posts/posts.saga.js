@@ -1,48 +1,37 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
 import gql from 'graphql-tag';
-import {
-  FETCH_POST_PAYLOAD,
-  FETCH_COMMENT_PAYLOAD,
-  POST_COMMENT,
-  UPDATE_COMMENT,
-  DELETE_COMMENT,
-  POSTS_FETCH_ALL,
-  sendAllPosts,
-  sendPostPayload,
-  sendCommentPayload,
-  updateCommentSection,
-} from './posts.actions';
 import { getSingleBlogPost } from '../../api/sanity/queries';
+import { POSTS, POST_ACTIONS } from './posts.actions';
 import { COMMENT_CONTROLLER } from '../../api/next-api/comment-controller';
 
 import ApolloClient from '../../apollo/apollo.config';
 
-export function* watchFetchPostPayload() {
-  yield takeEvery(FETCH_POST_PAYLOAD, fetchPostPayload);
+export function* watchFetchAllPosts() {
+  yield takeEvery(POSTS.FETCH_ALL, fetchAllPosts);
 }
 
-export function* watchFetchCommentPayload() {
-  yield takeEvery(FETCH_COMMENT_PAYLOAD, fetchCommentPayload);
+export function* watchFetchPostDetails() {
+  yield takeEvery(POSTS.FETCH_DETAILS, fetchPostDetails);
+}
+
+export function* watchFetchComments() {
+  yield takeEvery(POSTS.FETCH_COMMENTS, fetchComments);
 }
 
 export function* watchPostComment() {
-  yield takeEvery(POST_COMMENT, postComment);
+  yield takeEvery(POSTS.POST_COMMENT, postComment);
 }
 
 export function* watchUpdateComment() {
-  yield takeEvery(UPDATE_COMMENT, updateComment);
+  yield takeEvery(POSTS.UPDATE_COMMENT, updateComment);
 }
 
 export function* watchDeleteComment() {
-  yield takeEvery(DELETE_COMMENT, deleteComment);
+  yield takeEvery(POSTS.DELETE_COMMENT, deleteComment);
 }
 
-export function* watchFetchAllPosts() {
-  yield takeEvery(POSTS_FETCH_ALL, fetchAllPosts);
-}
-
-function* fetchAllPosts({ slug }) {
+function* fetchAllPosts() {
   const {
     data: { allBlogPost },
   } = yield ApolloClient.query({
@@ -68,19 +57,19 @@ function* fetchAllPosts({ slug }) {
     `,
   });
 
-  yield put(sendAllPosts(allBlogPost));
+  yield put(POST_ACTIONS.sendAll({ posts: allBlogPost }));
 }
 
-function* fetchPostPayload({ slug }) {
-  const blogPost = yield getSingleBlogPost(slug);
+function* fetchPostDetails({ slug }) {
+  const postDetails = yield getSingleBlogPost(slug);
 
-  yield put(sendPostPayload(blogPost));
+  yield put(POST_ACTIONS.sendDetails({ postDetails }));
 }
 
-function* fetchCommentPayload({ slug }) {
+function* fetchComments({ slug }) {
   const { comments } = yield COMMENT_CONTROLLER.index(slug);
 
-  yield put(sendCommentPayload({ comments }));
+  yield put(POST_ACTIONS.sendComments({ comments }));
 }
 
 function* postComment({ comment, slug, uid, displayName }) {
@@ -88,15 +77,15 @@ function* postComment({ comment, slug, uid, displayName }) {
     comment: { timestamp },
   } = yield COMMENT_CONTROLLER.create(slug, { comment, uid, displayName });
 
-  yield put(updateCommentSection({ comment, uid, timestamp, displayName }));
+  yield put(POST_ACTIONS.updateCommentSection({ comment, uid, timestamp, displayName }));
 }
 
 function* updateComment({ comment, slug, timestamp, uid, displayName }) {
   yield COMMENT_CONTROLLER.edit(slug, { comment, uid, timestamp, displayName });
-  yield call(fetchCommentPayload, { slug });
+  yield call(fetchComments, { slug });
 }
 
 function* deleteComment({ timestamp, slug }) {
   yield COMMENT_CONTROLLER.destroy(slug, { timestamp });
-  yield call(fetchCommentPayload, { slug });
+  yield call(fetchComments, { slug });
 }

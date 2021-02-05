@@ -35,7 +35,7 @@ const Navbar = ({ initiateLogout, userData }: INavbar) => {
           </Link>
         </li>
         <li>
-          <Link href='/posts/all'>
+          <Link href='/posts'>
             <a>Posts</a>
           </Link>
         </li>

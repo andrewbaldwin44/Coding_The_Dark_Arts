@@ -1,16 +1,19 @@
+import { createActionTypes } from '../../utils';
 import { IComment, IPost } from '../types/types';
 
-export const POSTS_FETCH_ALL = 'POSTS_FETCH_ALL';
-export const CLEAR_POST_DATA = 'CLEAR_POST_DATA';
-export const FETCH_POST_PAYLOAD = 'FETCH_POST_PAYLOAD';
-export const SEND_POST_PAYLOAD = 'SEND_POST_PAYLOAD';
-export const FETCH_COMMENT_PAYLOAD = 'FETCH_COMMENT_PAYLOAD';
-export const SEND_COMMENT_PAYLOAD = 'SEND_COMMENT_PAYLOAD';
-export const POST_COMMENT = 'POST_COMMENT';
-export const UPDATE_COMMENT_SECTION = 'UPDATE_COMMENT_SECTION';
-export const UPDATE_COMMENT = 'UPDATE_COMMENT';
-export const DELETE_COMMENT = 'DELETE_COMMENT';
-export const SEND_ALL_POSTS = 'SEND_ALL_POSTS';
+export const POSTS = createActionTypes('POSTS', [
+  'FETCH_ALL',
+  'FETCH_DETAILS',
+  'FETCH_COMMENTS',
+  'CLEAR_DETAILS',
+  'SEND_ALL',
+  'SEND_DETAILS',
+  'SEND_COMMENTS',
+  'POST_COMMENT',
+  'DELETE_COMMENT',
+  'UPDATE_COMMENT',
+  'UPDATE_COMMENT_SECTION',
+]);
 
 export interface IFetchPayload {
   slug: string | string[];
@@ -33,55 +36,16 @@ export interface IDeleteCommentPayload extends IFetchPayload {
   timestamp: string;
 }
 
-export const fetchAllPosts = () => ({
-  type: POSTS_FETCH_ALL,
-});
-
-export const sendAllPosts = payload => ({
-  type: SEND_ALL_POSTS,
-  payload,
-});
-
-export const clearPostData = () => ({
-  type: CLEAR_POST_DATA,
-});
-
-export const fetchPostPayload = (payload: IFetchPayload) => ({
-  type: FETCH_POST_PAYLOAD,
-  ...payload,
-});
-
-export const sendPostPayload = (payload: IPost) => ({
-  type: SEND_POST_PAYLOAD,
-  payload,
-});
-
-export const fetchCommentPayload = (payload: IFetchPayload) => ({
-  type: FETCH_COMMENT_PAYLOAD,
-  ...payload,
-});
-
-export const sendCommentPayload = (payload: IComment[]) => ({
-  type: SEND_COMMENT_PAYLOAD,
-  payload,
-});
-
-export const postComment = (payload: IPostCommentPayload) => ({
-  type: POST_COMMENT,
-  ...payload,
-});
-
-export const updateCommentSection = (payload: IComment) => ({
-  type: UPDATE_COMMENT_SECTION,
-  payload,
-});
-
-export const updateComment = (payload: IUpdateCommentPayload) => ({
-  type: UPDATE_COMMENT,
-  ...payload,
-});
-
-export const deleteComment = (payload: IDeleteCommentPayload) => ({
-  type: DELETE_COMMENT,
-  ...payload,
-});
+export const POST_ACTIONS = {
+  fetchAll: () => ({ type: POSTS.FETCH_ALL }),
+  fetchDetails: (payload: IFetchPayload) => ({ type: POSTS.FETCH_DETAILS, ...payload }),
+  fetchComments: (payload: IFetchPayload) => ({ type: POSTS.FETCH_COMMENTS, ...payload }),
+  clearDetails: () => ({ type: POSTS.CLEAR_DETAILS }),
+  sendAll: (payload: IPost[]) => ({ type: POSTS.SEND_ALL, payload }),
+  sendDetails: (payload: IPost) => ({ type: POSTS.SEND_DETAILS, payload }),
+  sendComments: (payload: IComment[]) => ({ type: POSTS.SEND_COMMENTS, payload }),
+  postComment: (payload: IPostCommentPayload) => ({ type: POSTS.POST_COMMENT, ...payload }),
+  updateComment: (payload: IUpdateCommentPayload) => ({ type: POSTS.UPDATE_COMMENT, ...payload }),
+  deleteComment: (payload: IDeleteCommentPayload) => ({ type: POSTS.DELETE_COMMENT, ...payload }),
+  updateCommentSection: (payload: IComment) => ({ type: POSTS.UPDATE_COMMENT_SECTION, payload }),
+};

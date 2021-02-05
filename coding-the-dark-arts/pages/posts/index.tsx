@@ -3,15 +3,18 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import AllPosts from '../../components/posts/allPosts';
-import { fetchAllPosts as fetchAllPostsAction } from '../../components/posts/posts.actions';
+import { POST_ACTIONS } from '../../components/posts/posts.actions';
 
 interface IAllPostsPage {
+  fetchAllPosts: () => void;
   searchValue: string;
 }
 
 function AllPostsPage({ fetchAllPosts, posts, ...props }: IAllPostsPage) {
   useEffect(() => {
-    fetchAllPosts();
+    if (!posts) {
+      fetchAllPosts();
+    }
   }, []);
 
   if (posts) {
@@ -22,11 +25,11 @@ function AllPostsPage({ fetchAllPosts, posts, ...props }: IAllPostsPage) {
 }
 
 const storeConnector = ({ posts, search }) => ({
-  posts: posts.allPosts,
+  posts: posts.posts,
   searchValue: search.searchValue,
 });
 const actionCreators = {
-  fetchAllPosts: fetchAllPostsAction,
+  fetchAllPosts: POST_ACTIONS.fetchAll,
 };
 
 export default connect(storeConnector, actionCreators)(AllPostsPage);

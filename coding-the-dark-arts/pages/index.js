@@ -36,7 +36,7 @@ export default function Home() {
         <div className='o-container c-home__heading-container'>
           <h1>Coding The Dark Arts</h1>
           <h2>With Andrew and Kolby</h2>
-          <Link href='/posts/all'>
+          <Link href='/posts'>
             <h3 className='c-home__blog-redirect'>
               Go to the Blog
               <Image alt='Arrow Icon' height='30px' src='/arrow.svg' width='30px' />
