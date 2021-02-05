@@ -2,6 +2,8 @@ const BASE_URL = 'http://localhost:3000/api/';
 export enum REQUEST_METHODS {
   GET = 'GET',
   POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
 }
 
 interface IRequestOptions {
@@ -17,7 +19,7 @@ const DEFAULT_OPTIONS: IRequestOptions = {
 const getRequestHeaders = ({ type, body }: IRequestOptions) => ({
   headers: { 'Content-Type': 'application/json' },
   method: type,
-  body,
+  body: body ? JSON.stringify(body) : null,
 });
 
 export async function asynchrounousRequest(

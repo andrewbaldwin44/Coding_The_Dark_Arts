@@ -46,34 +46,19 @@ function* fetchCommentPayload({ slug }) {
 }
 
 function* postComment({ comment, slug, uid, displayName }) {
-  const response = yield fetch(`http://localhost:3000/api/comments/${slug}/add`, {
-    body: JSON.stringify({ comment, uid, displayName }),
-    ...postRequestHeaders,
-  });
-
   const {
     comment: { timestamp },
-  } = yield response.json();
+  } = yield COMMENT_CONTROLLER.create(slug, { comment, uid, displayName });
 
   yield put(updateCommentSection({ comment, uid, timestamp, displayName }));
 }
 
 function* updateComment({ comment, slug, timestamp, uid, displayName }) {
-  const response = yield fetch(`http://localhost:3000/api/comments/${slug}/edit`, {
-    body: JSON.stringify({ comment, uid, timestamp, displayName }),
-    ...postRequestHeaders,
-  });
-
-  yield response.json();
+  yield COMMENT_CONTROLLER.edit(slug, { comment, uid, timestamp, displayName });
   yield call(fetchCommentPayload, { slug });
 }
 
 function* deleteComment({ timestamp, slug }) {
-  const response = yield fetch(`http://localhost:3000/api/comments/${slug}/delete`, {
-    body: JSON.stringify({ timestamp }),
-    ...postRequestHeaders,
-  });
-
-  yield response.json();
+  yield COMMENT_CONTROLLER.destroy(slug, { timestamp });
   yield call(fetchCommentPayload, { slug });
 }
