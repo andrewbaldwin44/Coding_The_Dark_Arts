@@ -1,11 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import gql from 'graphql-tag';
-import { getSingleBlogPost } from '../../api/sanity/queries';
+import { getAllBlogPosts, getSingleBlogPost } from '../../api/sanity/queries';
 import { POSTS, POST_ACTIONS } from './posts.actions';
 import { COMMENT_CONTROLLER } from '../../api/next-api/comment-controller';
-
-import ApolloClient from '../../apollo/apollo.config';
 
 export function* watchFetchAllPosts() {
   yield takeEvery(POSTS.FETCH_ALL, fetchAllPosts);
@@ -32,32 +29,9 @@ export function* watchDeleteComment() {
 }
 
 function* fetchAllPosts() {
-  const {
-    data: { allBlogPost },
-  } = yield ApolloClient.query({
-    query: gql`
-      query allBlogPost {
-        allBlogPost {
-          postTitle
-          postContent
-          postDescription
-          postTags {
-            tagName
-          }
-          image {
-            asset {
-              url
-            }
-          }
-          slug {
-            current
-          }
-        }
-      }
-    `,
-  });
+  const posts = yield getAllBlogPosts();
 
-  yield put(POST_ACTIONS.sendAll({ posts: allBlogPost }));
+  yield put(POST_ACTIONS.sendAll({ posts }));
 }
 
 function* fetchPostDetails({ slug }) {

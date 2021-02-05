@@ -1,21 +1,15 @@
-import gql from 'graphql-tag';
-
 import ApolloClient from '../../apollo/apollo.config';
+import { BLOG_POST } from './gql.ts';
 
-const BLOG_POST_GQL = gql`
-  query BlogPost($slug: String) {
-    allBlogPost(where: { slug: { current: { eq: $slug } } }) {
-      postTitle
-      postContent
-      postDescription
-      image {
-        asset {
-          url
-        }
-      }
-    }
-  }
-`;
+export async function getAllBlogPosts() {
+  const {
+    data: { allBlogPost },
+  } = await ApolloClient.query({
+    query: BLOG_POST.ALL,
+  });
+
+  return allBlogPost;
+}
 
 export async function getSingleBlogPost(slug: string) {
   const {
@@ -23,7 +17,7 @@ export async function getSingleBlogPost(slug: string) {
       allBlogPost: [firstPost],
     },
   } = await ApolloClient.query({
-    query: BLOG_POST_GQL,
+    query: BLOG_POST.DETAILS,
     variables: {
       slug,
     },
