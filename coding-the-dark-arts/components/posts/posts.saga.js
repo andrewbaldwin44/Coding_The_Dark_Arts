@@ -1,6 +1,6 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects';
 
-import { getAllBlogPosts, getSingleBlogPost } from '../../api/sanity/queries';
+import { getAllBlogPosts, getSingleBlogPost } from '../../api/sanity/blog-post/blog-post.queries';
 import { POSTS, POST_ACTIONS } from './posts.actions';
 import { COMMENT_CONTROLLER } from '../../api/next-api/comment-controller';
 
