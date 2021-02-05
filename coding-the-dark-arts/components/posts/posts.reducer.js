@@ -1,5 +1,6 @@
 import {
   CLEAR_POST_DATA,
+  SEND_ALL_POSTS,
   SEND_POST_PAYLOAD,
   SEND_COMMENT_PAYLOAD,
   UPDATE_COMMENT_SECTION,
@@ -7,6 +8,13 @@ import {
 
 export default function postsReducer(state = {}, { payload, type }) {
   switch (type) {
+    case SEND_ALL_POSTS: {
+      return {
+        ...state,
+        allPosts: payload,
+      };
+    }
+
     case SEND_POST_PAYLOAD: {
       return {
         ...state,
