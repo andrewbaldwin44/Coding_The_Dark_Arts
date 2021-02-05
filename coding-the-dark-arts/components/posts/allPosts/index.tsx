@@ -5,8 +5,9 @@ import Link from 'next/link';
 
 import Wrapper from '../../postsStyle/Wrapper';
 import SearchWidget from '../../searchWidget';
+import { IAllPosts } from '../../../pages/posts';
 
-export default function AllPosts({ posts, searchValue }) {
+export default function AllPosts({ posts, searchValue }: IAllPosts) {
   const [searchResults, setSearchResults] = useState(null);
   const filteredPosts = searchResults || posts;
 

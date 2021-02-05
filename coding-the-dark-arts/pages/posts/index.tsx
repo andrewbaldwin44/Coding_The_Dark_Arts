@@ -3,11 +3,16 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import AllPosts from '../../components/posts/allPosts';
+import { IPost } from '../../components/types/types';
 import { POST_ACTIONS } from '../../components/posts/posts.actions';
 
-interface IAllPostsPage {
-  fetchAllPosts: () => void;
+export interface IAllPosts {
   searchValue: string;
+  posts: IPost[];
+}
+
+interface IAllPostsPage extends IAllPosts {
+  fetchAllPosts: () => void;
 }
 
 function AllPostsPage({ fetchAllPosts, posts, ...props }: IAllPostsPage) {

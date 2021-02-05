@@ -35,6 +35,7 @@
     "no-shadow": "off",
     "no-param-reassign": "off",
     "no-unused-expressions": "off",
+    "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-sort-props": 2,
     "react/sort-prop-types": 2,

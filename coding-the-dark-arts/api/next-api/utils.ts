@@ -7,7 +7,7 @@ export enum REQUEST_METHODS {
 }
 
 interface IRequestOptions {
-  type?: typeof REQUEST_METHODS;
+  type?: keyof typeof REQUEST_METHODS;
   body?: string;
 }
 

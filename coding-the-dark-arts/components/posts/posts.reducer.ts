@@ -2,7 +2,7 @@ import { IPostActionPayload, POSTS } from './posts.actions';
 import { IComment, IPost, IPostDetails } from '../types/types';
 
 interface IPostReducer {
-  type: POSTS[keyof POSTS];
+  type: typeof POSTS[keyof typeof POSTS];
   payload?: IPostActionPayload;
 }
 

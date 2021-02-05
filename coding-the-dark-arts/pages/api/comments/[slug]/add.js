@@ -28,8 +28,7 @@ export default async (req, res) => {
 
     res.status(200);
     res.json({ status: 200, comment: { comment, uid, timestamp, displayName } });
-  } catch (error) {
-    console.log({ error });
+  } catch ({ message }) {
     res.status(400);
     res.json({ status: 400, message });
   }

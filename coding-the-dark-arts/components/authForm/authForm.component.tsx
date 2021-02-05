@@ -1,10 +1,10 @@
-import { createRef, useEffect } from 'react';
+import { createRef } from 'react';
 import cx from 'classnames';
 
 import Footer from './authForm.footer';
+import FormControl from '../formControl/formControl';
 import { IAuthFormFooter, IAuthFormInput } from './authForm.container';
 import { AUTHENTICATION_ERROR_MESSAGES } from '../../auth/auth.constants';
-import { FormControl } from '../formControl/coolFunctions';
 
 const { missingPasswordRequirements, passwordTooShort } = AUTHENTICATION_ERROR_MESSAGES;
 
@@ -19,16 +19,16 @@ interface IAuthForm extends IAuthFormFooter {
 
 function AuthForm({
   accountCreated,
+  clearErrorMessage,
   errorMessage,
+  initiateGithubLogin,
+  initiateGoogleLogin,
   initiateLogin,
   initiateRegister,
-  initiateGoogleLogin,
-  initiateGithubLogin,
   initiateTwitterLogin,
   isStrongPassword,
   minimumPasswordLength,
   setErrorMessage,
-  clearErrorMessage,
 }: IAuthForm) {
   const emailField: React.RefObject<HTMLInputElement> = createRef();
   const passwordField: React.RefObject<HTMLInputElement> = createRef();
@@ -71,23 +71,23 @@ function AuthForm({
         <form className='c-login__form' onSubmit={submitForm}>
           {!accountCreated && (
             <FormControl
-              text='Username'
-              inputRef={usernameField}
               className='c-login__input-field'
               htmlType='text'
+              inputRef={usernameField}
+              text='Username'
             />
           )}
           <FormControl
-            text='Email'
-            inputRef={emailField}
             className='c-login__input-field'
             htmlType='email'
+            inputRef={emailField}
+            text='Email'
           />
           <FormControl
-            text='Password'
-            inputRef={passwordField}
             className='c-login__input-field'
             htmlType='password'
+            inputRef={passwordField}
+            text='Password'
           />
           <button className='c-login__submit-button' type='submit'>
             {accountCreated ? 'Log In' : 'Sign Up'}

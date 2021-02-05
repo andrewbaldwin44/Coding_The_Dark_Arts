@@ -19,7 +19,7 @@ export default function individualPost({
   onUpdateComment,
   setEditingComment,
   updatedCommentFieldInput,
-  userData: { uid: currentUID, displayName },
+  userData: { uid: currentUID },
 }) {
   return (
     <>

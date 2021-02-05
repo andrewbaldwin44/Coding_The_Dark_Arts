@@ -17,7 +17,7 @@ interface IIndividualPostContainer {
   clearPostData: () => void;
   comments: IComment[];
   fetchPostDetails: (slug: IFetchPayload) => void;
-  fetchCommentPayload: (slug: IFetchPayload) => void;
+  fetchComments: (slug: IFetchPayload) => void;
   postComment: (payload: IPostCommentPayload) => void;
   updateComment: (payload: IUpdateCommentPayload) => void;
   deleteComment: (payload: IDeleteCommentPayload) => void;

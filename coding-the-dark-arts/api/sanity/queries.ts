@@ -1,5 +1,5 @@
 import ApolloClient from '../../apollo/apollo.config';
-import { BLOG_POST } from './gql.ts';
+import { BLOG_POST } from './gql';
 
 export async function getAllBlogPosts() {
   const {
