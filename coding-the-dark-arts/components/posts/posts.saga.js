@@ -1,6 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { postRequestHeaders } from '../../utils';
 import {
   FETCH_POST_PAYLOAD,
   FETCH_COMMENT_PAYLOAD,
@@ -12,6 +11,7 @@ import {
   DELETE_COMMENT,
 } from './posts.actions';
 import { getSingleBlogPost } from '../../api/sanity/queries';
+import { COMMENT_CONTROLLER } from '../../api/next-api/comment-controller';
 
 export function* watchFetchPostPayload() {
   yield takeEvery(FETCH_POST_PAYLOAD, fetchPostPayload);
@@ -40,8 +40,7 @@ function* fetchPostPayload({ slug }) {
 }
 
 function* fetchCommentPayload({ slug }) {
-  const response = yield fetch(`http://localhost:3000/api/comments/${slug}`);
-  const { comments } = yield response.json();
+  const { comments } = yield COMMENT_CONTROLLER.index(slug);
 
   yield put(sendCommentPayload({ comments }));
 }
