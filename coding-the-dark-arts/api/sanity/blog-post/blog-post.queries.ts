@@ -25,3 +25,15 @@ export async function getSingleBlogPost(slug: string) {
 
   return firstPost;
 }
+
+export async function getPostsByTag(tag: string) {
+  const {
+    data: { allBlogPost },
+  } = await ApolloClient.query({
+    query: BLOG_POST.ALL,
+  });
+
+  return allBlogPost.filter(({ postTags }) =>
+    postTags.some(({ tagName }) => tagName.toLowerCase() === tag.toLowerCase()),
+  );
+}

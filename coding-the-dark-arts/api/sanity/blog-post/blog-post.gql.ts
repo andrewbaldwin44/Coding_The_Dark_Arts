@@ -35,4 +35,13 @@ export const BLOG_POST = {
       }
     }
   `,
+  TAGS: gql`
+    query {
+      allBlogPost {
+        postTags {
+          tagName
+        }
+      }
+    }
+  `,
 };
