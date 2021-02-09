@@ -42,11 +42,10 @@ export default function DancingAnimation() {
 
         // get the dancefloor width and height
         const { width, height } = getComputedStyle(dancer.offsetParent);
-
         // width and height are strings with `px` so
         // parse out the numbers
-        const pw = parseInt(width);
-        const ph = parseInt(height);
+        const pw = parseInt(200);
+        const ph = parseInt(225);
 
         // if we're dancing off the floor, reverse
         // direction

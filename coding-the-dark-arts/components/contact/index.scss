@@ -1,12 +1,37 @@
+.testt {
+  background-image: url("/magicOrb.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  height: 80vh;
+}
+
+.contact-wrapper {
+  background-color: rgba(129, 20, 255, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // TODO: Make this cleaner with the layout??
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 50px;
+  @media (max-width: 600px) {
+    padding-left: unset;
+  }
+}
+
 .contact-form {
   @include flex-center;
   flex-direction: column;
-
   width: 30vw;
+  background: rgb(177, 0, 255);
+  background: linear-gradient(150deg, rgba(177, 0, 255, 1) 0%, rgba(255, 29, 255, 0) 70%);
   min-width: 350px;
   height: 60vh;
-  margin: 50px auto;
-  border: 1px solid black;
+  border: 1px solid $main;
   border-radius: 8px;
   position: relative;
   padding: 25px;
@@ -14,13 +39,12 @@
   @media (max-width: 600px) {
     padding: 5px;
     width: 350px;
+    margin: 0 auto;
   }
 }
 
 .contact-title {
-  position: absolute;
-  top: -25px;
-  left: 5px;
+  color: $main-white;
 }
 
 .contact-form input {
@@ -63,18 +87,19 @@
 
 .contact-send {
   cursor: pointer;
-  border: 2px solid black;
+  border: 2px solid $highlight;
   border-radius: 5px;
-  color: black;
   margin-left: 8px;
   padding: 8px;
-  &:active {
-    color: white;
-    background: black;
-  }
+  color: $main-white;
+  background: linear-gradient(to right, rgba(255, 29, 255, 0) 30%, rgba(177, 0, 255, 1) 70%);
+  background-size: 200% 100%;
+  background-position: left bottom;
+  transition: all 2s ease;
   &:hover {
-    background: black;
     color: white;
+    //background: ;
+    background-position: right bottom;
   }
 }
 

@@ -51,8 +51,9 @@
       margin-right: 50px;
     }
 
+    transition: all 2s ease;
     &:hover {
-      text-decoration: underline;
+      transform: rotate3d(0.2, 5, 1, 328deg);
     }
   }
 

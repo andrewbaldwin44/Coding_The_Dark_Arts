@@ -25,33 +25,35 @@ export default function ContactForm() {
   }
 
   return (
-    <div className='contact-wrapper'>
-      <form className='contact-form' id='contact' onSubmit={sendEmail}>
-        <h1 className='contact-title'>Contact Us</h1>
-        <div className='contact-flex'>
-          <div className='contact-elem'>
-            <input className='contact-input' name='name' placeholder='Name' type='text' />
+    <div className='testt'>
+      <div className='contact-wrapper'>
+        <form className='contact-form' id='contact' onSubmit={sendEmail}>
+          <h1 className='contact-title'>Get In Touch</h1>
+          <div className='contact-flex'>
+            <div className='contact-elem'>
+              <input className='contact-input' name='name' placeholder='Name' type='text' />
+            </div>
+            <div className='contact-elem'>
+              <input
+                className='contact-input'
+                name='email'
+                placeholder='Email Address'
+                type='email'
+              />
+            </div>
+            <div className='contact-elem'>
+              <input className='contact-input' name='subject' placeholder='Subject' type='text' />
+            </div>
+            <div className='contact-elem'>
+              <textarea className='contact-textarea' name='message' placeholder=' Your message' />
+            </div>
+            <div className='submit-contact'>
+              <input className='contact-send' type='submit' value='Send Message' />
+            </div>
           </div>
-          <div className='contact-elem'>
-            <input
-              className='contact-input'
-              name='email'
-              placeholder='Email Address'
-              type='email'
-            />
-          </div>
-          <div className='contact-elem'>
-            <input className='contact-input' name='subject' placeholder='Subject' type='text' />
-          </div>
-          <div className='contact-elem'>
-            <textarea className='contact-textarea' name='message' placeholder=' Your message' />
-          </div>
-          <div className='submit-contact'>
-            <input className='contact-send' type='submit' value='Send Message' />
-          </div>
-        </div>
-        {emailStatus && <p className='contact-success'>Thanks for reaching out!</p>}
-      </form>
+          {emailStatus && <p className='contact-success'>Thanks for reaching out!</p>}
+        </form>
+      </div>
     </div>
   );
 }
