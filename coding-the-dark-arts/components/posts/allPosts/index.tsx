@@ -6,8 +6,9 @@ import Link from 'next/link';
 import Wrapper from '../../postsStyle/Wrapper';
 import SearchWidget from '../../searchWidget';
 import { IAllPosts } from '../../../pages/posts';
+import { capitalize } from '../../../utils';
 
-export default function AllPosts({ posts, searchValue }: IAllPosts) {
+export default function AllPosts({ posts, searchValue, title }: IAllPosts) {
   const [searchResults, setSearchResults] = useState(null);
   const filteredPosts = searchResults || posts;
 
@@ -25,11 +26,11 @@ export default function AllPosts({ posts, searchValue }: IAllPosts) {
   return (
     <div>
       <Head>
-        <title>All Posts</title>
+        <title>{title ? capitalize(title) + ' Posts' : 'All Posts'}</title>
       </Head>
 
       <div className='all-post-wrapper'>
-        <h1 className='all-post-title'>All Posts</h1>
+        <h1 className='all-post-title'>{title ? capitalize(title) : 'All Posts'}</h1>
         <div className='search-component'>
           <SearchWidget />
         </div>

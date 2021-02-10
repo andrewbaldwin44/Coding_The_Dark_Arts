@@ -9,6 +9,7 @@ import { POST_ACTIONS } from '../../components/posts/posts.actions';
 export interface IAllPosts {
   searchValue: string;
   posts: IPost[];
+  title: string;
 }
 
 interface IAllPostsPage extends IAllPosts {

@@ -9,6 +9,8 @@ const icons = [
   { src: '/redux.svg', alt: 'Redux.js', slug: 'redux' },
   { src: '/next-dot-js.svg', alt: 'Next.js', slug: 'next' },
   { src: '/sass.svg', alt: 'Sass', slug: 'sass' },
+  { src: '/graphql.svg', alt: 'GraphQL', slug: 'graphql' },
+  { src: '/firebase.svg', alt: 'Firebase', slug: 'firebase' },
 ];
 
 export default function Home() {
@@ -72,7 +74,7 @@ export default function Home() {
             };
 
             return (
-              <Link key={`home-icon-${index}`} href={`posts/tags/${slug}`}>
+              <Link key={`home-icon-${index}`} href={`/tags/${slug}`}>
                 <div className='c-home__icon-square'>
                   <div className='c-home__icon' style={transform}>
                     <Image alt={alt} height='65px' src={src} width='65px' />

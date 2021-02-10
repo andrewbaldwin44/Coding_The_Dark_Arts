@@ -16,7 +16,7 @@ function TagPage({ fetchPostsByTag, posts, ...props }) {
   }, [tag]);
 
   if (posts) {
-    return <AllPosts posts={posts} {...props} />;
+    return <AllPosts posts={posts} title={tag} {...props} />;
   }
 
   return null;
