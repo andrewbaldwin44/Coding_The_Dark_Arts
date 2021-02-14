@@ -5,6 +5,7 @@ const { KnexAdapter: Adapter } = require("@keystonejs/adapter-knex");
 require("dotenv").config();
 
 const BlogPostSchema = require("./schemas/blogPost");
+const TagSchema = require("./schemas/tag");
 
 const PROJECT_NAME = process.env.PROJECT_NAME;
 const adapterConfig = { knexOptions: { connection: process.env.DATABASE_URI } };
@@ -14,6 +15,7 @@ const keystone = new Keystone({
 });
 
 keystone.createList("BlogPost", BlogPostSchema);
+keystone.createList("Tag", TagSchema);
 
 module.exports = {
   keystone,

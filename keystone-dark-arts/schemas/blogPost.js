@@ -1,5 +1,5 @@
 const { Markdown } = require("@keystonejs/fields-markdown");
-const { Image, TextArray, Text } = require("@keystonejs/fields");
+const { Relationship, Text } = require("@keystonejs/fields");
 
 module.exports = {
   fields: {
@@ -15,10 +15,12 @@ module.exports = {
       type: Text,
       isRequired: true,
     },
-    // tags: {
-    //   type: TextArray,
-    //   isRequired: true,
-    // },
+    tags: {
+      type: Relationship,
+      ref: "Tag",
+      isRequired: true,
+      many: true,
+    },
     content: {
       type: Markdown,
       isRequired: true,
