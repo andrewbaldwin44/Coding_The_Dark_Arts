@@ -6,7 +6,8 @@
   "author": "Andrew and Kolby ",
   "license": "GNU AFFERO GENERAL PUBLIC LICENSE",
   "scripts": {
-    "start": "cd coding-the-dark-arts && yarn next dev",
+    "start": "cd coding-the-dark-arts && yarn next start",
+    "heroku-postbuild": "cd coding-the-dark-arts && npm run build",
     "start:sanity": "cd sanity && yarn sanity start"
   },
   "engines": {

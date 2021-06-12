@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "format": "prettier --write \"**/*.{js,jsx}\"",
     "lint:js": "eslint '{auth,components,pages,reducers}/**/*.{js,jsx,ts,tsx}'",
     "lint:css": "stylelint '{components,pages,styles}/**/*.scss' && prettier --list-different '{components,pages,styles}/**/*.scss'",
